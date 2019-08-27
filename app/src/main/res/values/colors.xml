@@ -1,0 +1,23 @@
+<?xml version="1.0" encoding="utf-8"?>
+<resources>
+    <color name="colorPrimary">#008577</color>
+    <color name="colorPrimaryDark">#00574B</color>
+    <color name="colorAccent">#D81B60</color>
+
+
+    <color name="color_basic">#66FF00</color>
+    <color name="color_replenish">#FF9900</color>
+    <color name="color_pay">#CCFF00</color>
+    <color name="color_aisle">#FFFF00</color>
+    <color name="color_sync">#CCFF99</color>
+    <color name="color_test">#00FF99</color>
+    <color name="color_malfunction">#33FFCC</color>
+    <color name="white">#FFFFFF</color>
+    <color name="color_white_F6">#F6F6F6</color>
+    <color name="black">#000000</color>
+    <color name="text">#2b2b2b</color>
+    <color name="blue">#0000ff</color>
+    <color name="blue_sy">#bcb1ec</color>
+
+
+</resources>

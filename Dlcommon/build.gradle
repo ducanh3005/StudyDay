@@ -1,0 +1,55 @@
+def isDevelop = false//是否开发模式
+if (isDevelop) {
+    apply plugin: 'com.android.application'
+} else {
+    apply plugin: 'com.android.library'
+}
+
+def dbflow_version = "4.2.4"
+
+android {
+    compileSdkVersion 28
+
+
+    defaultConfig {
+        minSdkVersion 15
+        targetSdkVersion 28
+        versionCode 1
+        versionName "1.0"
+
+        testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
+        sourceSets {
+            main {
+                if (isDevelop) {
+                    manifest.srcFile 'src/main/AndroidManifest_dev.xml'
+                } else {
+                    manifest.srcFile 'src/main/AndroidManifest.xml'
+                }
+            }
+        }
+    }
+
+    buildTypes {
+        release {
+            minifyEnabled false
+            proguardFiles getDefaultProguardFile('proguard-android-optimize.txt'), 'proguard-rules.pro'
+        }
+    }
+}
+
+
+dependencies {
+    implementation fileTree(dir: 'libs', include: ['*.jar'])
+
+    implementation 'androidx.appcompat:appcompat:1.0.0'
+    testImplementation 'junit:junit:4.13-beta-3'
+    androidTestImplementation 'androidx.test:runner:1.1.0'
+    androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
+    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:$dbflow_version"
+    // gradle 3.0.0 可以使用 implementation，否则用 compile
+    api "com.github.Raizlabs.DBFlow:dbflow-core:$dbflow_version"
+    api "com.github.Raizlabs.DBFlow:dbflow:$dbflow_version"
+    api 'com.alibaba:fastjson:1.2.59'
+    api 'org.greenrobot:eventbus:3.1.1'
+
+}
