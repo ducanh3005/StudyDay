@@ -9,7 +9,13 @@
 package com.darly.std.vm;
 
 import android.util.Log;
+import android.view.MenuItem;
+import android.widget.AdapterView;
+import android.widget.ImageView;
+import android.widget.TextView;
 
+import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 import androidx.lifecycle.MutableLiveData;
@@ -17,6 +23,10 @@ import androidx.lifecycle.ViewModel;
 
 import com.darly.std.BR;
 import com.darly.std.R;
+
+import java.util.ArrayList;
+import java.util.List;
+import java.util.Map;
 
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 
@@ -34,7 +44,6 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     MutableLiveData<Action> action = new MutableLiveData<>();
 
     public MainViewModel() {
-
         items.add(new ItemMainViewModel("宋词作者", this));
     }
 
@@ -50,6 +59,8 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     public MutableLiveData<Action> getAction() {
         return action;
     }
+
+
 
     public class Action {
         public static final int NEXTPAGE = 0;

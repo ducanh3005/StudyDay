@@ -8,10 +8,16 @@
 
 package com.darly.std;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.view.Menu;
+import android.view.MenuItem;
 
+import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
@@ -50,11 +56,11 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        binding.toolbar.setCenterTitle(R.string.app_name);
+        binding.toolbar.setTitleVisibly(true);
         setSupportActionBar(binding.toolbar);
-
         OperController.init();
     }
+
 
     @Override
     public void initObservableView() {
@@ -68,13 +74,14 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         });
     }
 
+
     /**
      * 开始调用
      *
      * @param action 传递Action
      */
     private void doAction(MainViewModel.Action action) {
-        String  authorModel = (String) action.getParam();
+        String authorModel = (String) action.getParam();
         Intent intent = new Intent(this, RecyclerViewActivity.class);
         intent.putExtra("Title", authorModel);
         startActivity(intent);
@@ -86,6 +93,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         super.onResume();
         EventController.register(this);
     }
+
 
     @Override
     protected void onStop() {
@@ -104,5 +112,48 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     public void onTrMessage(BaseEvent event) {
         super.onTrMessage(event);
         Log.d("MainActivity", "onTrMessage() called with: event = [" + event.position() + "]");
+    }
+
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
+        // Get the SearchView and set the searchable configuration
+        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
+        SearchView searchView = (SearchView) menu.findItem(R.id.id_menu_search).getActionView();
+        searchView.setQueryHint("搜索内容");
+        // Assumes current activity is the searchable activity
+        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
+        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
+            @Override
+            public boolean onQueryTextSubmit(String query) {
+                return false;
+            }
+
+            @Override
+            public boolean onQueryTextChange(String newText) {
+                return false;
+            }
+        });
+        //searchview 的关闭监听
+        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
+            @Override
+            public boolean onClose() {
+                return false;
+            }
+        });
+        //根据id-search_src_text获取TextView
+        SearchView.SearchAutoComplete searchViewOfKnowledge = searchView.findViewById(R.id.search_src_text);
+        //改变输入文字的颜色
+        searchViewOfKnowledge.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
+        if (id == R.id.id_menu_search) {
+            return true;
+        }
+        return super.onOptionsItemSelected(item);
     }
 }

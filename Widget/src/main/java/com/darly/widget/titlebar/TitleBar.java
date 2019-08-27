@@ -49,6 +49,7 @@ public class TitleBar extends Toolbar {
             if (view instanceof TextView) {
                 TextView textView = (TextView) view;
                 if (title.equals(textView.getText())) {
+                    titleView = textView;
                     textView.setGravity(Gravity.CENTER);
                     Toolbar.LayoutParams params = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
                     params.gravity = Gravity.CENTER;
@@ -62,5 +63,28 @@ public class TitleBar extends Toolbar {
         Context context = this.getContext();
         String title = context.getResources().getString(res);
         setCenterTitle(title);
+    }
+
+
+    public void setTitleVisibly(boolean visibly) {
+        if (titleView != null) {
+            if (visibly) {
+                titleView.setVisibility(GONE);
+            } else {
+                titleView.setVisibility(VISIBLE);
+            }
+        } else {
+            for (int i = 0; i < getChildCount(); i++) {
+                View view = getChildAt(i);
+                if (view instanceof TextView) {
+                    TextView textView = (TextView) view;
+                    if (visibly) {
+                        textView.setVisibility(GONE);
+                    } else {
+                        textView.setVisibility(VISIBLE);
+                    }
+                }
+            }
+        }
     }
 }
