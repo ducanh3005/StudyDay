@@ -23,7 +23,7 @@ import com.darly.std.vm.GuideViewModel;
 
 /**
  * Description TODO: 欢迎界面，在这里进行初次打开数据校验
- * Package com.darly.qtest
+ * Package com.darly.std
  *
  * @author zhangyuhui
  * @date 2019/8/12 16:00

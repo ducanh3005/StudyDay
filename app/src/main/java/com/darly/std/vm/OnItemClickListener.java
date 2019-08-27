@@ -10,7 +10,7 @@ package com.darly.std.vm;
 
 /**
  * Description TODO: 单个条目点击事件
- * Package com.darly.qtest.vm
+ * Package com.darly.std.vm
  *
  * @author zhangyuhui
  * @date 2019/8/20 17:57

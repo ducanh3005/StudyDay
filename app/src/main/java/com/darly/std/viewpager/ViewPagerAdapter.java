@@ -21,7 +21,7 @@ import java.util.List;
 
 /**
  * Description TODO:ViewPager适配器
- * Package com.darly.qtest.viewpager
+ * Package com.darly.std.viewpager
  * @author zhangyuhui
  * Date 2019/7/25 13:28
  * Company 山东新北洋信息技术股份有限公司西安分公司

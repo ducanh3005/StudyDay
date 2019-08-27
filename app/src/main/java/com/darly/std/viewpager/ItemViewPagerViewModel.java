@@ -17,7 +17,7 @@ import com.bumptech.glide.Glide;
 
 /**
  * Description TODO: 单个页面的ViewModel
- * Package com.darly.qtest.viewpager
+ * Package com.darly.std.viewpager
  * @author zhangyuhui
  * Date 2019/7/25 11:47
  * Company 山东新北洋信息技术股份有限公司西安分公司

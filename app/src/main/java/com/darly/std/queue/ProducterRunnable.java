@@ -16,7 +16,7 @@ import java.util.concurrent.atomic.AtomicInteger;
 
 /**
  * Description TODO: 线程生产者，在这里进行数据产出。
- * Package com.darly.qtest.queue
+ * Package com.darly.std.queue
  * @author zhangyuhui
  * Date 2019/7/30 11:38
  * Company 山东新北洋信息技术股份有限公司西安分公司

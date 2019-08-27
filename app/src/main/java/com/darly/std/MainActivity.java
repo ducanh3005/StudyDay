@@ -24,7 +24,7 @@ import com.darly.std.vm.MainViewModel;
 
 /**
  * Description 该类功能为：首界面
- * Package com.darly.qtest
+ * Package com.darly.std
  *
  * @author zhangyuhui
  * @date 2019/8/21

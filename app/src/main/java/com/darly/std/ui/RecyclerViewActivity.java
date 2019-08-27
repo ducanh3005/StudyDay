@@ -23,7 +23,7 @@ import com.darly.std.vm.RecyclerViewModel;
 
 /**
  * Description TODO: 列表界面，展示数据
- * Package com.darly.qtest.ui
+ * Package com.darly.std.ui
  *
  * @author zhangyuhui
  * @date 2019/8/23 15:07

@@ -25,7 +25,7 @@ import java.util.concurrent.TimeUnit;
 
 /**
  * Description TODO: 工具实现类。所有的动作在这里执行
- * Package com.darly.qtest
+ * Package com.darly.std
  *
  * @author zhangyuhui
  * @date 2019/8/21 15:32

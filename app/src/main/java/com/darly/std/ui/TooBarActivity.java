@@ -26,7 +26,7 @@ import com.darly.std.vm.ToolBarViewModel;
 
 /**
  * Description TODO:TooBar测试
- * Package com.darly.qtest.ui
+ * Package com.darly.std.ui
  *
  * @author zhangyuhui
  * @date 2019/8/22 16:46

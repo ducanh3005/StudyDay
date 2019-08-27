@@ -12,7 +12,7 @@ import com.darly.chinese.ChineseApplication;
 
 /**
  * Description TODO:
- * Package com.darly.qtest
+ * Package com.darly.std
  * @author zhangyuhui
  * Date 2019/8/1 14:44
  * Company 山东新北洋信息技术股份有限公司西安分公司

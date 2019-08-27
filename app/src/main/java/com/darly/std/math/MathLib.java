@@ -10,7 +10,7 @@ package com.darly.std.math;
 
 /**
  * Description TODO: 计算题
- * Package com.darly.qtest.math
+ * Package com.darly.std.math
  * @author zhangyuhui
  * Date 2019/7/25 14:44
  * Company 山东新北洋信息技术股份有限公司西安分公司

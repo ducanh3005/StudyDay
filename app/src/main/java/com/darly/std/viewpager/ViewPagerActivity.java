@@ -27,7 +27,7 @@ import java.util.List;
 
 /**
  * Description TODO:MVVM进行ViewPager测试
- * Package com.darly.qtest.viewpager
+ * Package com.darly.std.viewpager
  * @author zhangyuhui
  * Date 2019/7/25 11:39
  * Company 山东新北洋信息技术股份有限公司西安分公司

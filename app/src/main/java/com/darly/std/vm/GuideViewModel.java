@@ -12,7 +12,7 @@ import androidx.lifecycle.ViewModel;
 
 /**
  * Description TODO:ViewModel类
- * Package com.darly.qtest.vm
+ * Package com.darly.std.vm
  *
  * @author zhangyuhui
  * @date 2019/8/12 16:04

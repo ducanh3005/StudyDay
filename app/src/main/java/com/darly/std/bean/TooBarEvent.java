@@ -12,7 +12,7 @@ import com.darly.chinese.event.BaseEvent;
 
 /**
  * Description TODO:
- * Package com.darly.qtest.bean
+ * Package com.darly.std.bean
  *
  * @author zhangyuhui
  * @date 2019/8/22 17:18

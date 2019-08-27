@@ -12,7 +12,7 @@ package com.darly.std.link;
  * 问题：如何实现一个高效的单向链表逆序输出？
  * 出题人：阿里巴巴出题专家：昀龙／阿里云弹性人工智能负责人
  * Description TODO: 链表内部对象
- * Package com.darly.qtest.link
+ * Package com.darly.std.link
  * @author zhangyuhui
  * Date 2019/7/24 16:03
  * Company 山东新北洋信息技术股份有限公司西安分公司
