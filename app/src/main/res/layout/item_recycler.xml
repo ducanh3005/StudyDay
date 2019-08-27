@@ -12,7 +12,7 @@
 
         <variable
             name="itemRecyclerViewModel"
-            type="com.darly.qtest.vm.ItemRecyclerViewModel" />
+            type="com.darly.std.vm.ItemRecyclerViewModel" />
     </data>
 
     <LinearLayout

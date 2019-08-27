@@ -6,7 +6,7 @@
 
         <variable
             name="toolBarViewModel"
-            type="com.darly.qtest.vm.ToolBarViewModel" />
+            type="com.darly.std.vm.ToolBarViewModel" />
     </data>
 
 

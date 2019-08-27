@@ -5,7 +5,7 @@
 
         <variable
             name="guideVM"
-            type="com.darly.qtest.vm.GuideViewModel" />
+            type="com.darly.std.vm.GuideViewModel" />
     </data>
 
     <RelativeLayout xmlns:android="http://schemas.android.com/apk/res/android"

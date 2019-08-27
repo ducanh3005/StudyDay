@@ -13,7 +13,7 @@
 
         <variable
             name="itemModel"
-            type="com.darly.qtest.viewpager.ItemViewPagerViewModel" />
+            type="com.darly.std.viewpager.ItemViewPagerViewModel" />
     </data>
 
     <ImageView

@@ -5,7 +5,7 @@
 
         <variable
             name="itemModel"
-            type="com.darly.qtest.vm.ItemMainViewModel" />
+            type="com.darly.std.vm.ItemMainViewModel" />
     </data>
 
     <LinearLayout
