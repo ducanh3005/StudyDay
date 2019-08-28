@@ -27,14 +27,19 @@
             android:launchMode="singleTask" />
         <activity
             android:name="com.darly.std.ui.RecyclerViewActivity"
-            android:parentActivityName="com.darly.std.MainActivity">
+            android:parentActivityName="com.darly.std.MainActivity"
+            android:launchMode="singleTask">
 
             <meta-data
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.darly.std.MainActivity" />
         </activity>
         <activity
-            android:name="com.darly.std.ui.TooBarActivity">
+            android:name="com.darly.std.ui.DetailActivity"
+            android:parentActivityName="com.darly.std.ui.RecyclerViewActivity">
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.darly.std.ui.RecyclerViewActivity" />
         </activity>
     </application>
 

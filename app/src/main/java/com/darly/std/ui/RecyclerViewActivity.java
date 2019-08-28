@@ -32,6 +32,7 @@ import com.darly.std.vm.RecyclerViewModel;
  */
 public class RecyclerViewActivity extends BaseActivity<ActivityRecyclerBinding, RecyclerViewModel> {
 
+    private String title;
 
     @Override
     protected int layoutId() {
@@ -48,14 +49,16 @@ public class RecyclerViewActivity extends BaseActivity<ActivityRecyclerBinding, 
         return ViewModelProviders.of(this).get(RecyclerViewModel.class);
     }
 
+
     @Override
     public void initView(Bundle savedInstanceState) {
-        String title  = getIntent().getStringExtra("Title");
+        title = getIntent().getStringExtra("Title");
         viewModel.setItemTag(title);
         binding.toolbar.setCenterTitle(title);
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(true);
     }
+
 
     @Override
     public void initObservableView() {
@@ -76,9 +79,8 @@ public class RecyclerViewActivity extends BaseActivity<ActivityRecyclerBinding, 
      */
     private void doAction(RecyclerViewModel.Action action) {
         BaseBean bean = (BaseBean) action.getParam();
-        Intent intent = new Intent(this, TooBarActivity.class);
-        intent.putExtra("id", bean.getUUID().toString());
+        Intent intent = new Intent(this, DetailActivity.class);
+        intent.putExtra("BaseBean", bean);
         startActivity(intent);
     }
-
 }

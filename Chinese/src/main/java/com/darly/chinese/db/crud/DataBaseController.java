@@ -114,6 +114,16 @@ public class DataBaseController {
     public static synchronized <T extends BaseModel> List<T> selectByConditions(Class<T> t, OrderBy orderBy, SQLOperator... conditions) {
         return SQLite.select().from(t).where(conditions).orderBy(orderBy).queryList();
     }
+    /**
+     * Description：该方法功能为：线程安全，根据提供的类，进行分页查询
+     * @param limit 每页多少条数据
+     * @param page 第几页
+     * @author：zhangyuhui
+     * Data：2019/6/24 19:27
+     */
+    public static synchronized <T extends BaseModel> List<T> selectByLimit(Class<T> t, int limit,int page) {
+       return SQLite.select().from(t).limit(limit).offset(page * limit).queryList();
+    }
 
     /**
      * Description：该方法功能为：线程安全，根据提供的类，根据提供的条件，获取适合该条件的数据

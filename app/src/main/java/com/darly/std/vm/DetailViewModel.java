@@ -8,8 +8,7 @@
 
 package com.darly.std.vm;
 
-import android.view.View;
-
+import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
 import com.darly.chinese.db.chinese.bean.BaseBean;
@@ -17,40 +16,36 @@ import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
 
 /**
- * Description TODO:ViewModel类
+ * Description TODO:
  * Package com.darly.std.vm
  *
  * @author zhangyuhui
- * @date 2019/8/12 16:04
+ * @date 2019/8/22 17:59
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class ItemRecyclerViewModel<B extends BaseBean> extends ViewModel {
+public class DetailViewModel extends ViewModel {
+    private MutableLiveData<SongCiAuthorModel> authorModel = new MutableLiveData<>();
+    private MutableLiveData<SongCiModel> ciModel = new MutableLiveData<>();
 
-    private B bean;
-    private SongCiAuthorModel authorModel;
-    private SongCiModel ciModel;
-    private OnItemClickListener<B> onItemClickListener;
-
-    public ItemRecyclerViewModel(B authorBean, OnItemClickListener<B> onItemClickListener) {
-        this.bean = authorBean;
-        if (bean instanceof SongCiAuthorModel) {
-            authorModel = (SongCiAuthorModel) bean;
-        } else if (bean instanceof SongCiModel) {
-            ciModel = (SongCiModel) bean;
-        }
-        this.onItemClickListener = onItemClickListener;
+    public DetailViewModel() {
     }
 
-    public SongCiAuthorModel getAuthorModel() {
+    public void initModel(BaseBean bean) {
+        if (bean instanceof SongCiAuthorModel) {
+            authorModel.setValue((SongCiAuthorModel) bean);
+        } else if (bean instanceof SongCiModel) {
+            ciModel.setValue((SongCiModel) bean);
+        } else {
+
+        }
+    }
+
+    public MutableLiveData<SongCiAuthorModel> getAuthorModel() {
         return authorModel;
     }
 
-    public SongCiModel getCiModel() {
+    public MutableLiveData<SongCiModel> getCiModel() {
         return ciModel;
-    }
-
-    public void itemClick(View view) {
-        onItemClickListener.onItemClick(bean);
     }
 }

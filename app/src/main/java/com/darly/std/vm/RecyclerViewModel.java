@@ -39,8 +39,10 @@ public class RecyclerViewModel extends ViewModel implements OnItemClickListener<
 
     MutableLiveData<Action> action = new MutableLiveData<>();
 
-    public RecyclerViewModel() {
+    private int PAGENUB = 20;
+    private int PAGESIZE = 0;
 
+    public RecyclerViewModel() {
     }
 
 
@@ -50,13 +52,13 @@ public class RecyclerViewModel extends ViewModel implements OnItemClickListener<
     public void setItemTag(String key) {
         if (SongCiAuthorModel.getClassName().equals(key)) {
             itemBinding = ItemBinding.of(BR.itemRecyclerViewModel, R.layout.item_recycler);
-            List<SongCiAuthorModel> models = DataReposController.findSongCiAuthors();
+            List<SongCiAuthorModel> models = DataReposController.findSongCiAuthors(PAGENUB, PAGESIZE);
             for (SongCiAuthorModel bean : models) {
                 items.add(new ItemRecyclerViewModel(bean, this));
             }
         } else if (SongCiModel.getClassName().equals(key)) {
-            itemBinding = ItemBinding.of(BR.itemRecyclerViewModel, R.layout.item_recycler);
-            List<SongCiModel> models = DataReposController.findSongCis();
+            itemBinding = ItemBinding.of(BR.itemRecyclerViewModel, R.layout.item_recycler_sc);
+            List<SongCiModel> models = DataReposController.findSongCis(PAGENUB, PAGESIZE);
             for (SongCiModel bean : models) {
                 items.add(new ItemRecyclerViewModel(bean, this));
             }

@@ -21,6 +21,8 @@ import androidx.databinding.ObservableList;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
+import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.std.BR;
 import com.darly.std.R;
 
@@ -44,22 +46,22 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     MutableLiveData<Action> action = new MutableLiveData<>();
 
     public MainViewModel() {
-        items.add(new ItemMainViewModel("宋词作者", this));
+        items.add(new ItemMainViewModel(SongCiAuthorModel.getClassName(), this));
+        items.add(new ItemMainViewModel(SongCiModel.getClassName(), this));
     }
 
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
     public ItemBinding<ItemMainViewModel> itemBinding = ItemBinding.of(BR.itemModel, R.layout.item_main_author);
 
     @Override
-    public void onItemClick(String songCiAuthorModel) {
-        Log.d("onItemClick", "onItemClick() called with: songCiAuthorModel = [" + songCiAuthorModel + "]");
-        action.postValue(new Action(Action.NEXTPAGE,songCiAuthorModel));
+    public void onItemClick(String name) {
+        Log.d("onItemClick", "onItemClick() called with: name = [" + name + "]");
+        action.postValue(new Action(Action.NEXTPAGE, name));
     }
 
     public MutableLiveData<Action> getAction() {
         return action;
     }
-
 
 
     public class Action {
@@ -68,7 +70,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
 
         private Object param;
 
-        public Action(int action,Object param) {
+        public Action(int action, Object param) {
             mAction = action;
             this.param = param;
         }

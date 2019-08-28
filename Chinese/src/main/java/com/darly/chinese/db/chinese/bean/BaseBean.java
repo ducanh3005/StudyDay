@@ -8,6 +8,7 @@
 
 package com.darly.chinese.db.chinese.bean;
 
+import java.io.Serializable;
 import java.util.UUID;
 
 /**
@@ -19,7 +20,7 @@ import java.util.UUID;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public abstract class BaseBean {
+public abstract class BaseBean implements Serializable {
     public BaseBean() {
     }
 

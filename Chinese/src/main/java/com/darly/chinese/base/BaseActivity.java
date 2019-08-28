@@ -17,6 +17,7 @@ import androidx.databinding.ViewDataBinding;
 import androidx.lifecycle.ViewModel;
 
 import com.darly.chinese.event.BaseEvent;
+import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 
 import org.greenrobot.eventbus.Subscribe;
@@ -35,6 +36,8 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
 
     protected B binding;
     protected V viewModel;
+
+
 
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
@@ -101,6 +104,11 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
     @Subscribe(threadMode = ThreadMode.BACKGROUND)
     public void onTrMessage(BaseEvent event) {
         DLog.d("onTrMessage() called with: event = [" + event.position() + "]");
+    }
+
+
+    public boolean isEmpty(String arg){
+        return StringUtil.isEmpty(arg);
     }
 
 }
