@@ -4,6 +4,8 @@
 
     <data>
 
+        <import type="me.tatarka.bindingcollectionadapter2.LayoutManagers" />
+
         <variable
             name="mainViewModel"
             type="com.darly.std.vm.MainViewModel" />
@@ -21,12 +23,17 @@
             android:background="?attr/colorPrimary"
             app:titleTextAppearance="@style/TitleText" />
 
+        <com.darly.widget.progress.BeautifulProgressBar
+            android:id="@+id/id_progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp15"/>
+
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
             android:layout_height="match_parent"
             app:itemBinding="@{mainViewModel.itemBinding}"
             app:items="@{mainViewModel.items}"
-            app:layoutManager="androidx.recyclerview.widget.LinearLayoutManager" />
+            app:layoutManager="@{LayoutManagers.grid(2)}" />
     </LinearLayout>
 </layout>
 

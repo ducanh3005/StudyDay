@@ -27,7 +27,10 @@ public interface OnParseJsonListener {
      * @param percent  进度值
      */
     void onProgress(int percent);
-
+    /**辅助加载进度
+     * @param percent  进度值
+     */
+    void onSecProgress(int percent);
     /**
      * 解析失败
      * @param msg 失败信息

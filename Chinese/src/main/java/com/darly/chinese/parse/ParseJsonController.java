@@ -170,19 +170,26 @@ public class ParseJsonController {
                         if (jsonFile.get(i).contains(SongCiBean.NAME)) {
                             SongCiBean[] ciBeans = JsonConverter.fromJsonString(json, SongCiBean[].class);
                             if (ciBeans != null) {
+                                int lenth= ciBeans.length;
                                 //解析成功，获取词的对象
-                                for (SongCiBean ci : ciBeans) {
+                                for (int x = 0;x< lenth;x++) {
+                                    SongCiBean ci = ciBeans[x];
                                     ci.setAutoId(UUID.randomUUID());
                                     DataBaseController.save(ci);
+                                    listener.onSecProgress(x*100/lenth);
                                 }
                             }
                         } else if (jsonFile.get(i).contains(SongCiAuthorBean.NAME)) {
                             SongCiAuthorBean[] ciAuthorBeans = JsonConverter.fromJsonString(json, SongCiAuthorBean[].class);
                             if (ciAuthorBeans != null) {
                                 //解析成功，获取词作者的对象
-                                for (SongCiAuthorBean ci : ciAuthorBeans) {
+                                int lenth= ciAuthorBeans.length;
+                                //解析成功，获取词的对象
+                                for (int j = 0;j< lenth;j++) {
+                                    SongCiAuthorBean ci =ciAuthorBeans[j];
                                     ci.setAutoId(UUID.randomUUID());
                                     DataBaseController.save(ci);
+                                    listener.onSecProgress(j*100/lenth);
                                 }
                             }
                         }

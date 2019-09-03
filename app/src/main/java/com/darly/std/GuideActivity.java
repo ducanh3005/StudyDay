@@ -87,6 +87,17 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     }
 
     @Override
+    public void onSecProgress(final int percent) {
+        runOnUiThread(new Runnable() {
+            @Override
+            public void run() {
+                binding.idMainUpProgress.setProgress(percent);
+            }
+        });
+
+    }
+
+    @Override
     public void onFailed(String msg) {
         Log.d(getClass().getSimpleName(), "onFailed() called with: msg = [" + msg + "]");
     }

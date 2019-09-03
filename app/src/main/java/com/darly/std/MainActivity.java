@@ -28,6 +28,9 @@ import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
 
+import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
+import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
+
 /**
  * Description 该类功能为：首界面
  * Package com.darly.std
@@ -61,6 +64,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         OperController.init();
+
+
     }
 
 
@@ -83,10 +88,18 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
      * @param action 传递Action
      */
     private void doAction(MainViewModel.Action action) {
-        String authorModel = (String) action.getParam();
-        Intent intent = new Intent(this, RecyclerViewActivity.class);
-        intent.putExtra("Title", authorModel);
-        startActivity(intent);
+        switch (action.getValue()){
+            case TIMERCOUNT:
+                int cout = (int) action.getParam();
+                binding.idProgress.setProgress(cout);
+                break;
+            case NEXTPAGE:
+                String authorModel = (String) action.getParam();
+                Intent intent = new Intent(this, RecyclerViewActivity.class);
+                intent.putExtra("Title", authorModel);
+                startActivity(intent);
+                break;
+        }
     }
 
 

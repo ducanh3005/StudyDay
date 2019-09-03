@@ -4,13 +4,11 @@
     <!--背景色从左到右色值，渐变-->
     <item android:id="@android:id/background">
         <shape>
-            <corners android:radius="5dip" />
+            <!--            <corners android:radius="@dimen/dp15" />-->
             <gradient
                 android:angle="0"
-                android:centerColor="@color/white"
-                android:centerY="0.75"
-                android:endColor="@color/color_white_F6"
-                android:startColor="@color/color_white_F6" />
+                android:endColor="@color/white"
+                android:startColor="@color/white" />
         </shape>
     </item>
 
@@ -18,13 +16,13 @@
     <item android:id="@android:id/secondaryProgress">
         <clip>
             <shape>
-                <corners android:radius="5dip" />
+                <!--                <corners android:radius="@dimen/dp15" />-->
                 <gradient
                     android:angle="0"
-                    android:centerColor="@color/color_malfunction"
+                    android:centerColor="@color/blue"
                     android:centerY="0.75"
-                    android:endColor="@color/color_test"
-                    android:startColor="@color/color_malfunction" />
+                    android:endColor="@color/blue_sy"
+                    android:startColor="@color/blue_sy" />
             </shape>
         </clip>
     </item>
@@ -33,10 +31,12 @@
     <item android:id="@android:id/progress">
         <clip>
             <shape>
-                <corners android:radius="5dip" />
+                <!--                <corners android:radius="@dimen/dp15" />-->
                 <gradient
                     android:angle="0"
-                    android:endColor="@color/color_replenish"
+                    android:centerColor="@color/color_aisle"
+                    android:centerY="0.75"
+                    android:endColor="@color/color_sync"
                     android:startColor="@color/color_sync" />
             </shape>
         </clip>

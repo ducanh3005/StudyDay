@@ -26,9 +26,12 @@ import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.std.BR;
 import com.darly.std.R;
 
+import java.sql.Time;
 import java.util.ArrayList;
 import java.util.List;
 import java.util.Map;
+import java.util.Timer;
+import java.util.TimerTask;
 
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
 
@@ -43,11 +46,29 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding;
  */
 public class MainViewModel extends ViewModel implements OnItemClickListener<String> {
 
+    private Timer timer;
+    private int cout = 0;
+
     MutableLiveData<Action> action = new MutableLiveData<>();
 
     public MainViewModel() {
         items.add(new ItemMainViewModel(SongCiAuthorModel.getClassName(), this));
         items.add(new ItemMainViewModel(SongCiModel.getClassName(), this));
+        items.add(new ItemMainViewModel(SongCiAuthorModel.getClassName(), this));
+        items.add(new ItemMainViewModel(SongCiModel.getClassName(), this));
+        if (timer == null){
+            timer = new Timer();
+            timer.schedule(new TimerTask() {
+                @Override
+                public void run() {
+                    cout++;
+                    if (cout >= 100) {
+                        cout = 0;
+                    }
+                    action.postValue(new Action(Action.TIMERCOUNT, cout));
+                }
+            },0,100);
+        }
     }
 
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
@@ -66,6 +87,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
 
     public class Action {
         public static final int NEXTPAGE = 0;
+        public static final int TIMERCOUNT = 1;
         private final int mAction;
 
         private Object param;
