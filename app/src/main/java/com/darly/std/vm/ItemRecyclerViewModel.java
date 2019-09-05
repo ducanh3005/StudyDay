@@ -51,6 +51,6 @@ public class ItemRecyclerViewModel<B extends BaseBean> extends ViewModel {
     }
 
     public void itemClick(View view) {
-        onItemClickListener.onItemClick(bean);
+        onItemClickListener.onItemClick(view,bean);
     }
 }

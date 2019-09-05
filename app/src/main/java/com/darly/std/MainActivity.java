@@ -15,6 +15,7 @@ import android.os.Bundle;
 import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.widget.Toast;
 
 import androidx.appcompat.widget.SearchView;
 import androidx.core.content.ContextCompat;
@@ -25,6 +26,7 @@ import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.std.databinding.ActivityMainBinding;
+import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
 
@@ -65,7 +67,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         OperController.init();
 
-
+        binding.toolbar.post(new Runnable() {
+            @Override
+            public void run() {
+                viewModel.firstGuideView(binding.toolbar);
+            }
+        });
     }
 
 
@@ -88,7 +95,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
      * @param action 传递Action
      */
     private void doAction(MainViewModel.Action action) {
-        switch (action.getValue()){
+        switch (action.getValue()) {
             case TIMERCOUNT:
                 int cout = (int) action.getParam();
                 binding.idProgress.setProgress(cout);
@@ -129,9 +136,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         Log.d("MainActivity", "onTrMessage() called with: event = [" + event.position() + "]");
     }
 
-//    @Override
-//    public boolean onCreateOptionsMenu(Menu menu) {
-//        getMenuInflater().inflate(R.menu.menu_main, menu);
+    @Override
+    public boolean onCreateOptionsMenu(Menu menu) {
+        getMenuInflater().inflate(R.menu.menu_main, menu);
 //        // Get the SearchView and set the searchable configuration
 //        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
 //        SearchView searchView = (SearchView) menu.findItem(R.id.id_menu_search).getActionView();
@@ -160,15 +167,31 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //        SearchView.SearchAutoComplete searchViewOfKnowledge = searchView.findViewById(R.id.search_src_text);
 //        //改变输入文字的颜色
 //        searchViewOfKnowledge.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-//        return true;
-//    }
-//
-//    @Override
-//    public boolean onOptionsItemSelected(MenuItem item) {
-//        int id = item.getItemId();
+        return true;
+    }
+
+    @Override
+    public boolean onOptionsItemSelected(MenuItem item) {
+        int id = item.getItemId();
 //        if (id == R.id.id_menu_search) {
 //            return true;
 //        }
-//        return super.onOptionsItemSelected(item);
-//    }
+        switch (id) {
+            case R.id.id_menu_setting:
+                //设置界面
+            case R.id.id_menu_help:
+                //帮助界面
+                Toast.makeText(this,"功能未实现",Toast.LENGTH_LONG).show();
+                break;
+            case R.id.id_menu_collection:
+                //统计界面
+                Intent intent = new Intent(this, CollectionActivity.class);
+                intent.putExtra("Title", "统计");
+                startActivity(intent);
+                break;
+            default:
+                break;
+        }
+        return super.onOptionsItemSelected(item);
+    }
 }

@@ -37,6 +37,6 @@ public class ItemMainViewModel extends ViewModel {
 
 
     public void itemClick(View view) {
-        onItemClickListener.onItemClick(title);
+        onItemClickListener.onItemClick(view,title);
     }
 }

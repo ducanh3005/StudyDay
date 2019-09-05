@@ -41,6 +41,16 @@
                 android:name="android.support.PARENT_ACTIVITY"
                 android:value="com.darly.std.ui.RecyclerViewActivity" />
         </activity>
+
+
+        <activity
+            android:name="com.darly.std.ui.CollectionActivity"
+            android:parentActivityName="com.darly.std.MainActivity">
+
+            <meta-data
+                android:name="android.support.PARENT_ACTIVITY"
+                android:value="com.darly.std.MainActivity" />
+        </activity>
     </application>
 
 </manifest>

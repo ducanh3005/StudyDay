@@ -1,9 +1,26 @@
 <menu xmlns:android="http://schemas.android.com/apk/res/android"
     xmlns:app="http://schemas.android.com/apk/res-auto">
-    <item
-        android:id="@+id/id_menu_search"
-        android:icon="@mipmap/icon_white_search"
-        android:title="@string/menu_search"
-        app:actionViewClass="androidx.appcompat.widget.SearchView"
-        app:showAsAction="always" />
+<!--    <item-->
+<!--        android:id="@+id/id_menu_search"-->
+<!--        android:icon="@mipmap/icon_white_search"-->
+<!--        android:title="@string/menu_search"-->
+<!--        app:actionViewClass="androidx.appcompat.widget.SearchView"-->
+<!--        app:showAsAction="always" />-->
+
+        <item
+            android:id="@+id/id_menu_setting"
+            android:orderInCategory="80"
+            android:title="设置"
+            app:showAsAction="never" />
+
+        <item
+            android:id="@+id/id_menu_collection"
+            android:orderInCategory="80"
+            android:title="统计"
+            app:showAsAction="never" />
+        <item
+            android:id="@+id/id_menu_help"
+            android:orderInCategory="80"
+            android:title="帮助"
+            app:showAsAction="never" />
 </menu>

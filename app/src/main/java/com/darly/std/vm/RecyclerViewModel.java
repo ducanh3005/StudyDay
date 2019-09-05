@@ -9,6 +9,7 @@
 package com.darly.std.vm;
 
 import android.util.Log;
+import android.view.View;
 
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
@@ -67,7 +68,7 @@ public class RecyclerViewModel extends ViewModel implements OnItemClickListener<
 
 
     @Override
-    public void onItemClick(BaseBean bean) {
+    public void onItemClick(View view,BaseBean bean) {
         Log.d("onItemClick", "onItemClick() called with: BaseBean = [" + bean + "]");
         action.postValue(new Action(Action.NEXTPAGE, bean));
     }

@@ -8,8 +8,10 @@
 
 package com.darly.std.vm;
 
+import android.app.Activity;
 import android.util.Log;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.AdapterView;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -25,6 +27,10 @@ import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.std.BR;
 import com.darly.std.R;
+import com.darly.std.guide.MainGuideComponent;
+import com.darly.std.guide.MutiComponent;
+import com.darly.widget.guideview.Guide;
+import com.darly.widget.guideview.GuideBuilder;
 
 import java.sql.Time;
 import java.util.ArrayList;
@@ -74,14 +80,37 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
     public ItemBinding<ItemMainViewModel> itemBinding = ItemBinding.of(BR.itemModel, R.layout.item_main_author);
 
-    @Override
-    public void onItemClick(String name) {
-        Log.d("onItemClick", "onItemClick() called with: name = [" + name + "]");
-        action.postValue(new Action(Action.NEXTPAGE, name));
-    }
 
     public MutableLiveData<Action> getAction() {
         return action;
+    }
+
+    @Override
+    public void onItemClick(final View view, String s) {
+        Log.d("onItemClick", "onItemClick() called with: name = [" + s + "]");
+        action.postValue(new Action(Action.NEXTPAGE, s));
+    }
+
+    public void firstGuideView(View view) {
+        GuideBuilder builder = new GuideBuilder();
+        builder.setTargetView(view)
+                .setAlpha(150)
+                .setHighTargetCorner(20)
+                .setHighTargetPadding(10)
+                .setOverlayTarget(false)
+                .setOutsideTouchable(false);
+        builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
+            @Override public void onShown() {
+            }
+
+            @Override public void onDismiss() {
+            }
+        });
+
+        builder.addComponent(new MainGuideComponent());
+        Guide guide = builder.createGuide();
+        guide.setShouldCheckLocInWindow(true);
+        guide.show((Activity) view.getContext());
     }
 
 

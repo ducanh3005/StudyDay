@@ -8,6 +8,8 @@
 
 package com.darly.std.vm;
 
+import android.view.View;
+
 /**
  * Description TODO: 单个条目点击事件
  * Package com.darly.std.vm
@@ -23,5 +25,5 @@ public interface OnItemClickListener<T> {
      * 条目点击回调
      * @param t 对象
      */
-    void onItemClick(T t);
+    void onItemClick(View view, T t);
 }
