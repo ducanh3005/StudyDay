@@ -9,6 +9,7 @@
 package com.darly.std.vm;
 
 import android.app.Activity;
+import android.graphics.Color;
 import android.util.Log;
 import android.view.MenuItem;
 import android.view.View;
@@ -94,7 +95,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     public void firstGuideView(View view) {
         GuideBuilder builder = new GuideBuilder();
         builder.setTargetView(view)
-                .setAlpha(150)
+                .setAlpha(255)
                 .setHighTargetCorner(20)
                 .setHighTargetPadding(10)
                 .setOverlayTarget(false)

@@ -1,5 +1,6 @@
 package com.darly.std.guide;
 
+import android.graphics.Color;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.widget.Button;
@@ -63,7 +64,7 @@ public class MainGuideComponent implements Component {
 
     @Override
     public void setDismiss(final Guide guide) {
-        if (btn!=null){
+        if (btn != null) {
             btn.setOnClickListener(new View.OnClickListener() {
                 @Override
                 public void onClick(View view) {

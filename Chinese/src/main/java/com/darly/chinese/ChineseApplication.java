@@ -10,6 +10,7 @@ package com.darly.chinese;
 
 import androidx.multidex.MultiDexApplication;
 
+import com.darly.chinese.sp.SPController;
 import com.darly.dlcommon.CommonController;
 import com.raizlabs.android.dbflow.config.ChineseGeneratedDatabaseHolder;
 import com.raizlabs.android.dbflow.config.FlowConfig;
@@ -34,7 +35,7 @@ public class ChineseApplication extends MultiDexApplication {
         //添加日志
         FlowManager.init(FlowConfig.builder(this).addDatabaseHolder(ChineseGeneratedDatabaseHolder.class).build());
         FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-        CommonController.init(this);
+        CommonController.init(this, SPController.SPNAME);
     }
 
 
