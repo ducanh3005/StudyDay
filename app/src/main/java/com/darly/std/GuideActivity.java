@@ -19,13 +19,7 @@ import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.parse.OnParseJsonListener;
 import com.darly.chinese.parse.ParseJsonController;
 import com.darly.std.databinding.ActivityGuideBinding;
-import com.darly.std.link.LinkMessageList;
-import com.darly.std.link.NextMessage;
 import com.darly.std.vm.GuideViewModel;
-
-import java.util.concurrent.BlockingQueue;
-import java.util.concurrent.LinkedBlockingDeque;
-import java.util.concurrent.TimeUnit;
 
 /**
  * Description TODO: 欢迎界面，在这里进行初次打开数据校验
@@ -41,9 +35,6 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
 
     private Handler handler = new Handler();
 
-    private int[] res = new int[]{R.string.loading_guide, R.string.menu_search, R.string.app_name,R.string.common_jsonCheck};
-
-    private NextMessage showMessage;
 
     @Override
     protected int layoutId() {
@@ -63,8 +54,6 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     @Override
     public void initView(Bundle savedInstanceState) {
         binding.idMainProgress.setProgress(0);
-        LinkMessageList.creatLinkList(res);
-        showMessage = LinkMessageList.head;
     }
 
 
@@ -93,11 +82,6 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
             @Override
             public void run() {
                 binding.idMainProgress.setProgress(percent);
-                if (showMessage.getNextMessage() == null) {
-                    showMessage = LinkMessageList.head;
-                }
-                binding.idMainText.setText(showMessage.getNextMessage().getMsgRes());
-                showMessage = showMessage.getNextMessage();
             }
         });
     }

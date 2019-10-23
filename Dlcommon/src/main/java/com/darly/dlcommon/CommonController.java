@@ -13,7 +13,6 @@ import android.util.Log;
 
 import com.darly.dlcommon.framework.ContextController;
 import com.darly.dlcommon.framework.EventBusController;
-import com.darly.dlcommon.framework.SharePrefrenceController;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
@@ -34,10 +33,9 @@ public class CommonController {
     private CommonController() {
     }
 
-    public static void init(Context context,String spName) {
+    public static void init(Context context) {
         ContextController.getInstance().setApplication(context);
         ContextController.getInstance().setEventBusController(new EventBusController());
-        ContextController.getInstance().setSharePrefrenceController(new SharePrefrenceController(context,spName));
 //        FlowManager.init(context);
 //        FlowManager.init(new FlowConfig.Builder(context).build());
         //添加日志

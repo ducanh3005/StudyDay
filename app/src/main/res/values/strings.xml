@@ -1,6 +1,6 @@
 <resources>
     <string name="app_name">学习软件</string>
-    <string name="loading_guide">正在初始化数据，请稍后...</string>
+    <string name="loading_guide">登录加载数据中，请稍后...</string>
 
     <string name="drawer_open">Open</string>
     <string name="drawer_close">Close</string>

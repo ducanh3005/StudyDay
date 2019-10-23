@@ -38,6 +38,7 @@ public class ContextController {
         return ContextControllerHolder.controller;
     }
 
+
     public Application getApplication(){
         return (Application)map.get("Application");
     }
@@ -53,15 +54,5 @@ public class ContextController {
     public void setEventBusController(Object value){
         map.put("EventBusController",value);
     }
-
-    public SharePrefrenceController getSharePrefrenceController(){
-        return (SharePrefrenceController)map.get("SharePrefrenceController");
-    }
-
-    public void setSharePrefrenceController(Object value){
-        map.put("SharePrefrenceController",value);
-    }
-
-
 
 }

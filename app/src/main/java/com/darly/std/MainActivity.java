@@ -8,6 +8,8 @@
 
 package com.darly.std;
 
+import android.app.SearchManager;
+import android.content.Context;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
@@ -15,13 +17,14 @@ import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
 
+import androidx.appcompat.widget.SearchView;
+import androidx.core.content.ContextCompat;
 import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
-import com.darly.chinese.sp.SPController;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
@@ -63,17 +66,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         OperController.init();
-        boolean first = SPController.get(SPController.FRIST_OPEN,false);
-        if (first) {
-            SPController.put(SPController.FRIST_OPEN, true);
-            binding.toolbar.post(new Runnable() {
-                @Override
-                public void run() {
-                    viewModel.firstGuideView(binding.toolbar);
-                }
-            });
-        }
 
+        binding.toolbar.post(new Runnable() {
+            @Override
+            public void run() {
+                viewModel.firstGuideView(binding.toolbar);
+            }
+        });
     }
 
 
@@ -182,7 +181,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 //设置界面
             case R.id.id_menu_help:
                 //帮助界面
-                Toast.makeText(this, "功能未实现", Toast.LENGTH_LONG).show();
+                Toast.makeText(this,"功能未实现",Toast.LENGTH_LONG).show();
                 break;
             case R.id.id_menu_collection:
                 //统计界面
