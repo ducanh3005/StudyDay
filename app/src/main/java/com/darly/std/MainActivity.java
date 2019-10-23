@@ -41,7 +41,6 @@ import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
  */
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
 
-
     @Override
     protected int layoutId() {
         return R.layout.activity_main;
@@ -64,7 +63,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         setSupportActionBar(binding.toolbar);
         getSupportActionBar().setDisplayHomeAsUpEnabled(false);
         OperController.init();
-        boolean first = SPController.get(SPController.FRIST_OPEN, false);
+        boolean first = SPController.get(SPController.FRIST_OPEN,false);
         if (first) {
             SPController.put(SPController.FRIST_OPEN, true);
             binding.toolbar.post(new Runnable() {
@@ -74,8 +73,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 }
             });
         }
-
-        viewModel.setUrl(binding.idMainWeb);
 
     }
 

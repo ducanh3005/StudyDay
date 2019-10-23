@@ -1,7 +1,6 @@
 <?xml version="1.0" encoding="utf-8"?>
 <layout xmlns:android="http://schemas.android.com/apk/res/android"
-    xmlns:app="http://schemas.android.com/apk/res-auto"
-    xmlns:bind="http://schemas.android.com/tools">
+    xmlns:app="http://schemas.android.com/apk/res-auto">
 
     <data>
 
@@ -27,20 +26,14 @@
         <com.darly.widget.progress.BeautifulProgressBar
             android:id="@+id/id_progress"
             android:layout_width="match_parent"
-            android:layout_height="@dimen/dp15" />
+            android:layout_height="@dimen/dp15"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
-            android:layout_height="wrap_content"
+            android:layout_height="match_parent"
             app:itemBinding="@{mainViewModel.itemBinding}"
             app:items="@{mainViewModel.items}"
             app:layoutManager="@{LayoutManagers.grid(2)}" />
-
-
-        <WebView
-            android:id="@+id/id_main_web"
-            android:layout_width="match_parent"
-            android:layout_height="match_parent"></WebView>
     </LinearLayout>
 </layout>
 

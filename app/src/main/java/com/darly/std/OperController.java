@@ -8,7 +8,6 @@
 
 package com.darly.std;
 
-import android.annotation.TargetApi;
 import android.util.Log;
 
 import com.darly.std.link.LinkList;

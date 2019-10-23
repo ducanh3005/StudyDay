@@ -121,10 +121,10 @@ public class DataBaseController {
      * @author：zhangyuhui
      * Data：2019/6/24 19:27
      */
-    public static synchronized <T extends BaseModel> List<T> selectByLimit(Class<T> t, int limit,int page)
-    {
-        return SQLite.select().from(t).limit(limit).offset(page * limit).queryList();
+    public static synchronized <T extends BaseModel> List<T> selectByLimit(Class<T> t, int limit,int page) {
+       return SQLite.select().from(t).limit(limit).offset(page * limit).queryList();
     }
+
     /**
      * Description：该方法功能为：线程安全，根据提供的类，根据提供的条件，获取适合该条件的数据
      * <demo>
@@ -176,21 +176,5 @@ public class DataBaseController {
         return model !=null?model.size():0;
     }
 
-
-    ///////////////////////////////////////////////////////////////////////////
-    // 数据库改操作
-    ///////////////////////////////////////////////////////////////////////////
-
-    /**
-     * Description：该方法功能为：线程安全，直接使用DBFlow进行更新操作。
-     * author：zhangyuhui
-     * Data：2019/6/24 19:27
-     *
-     * @param t 传递进来的表对象
-     * @return 返回成功失败
-     */
-    public static synchronized <T extends BaseModel> boolean update(T t) {
-        return t.update();
-    }
 
 }
