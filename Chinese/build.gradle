@@ -59,6 +59,7 @@ dependencies {
 
     api 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
     api 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
+    api 'com.github.huangyanbin:SmartTable:2.2.0'
 
 
 }

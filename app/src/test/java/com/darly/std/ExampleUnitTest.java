@@ -39,4 +39,11 @@ public class ExampleUnitTest {
     @Test
     public void synchronousQueueQuiz () {
     }
+
+    @Test
+    public void intet(){
+        String[] key=  {"1","2","2"};
+        String data = "{key:"+key+"}";
+        System.out.printf(data);
+    }
 }

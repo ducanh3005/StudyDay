@@ -60,7 +60,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     @Override
     public void initObservableView() {
         ParseJsonController.getInstance().initParseJson(this);
-
+        startActivity(new Intent(GuideActivity.this, MainActivity.class));
     }
 
     @Override
@@ -69,8 +69,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(GuideActivity.this, MainActivity.class));
-                finish();
+              finish();
             }
         }, 1000);
     }
