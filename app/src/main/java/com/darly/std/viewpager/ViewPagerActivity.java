@@ -55,7 +55,7 @@ public class ViewPagerActivity extends AppCompatActivity {
         list.add(new ItemViewPagerViewModel("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564043130343&di=6b902b30c51c934e480f98b1fb15149d&imgtype=0&src=http%3A%2F%2Fs9.rr.itc.cn%2Fr%2FwapChange%2F20174_11_13%2Fa57d3n7620168419619.jpg"));
         list.add(new ItemViewPagerViewModel("https://timgsa.baidu.com/timg?image&quality=80&size=b9999_10000&sec=1564043130342&di=e1eef8dda2ea9057509e84e701506fa8&imgtype=0&src=http%3A%2F%2Fbbs-fd.zol-img.com.cn%2Ft_s1200x5000%2Fg1%2FM03%2F0A%2F0A%2FCg-4jVNWGk-IaMIlAAc67uSza7UAAMqEQMd4y8ABzsG455.jpg"));
 
-        adapter = new ViewPagerAdapter<>(this, list, BR.itemModel, R.layout.item_viewpage, getLayoutInflater());
+        adapter = new ViewPagerAdapter<>(this, list, BR.itemViewPagerViewModel, R.layout.item_viewpage, getLayoutInflater());
         viewPager.setAdapter(adapter);
 
         id_viewpage_btn.setOnClickListener(new View.OnClickListener() {

@@ -36,18 +36,5 @@
             app:items="@{mainViewModel.items}"
             app:layoutManager="@{LayoutManagers.grid(2)}" />
 
-
-
-        <com.bin.david.form.core.SmartTable
-            android:id="@+id/table"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            />
-        <Button
-            android:id="@+id/id_main_add"
-            android:layout_width="match_parent"
-            android:layout_height="wrap_content"
-            android:background="@color/color_sync"
-            android:text="新增"/>
     </LinearLayout>
 </layout>

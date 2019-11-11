@@ -70,7 +70,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     }
 
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
-    public ItemBinding<ItemMainViewModel> itemBinding = ItemBinding.of(BR.itemModel, R.layout.item_main_author);
+    public ItemBinding<ItemMainViewModel> itemBinding = ItemBinding.of(BR.itemMainViewModel, R.layout.item_main_author);
 
 
     public MutableLiveData<Action> getAction() {

@@ -12,12 +12,12 @@
     <data>
 
         <variable
-            name="itemModel"
+            name="itemViewPagerViewModel"
             type="com.darly.std.viewpager.ItemViewPagerViewModel" />
     </data>
 
     <ImageView
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        app:img="@{itemModel.img}" />
+        app:img="@{itemViewPagerViewModel.img}" />
 </layout>
