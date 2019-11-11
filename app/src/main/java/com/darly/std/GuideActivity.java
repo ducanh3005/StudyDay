@@ -19,7 +19,6 @@ import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.parse.OnParseJsonListener;
 import com.darly.chinese.parse.ParseJsonController;
 import com.darly.std.databinding.ActivityGuideBinding;
-import com.darly.std.opengl.OpenGlActivity;
 import com.darly.std.vm.GuideViewModel;
 
 /**
@@ -70,7 +69,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
         handler.postDelayed(new Runnable() {
             @Override
             public void run() {
-                startActivity(new Intent(GuideActivity.this, OpenGlActivity.class));
+                startActivity(new Intent(GuideActivity.this, MainActivity.class));
                 finish();
             }
         }, 1000);

@@ -10,14 +10,8 @@ package com.darly.std.vm;
 
 import android.app.Activity;
 import android.util.Log;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.AdapterView;
-import android.widget.ImageView;
-import android.widget.TextView;
 
-import androidx.appcompat.widget.SearchView;
-import androidx.core.content.ContextCompat;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 import androidx.lifecycle.MutableLiveData;
@@ -25,17 +19,13 @@ import androidx.lifecycle.ViewModel;
 
 import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
+import com.darly.chinese.db.crud.DataReposController;
 import com.darly.std.BR;
 import com.darly.std.R;
 import com.darly.std.guide.MainGuideComponent;
-import com.darly.std.guide.MutiComponent;
 import com.darly.widget.guideview.Guide;
 import com.darly.widget.guideview.GuideBuilder;
 
-import java.sql.Time;
-import java.util.ArrayList;
-import java.util.List;
-import java.util.Map;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -75,6 +65,8 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
                 }
             },0,100);
         }
+        DataReposController.test();
+
     }
 
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
@@ -134,5 +126,4 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
             return mAction;
         }
     }
-
 }

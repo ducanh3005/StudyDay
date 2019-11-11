@@ -8,9 +8,12 @@
 
 package com.darly.chinese.db.crud;
 
+import android.util.Log;
+
 import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.db.chinese.table.SongCiAuthorBean;
+import com.darly.chinese.db.chinese.table.SongCiAuthorBean_Table;
 import com.darly.chinese.db.chinese.table.SongCiBean;
 import com.darly.dlcommon.common.dlog.DLog;
 
@@ -97,4 +100,25 @@ public class DataReposController {
         DLog.d("findSongCis 获取对象长度" + models.size());
         return models;
     }
+
+
+    public static void test(){
+        Log.d("DataReposController", "测试开始执行");
+        List<SongCiAuthorBean> beans = DataBaseController.selectAll(SongCiAuthorBean.class);
+        Log.d("DataReposController", "测试缓存数据"+beans.size());
+
+        Log.d("DataReposController", "数据库开始查询");
+        List<SongCiAuthorBean> aut = DataBaseController.selectByConditions(SongCiAuthorBean.class,null, SongCiAuthorBean_Table.name.like("李%"));
+        Log.d("DataReposController", "数据库完成查询"+aut.size());
+
+        List<SongCiAuthorBean> keys = new ArrayList<>();
+        Log.d("DataReposController", "内存开始查询");
+        for (SongCiAuthorBean bean:beans) {
+            if (bean.getName().contains("李")){
+                keys.add(bean);
+            }
+        }
+        Log.d("DataReposController", "内存完成查询"+keys.size());
+    }
+
 }

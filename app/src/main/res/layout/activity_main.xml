@@ -21,7 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextAppearance="@style/TitleText" />
+            app:titleTextAppearance="@style/TitleText"
+            android:visibility="gone"/>
 
         <com.darly.widget.progress.BeautifulProgressBar
             android:id="@+id/id_progress"
@@ -33,7 +34,8 @@
             android:layout_height="match_parent"
             app:itemBinding="@{mainViewModel.itemBinding}"
             app:items="@{mainViewModel.items}"
-            app:layoutManager="@{LayoutManagers.grid(2)}" />
+            app:layoutManager="@{LayoutManagers.grid(2)}"
+            android:visibility="gone"/>
     </LinearLayout>
 </layout>
 
