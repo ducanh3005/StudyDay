@@ -35,33 +35,32 @@ public class DecompressionController {
 
     /**
      * 进行压缩包解压，获取对应文件
-     * @param zipFile 压缩包
-     * @param tagDec 解压路径
+     *
+     * @param zipFile  压缩包
+     * @param tagDec   解压路径
      * @param listener 回调
      */
-    public void decompressionInit(final String zipFile, final String tagDec, final OnParseJsonListener listener){
+    public void decompressionInit(final String zipFile, final String tagDec, final OnParseJsonListener listener) {
         listener.onStart(type);
         Task.call(new Callable<List<File>>() {
             @Override
             public List<File> call() throws Exception {
-                List<File> files = ZipDecompressionCommon.unzipFile(zipFile,tagDec);
+                List<File> files = ZipDecompressionCommon.unzipFile(zipFile, tagDec);
                 listener.onProgress(100);
                 return files;
             }
         }, Task.BACKGROUND_EXECUTOR).continueWith(new Continuation<List<File>, Void>() {
             @Override
             public Void then(Task<List<File>> task) throws Exception {
-                if (task.getResult()!= null) {
-                    listener.onComplete(type,task.getResult());
+                if (task.getResult() != null) {
+                    listener.onComplete(type, task.getResult());
                 } else {
-                    listener.onFailed(type,task.getError().getMessage());
+                    listener.onFailed(type, task.getError().getMessage());
                 }
                 return null;
             }
         }, Task.UI_THREAD_EXECUTOR);
     }
 
-
-
-
 }
+
