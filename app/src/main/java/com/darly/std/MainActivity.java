@@ -23,12 +23,14 @@ import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
+import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.vm.MainViewModel;
 
 import java.util.ArrayList;
+import java.util.Random;
 
 import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
 import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
@@ -105,8 +107,12 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 //                Intent intent = new Intent(this, RecyclerViewActivity.class);
 //                intent.putExtra("Title", authorModel);
 //                startActivity(intent);
-                Intent intent = new Intent(this, BlackTableActivity.class);
-                startActivityForResult(intent,100);
+                if (new Random().nextBoolean()) {
+                    Intent intent = new Intent(this, BlackTableActivity.class);
+                    startActivityForResult(intent, 100);
+                }else {
+                    EditImageActivity.start(this,"",200);
+                }
                 break;
         }
     }

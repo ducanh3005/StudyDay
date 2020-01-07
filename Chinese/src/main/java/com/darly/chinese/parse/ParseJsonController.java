@@ -10,6 +10,7 @@ package com.darly.chinese.parse;
 
 import android.text.TextUtils;
 
+import com.darly.chinese.R;
 import com.darly.chinese.db.chinese.table.SongCiAuthorBean;
 import com.darly.chinese.db.chinese.table.SongCiBean;
 import com.darly.chinese.db.crud.DataBaseController;
@@ -45,6 +46,10 @@ public class ParseJsonController {
     private String fileName = "chinese";
 
     private List<String> jsonFile = new ArrayList<>();
+    /**
+     * 提示信息
+     */
+    public String type = ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse);
 
     private ParseJsonController() {
     }
@@ -56,6 +61,7 @@ public class ParseJsonController {
     public static ParseJsonController getInstance() {
         return ParseJsonControllerHolder.controller;
     }
+
 
 
     /**
@@ -93,7 +99,7 @@ public class ParseJsonController {
                     //无需重新加载
                     listener.onProgress(100);
 
-                    listener.onComplete();
+                    listener.onComplete(type,null);
                     DLog.d("数据库信息一致，无需修改");
                 } else {
                     insertChineseMessage(listener, "");
@@ -204,10 +210,10 @@ public class ParseJsonController {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
                 if (task.getResult()) {
-                    listener.onComplete();
+                    listener.onComplete(type,null);
                     DLog.d("数据重新初始化完成");
                 } else {
-                    listener.onFailed(task.getError().getMessage());
+                    listener.onFailed(type,task.getError().getMessage());
                     DLog.d("数据重新初始化失败"+task.getError().getMessage());
                 }
                 return null;

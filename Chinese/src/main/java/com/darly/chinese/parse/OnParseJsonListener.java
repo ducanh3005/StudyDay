@@ -9,7 +9,7 @@
 package com.darly.chinese.parse;
 
 /**
- * Description TODO:解析回调类
+ * Description TODO:任务回调类
  * Package com.darly.dlcommon.parse
  * @author zhangyuhui
  * Date 2019/7/31 17:39
@@ -17,13 +17,20 @@ package com.darly.chinese.parse;
  * EMail zhangyuhui@newbeiyang.com
  */
 public interface OnParseJsonListener {
+    /**
+     * 任务开始
+     * @param type 任务名称
+     */
+    void onStart(String type);
 
     /**
-     * 解析完成
+     * 任务完成
+     * @param type 任务名称
+     * @param ob 任务返回数据
      */
-    void onComplete();
+    void onComplete(String type,Object ob);
 
-    /**加载进度
+    /**任务加载进度
      * @param percent  进度值
      */
     void onProgress(int percent);
@@ -32,8 +39,9 @@ public interface OnParseJsonListener {
      */
     void onSecProgress(int percent);
     /**
-     * 解析失败
+     * 任务失败
+     * @param type 任务名称
      * @param msg 失败信息
      */
-    void onFailed(String msg);
+    void onFailed(String type,String msg);
 }
