@@ -10,4 +10,5 @@
     <string name="app_chinese">Chinese</string>
     <string name="type_parse">解析数据...</string>
     <string name="type_decompress">压缩包解压...</string>
+    <string name="type_file">文件复制...</string>
 </resources>

@@ -6,7 +6,7 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.darly.chinese.parse;
+package com.darly.chinese.fileload;
 
 /**
  * Description TODO:任务回调类
@@ -16,32 +16,24 @@ package com.darly.chinese.parse;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public interface OnParseJsonListener {
+public interface OnCopyFileListener {
     /**
      * 任务开始
      * @param type 任务名称
      */
-    void onStart(String type);
+    void onCopyStart(String type);
 
     /**
      * 任务完成
      * @param type 任务名称
      * @param ob 任务返回数据
      */
-    void onComplete(String type,Object ob);
+    void onCopyComplete(String type, Object ob);
 
-    /**任务加载进度
-     * @param percent  进度值
-     */
-    void onProgress(int percent);
-    /**辅助加载进度
-     * @param percent  进度值
-     */
-    void onSecProgress(int percent);
     /**
      * 任务失败
      * @param type 任务名称
      * @param msg 失败信息
      */
-    void onFailed(String type,String msg);
+    void onCopyFailed(String type, String msg);
 }

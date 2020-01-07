@@ -2,7 +2,7 @@
  * 版权所有 2009-2019山东新北洋信息技术股份有限公司保留所有权利。
  */
 
-package com.darly.chinese.parse;
+package com.darly.chinese.fileload;
 
 import android.os.Environment;
 
@@ -28,7 +28,31 @@ public class ExternalStorageUtil {
     /**
      * 商品详情图片下载目录
      */
-    public static final String GOODS_DETAIL_PATH = File.separator + "vem" + File.separator + "goods" + File.separator + "detail" + File.separator;
+    public static final String GOODS_DETAIL_PATH = File.separator + "StudyDay" + File.separator + "DownLoad" + File.separator;
+
+    /**
+     * 创建文件夹
+     *
+     */
+    public static void creatFile(String path) {
+        File dir = new File(getExternalStoragePath()+ File.separator + path);
+        if (!dir.exists()) {
+            if (!dir.getParentFile().exists()){
+                String parentPath = dir.getParentFile().getName();
+                creatFile(parentPath);
+            }
+            dir.mkdirs();
+        }
+    }
+    /**
+     * 获取下载文件路径
+     *
+     * @return 路径
+     */
+    public static String getDownLoadPath() {
+        return getExternalStoragePath()+GOODS_DETAIL_PATH;
+    }
+
 
     /**
      * 是否可写
@@ -64,7 +88,7 @@ public class ExternalStorageUtil {
      */
     public static String getExternalStoragePath() {
         if (isExternalStorageWritable()) {
-            return Environment.getExternalStorageDirectory().getAbsolutePath();
+            return Environment.getExternalStorageDirectory().getPath();
         } else {
             return null;
         }

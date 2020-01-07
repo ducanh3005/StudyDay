@@ -9,6 +9,7 @@
 package com.darly.std;
 
 import com.darly.chinese.ChineseApplication;
+import com.darly.chinese.fileload.ExternalStorageUtil;
 
 /**
  * Description TODO:
@@ -23,5 +24,8 @@ public class BaseApplication extends ChineseApplication {
     @Override
     public void onCreate() {
         super.onCreate();
+        if (BuildConfig.DEBUG){
+            ExternalStorageUtil.delete();
+        }
     }
 }

@@ -7,6 +7,8 @@ import com.darly.dlcommon.common.bolts.tasks.iface.Continuation;
 import com.darly.dlcommon.framework.ContextController;
 
 import java.io.File;
+import java.io.IOException;
+import java.util.ArrayList;
 import java.util.List;
 import java.util.concurrent.Callable;
 
@@ -40,14 +42,24 @@ public class DecompressionController {
      * @param tagDec   解压路径
      * @param listener 回调
      */
-    public void decompressionInit(final String zipFile, final String tagDec, final OnParseJsonListener listener) {
+    public void decompressionInit(final List<String> zipFile, final String tagDec, final OnParseJsonListener listener) {
         listener.onStart(type);
         Task.call(new Callable<List<File>>() {
             @Override
             public List<File> call() throws Exception {
-                List<File> files = ZipDecompressionCommon.unzipFile(zipFile, tagDec);
-                listener.onProgress(100);
-                return files;
+                try{
+                    List<File> files = new ArrayList<>();
+                    for (int i = 1;i<=zipFile.size();i++) {
+                        List<File> file = ZipDecompressionCommon.unzipFile(zipFile.get(i-1), tagDec);
+                        listener.onProgress(i*100/zipFile.size());
+                        files.addAll(file);
+                    }
+                    return files;
+                }catch (IOException e){
+                    e.printStackTrace();
+                    return null;
+                }
+
             }
         }, Task.BACKGROUND_EXECUTOR).continueWith(new Continuation<List<File>, Void>() {
             @Override
