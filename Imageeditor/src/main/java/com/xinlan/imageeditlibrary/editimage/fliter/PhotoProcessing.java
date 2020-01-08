@@ -1,7 +1,9 @@
-package com.darly.imageeditor.editimage.fliter;
+package com.xinlan.imageeditlibrary.editimage.fliter;
 
 import android.graphics.Bitmap;
 import android.graphics.Bitmap.Config;
+
+import java.io.File;
 
 /**
  * 图片处理类
@@ -10,6 +12,15 @@ import android.graphics.Bitmap.Config;
  */
 public class PhotoProcessing {
     private static final String TAG = "PhotoProcessing";
+
+
+    public static void initABIS(File[] files){
+        for (int i = 0; i < files.length; i++) {
+            if (files[i].getName().equals("libphotoprocessing.so")) {
+                System.load(files[i].getAbsolutePath());
+            }
+        }
+    }
 
 
     public static Bitmap filterPhoto(Bitmap bitmap, int position) {
@@ -64,9 +75,9 @@ public class PhotoProcessing {
     }
 
     // /////////////////////////////////////////////
-    static {
-        System.loadLibrary("photoprocessing");
-    }
+//    static {
+//        System.loadLibrary("photoprocessing");
+//    }
 
     public static native int nativeInitBitmap(int width, int height);
 

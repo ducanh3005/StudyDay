@@ -206,6 +206,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
+        if (data==null){
+            return;
+        }
         if (requestCode == 100){
             ArrayList<BlackTable> tables = data.getParcelableArrayListExtra("KEY");
         }

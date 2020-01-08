@@ -269,6 +269,14 @@ public class ExternalStorageUtil {
         deleteFile(file);
     }
 
+
+    /**
+     * 从指定目录删除,路径以/开始/结尾
+     */
+    public static void delete(File file) {
+        deleteFile(file);
+    }
+
     /**
      * 要删除的文件夹的所在位置
      *

@@ -18,7 +18,6 @@
             android:layout_margin="@dimen/image_edit_menu_margin"
             android:gravity="center"
             android:text="@string/edit"
-            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="@dimen/image_edit_text_size"/>
 
@@ -42,7 +41,6 @@
             android:gravity="center"
             android:text="@string/filter"
             android:textColor="@color/white"
-            android:visibility="gone"
             android:textSize="@dimen/image_edit_text_size"/>
 
         <TextView
@@ -54,7 +52,6 @@
             android:gravity="center"
             android:text="@string/crop"
             android:textColor="@color/white"
-            android:visibility="gone"
             android:textSize="@dimen/image_edit_text_size"/>
 
         <TextView
@@ -65,7 +62,6 @@
             android:layout_margin="@dimen/image_edit_menu_margin"
             android:gravity="center"
             android:text="@string/rotate"
-            android:visibility="gone"
             android:textColor="@color/white"
             android:textSize="@dimen/image_edit_text_size"/>
 
@@ -87,7 +83,6 @@
             android:layout_gravity="center"
             android:layout_margin="@dimen/image_edit_menu_margin"
             android:gravity="center"
-            android:visibility="gone"
             android:text="@string/beauty"
             android:textColor="@color/white"
             android:textSize="@dimen/image_edit_text_size"/>

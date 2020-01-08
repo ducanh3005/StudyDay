@@ -16,8 +16,8 @@ import com.darly.imageeditor.BaseActivity;
 import com.darly.imageeditor.R;
 import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.imageeditor.editimage.ModuleConfig;
-import com.darly.imageeditor.editimage.fliter.PhotoProcessing;
 import com.darly.imageeditor.editimage.view.imagezoom.ImageViewTouchBase;
+import com.xinlan.imageeditlibrary.editimage.fliter.PhotoProcessing;
 
 import java.lang.ref.WeakReference;
 
@@ -181,7 +181,11 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
             srcBitmap = Bitmap.createBitmap(activity.getMainBit().copy(
                     Bitmap.Config.ARGB_8888, true));
             //System.out.println("smoothVal = "+smoothVal+"     whiteVal = "+whiteVal);
-            PhotoProcessing.handleSmoothAndWhiteSkin(srcBitmap, smoothVal, whiteVal);
+            try {
+                PhotoProcessing.handleSmoothAndWhiteSkin(srcBitmap, smoothVal, whiteVal);
+            }catch (Exception e){
+                e.printStackTrace();
+            }
             return srcBitmap;
         }
 

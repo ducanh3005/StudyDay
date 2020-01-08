@@ -19,8 +19,8 @@ import com.darly.imageeditor.BaseActivity;
 import com.darly.imageeditor.R;
 import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.imageeditor.editimage.ModuleConfig;
-import com.darly.imageeditor.editimage.fliter.PhotoProcessing;
 import com.darly.imageeditor.editimage.view.imagezoom.ImageViewTouchBase;
+import com.xinlan.imageeditlibrary.editimage.fliter.PhotoProcessing;
 
 
 /**

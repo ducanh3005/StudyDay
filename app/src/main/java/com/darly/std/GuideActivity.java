@@ -30,9 +30,13 @@ import com.darly.chinese.fileload.FileController;
 import com.darly.chinese.fileload.OnCopyFileListener;
 import com.darly.chinese.parse.OnParseJsonListener;
 import com.darly.chinese.parse.ParseJsonController;
+import com.darly.chinese.soload.OnSoLoadListener;
+import com.darly.chinese.soload.SoLoadController;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
+import com.xinlan.imageeditlibrary.editimage.fliter.PhotoProcessing;
 
+import java.io.File;
 import java.util.List;
 
 /**
@@ -44,7 +48,7 @@ import java.util.List;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewModel> implements OnParseJsonListener, OnCopyFileListener {
+public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewModel> implements OnParseJsonListener, OnCopyFileListener, OnSoLoadListener {
 
 
     private Handler handler = new Handler();
@@ -122,7 +126,8 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     @Override
     public void onComplete(String type, Object ob) {
         if (DecompressionController.getInstance().type.equals(type)) {
-            ParseJsonController.getInstance().initParseJson(this);
+            SoLoadController.getInstance().init(this);
+            SoLoadController.getInstance().copySo(false, this);
         }
 
         Log.d(getClass().getSimpleName(), "onComplete() called");
@@ -181,4 +186,26 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
         }
     }
 
+    @Override
+    public void onSoStart(String type) {
+        binding.idMainType.setText(type);
+        binding.idMainProgress.setProgress(0);
+        binding.idMainUpProgress.setProgress(0);
+    }
+
+    @Override
+    public void onSoComplete(String type, Object ob) {
+        if (ob instanceof File[]){
+            File[] fils = (File[]) ob;
+            //这里进行SO初始化操作
+            PhotoProcessing.initABIS(fils);
+        }
+        ParseJsonController.getInstance().initParseJson(this);
+        Toast.makeText(this, "导入成功", Toast.LENGTH_SHORT).show();
+    }
+
+    @Override
+    public void onSoFailed(String type, String msg) {
+        Toast.makeText(this, "导入失败", Toast.LENGTH_SHORT).show();
+    }
 }
