@@ -9,14 +9,18 @@
 package com.darly.std.vm;
 
 import android.app.Activity;
-import android.util.Log;
 import android.view.View;
+import android.widget.ImageView;
 
+import androidx.databinding.BindingAdapter;
 import androidx.databinding.ObservableArrayList;
 import androidx.databinding.ObservableList;
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
+import com.bumptech.glide.Glide;
+import com.darly.chinese.common.LogController;
+import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.db.crud.DataReposController;
@@ -26,6 +30,7 @@ import com.darly.std.guide.MainGuideComponent;
 import com.darly.widget.guideview.Guide;
 import com.darly.widget.guideview.GuideBuilder;
 
+import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
@@ -43,30 +48,30 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding;
 public class MainViewModel extends ViewModel implements OnItemClickListener<String> {
 
     private Timer timer;
-    private int cout = 0;
+    private int count = 0;
 
-    MutableLiveData<Action> action = new MutableLiveData<>();
-
+    private MutableLiveData<Action> action = new MutableLiveData<>();
+    private MutableLiveData<String> image = new MutableLiveData<>();
     public MainViewModel() {
         items.add(new ItemMainViewModel(SongCiAuthorModel.getClassName(), this));
         items.add(new ItemMainViewModel(SongCiModel.getClassName(), this));
         items.add(new ItemMainViewModel(SongCiAuthorModel.getClassName(), this));
         items.add(new ItemMainViewModel(SongCiModel.getClassName(), this));
-        if (timer == null){
+        if (timer == null) {
             timer = new Timer();
             timer.schedule(new TimerTask() {
                 @Override
                 public void run() {
-                    cout++;
-                    if (cout >= 100) {
-                        cout = 0;
+                    count++;
+                    if (count >= 100) {
+                        count = 0;
                     }
-                    action.postValue(new Action(Action.TIMERCOUNT, cout));
+                    action.postValue(new Action(Action.TIMERCOUNT, count));
                 }
-            },0,100);
+            }, 0, 100);
         }
         DataReposController.test();
-
+        image.setValue(ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg");
     }
 
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
@@ -79,7 +84,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
 
     @Override
     public void onItemClick(final View view, String s) {
-        Log.d("onItemClick", "onItemClick() called with: name = [" + s + "]");
+        LogController.d("onItemClick", "onItemClick() called with: name = [" + s + "]");
         action.postValue(new Action(Action.NEXTPAGE, s));
     }
 
@@ -92,10 +97,12 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
                 .setOverlayTarget(false)
                 .setOutsideTouchable(false);
         builder.setOnVisibilityChangedListener(new GuideBuilder.OnVisibilityChangedListener() {
-            @Override public void onShown() {
+            @Override
+            public void onShown() {
             }
 
-            @Override public void onDismiss() {
+            @Override
+            public void onDismiss() {
             }
         });
 
@@ -106,9 +113,53 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     }
 
 
+    public void updateImage(String path) {
+        image.setValue(path);
+    }
+
+    /**
+     * 1. 带view的参数：@{(view)->mainViewModel.tableClick(mainViewModel.image,view)}
+     * 跳转到表格界面
+     * @param view 参数
+     */
+    public void tableClick(String path,View view) {
+        LogController.d("tableClick", path+view);
+        action.postValue(new Action(Action.TABLEEDIT,null));
+    }
+
+    /**
+     * 2. 不带参数：@{() -> viewModel.click()}
+     *
+     */
+    public void click() {
+        LogController.d("click");
+    }
+
+    /**
+     * 3. 带参数：@{() -> viewModel.click(obj.id)}
+     *
+     * @param id 参数
+     */
+    public void click(String id) {
+        LogController.d("click", id);
+    }
+
+    /**
+     * 4. @{viewModel::imageClick}
+     * 跳转到图片编辑页面
+     * @param view 参数
+     */
+    public void imageClick(View view) {
+        LogController.d("imageClick", view);
+        action.postValue(new Action(Action.IMAGEEIDT,null));
+    }
+
+
     public class Action {
         public static final int NEXTPAGE = 0;
         public static final int TIMERCOUNT = 1;
+        public static final int IMAGEEIDT = 2;
+        public static final int TABLEEDIT = 3;
         private final int mAction;
 
         private Object param;
@@ -125,5 +176,14 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
         public int getValue() {
             return mAction;
         }
+    }
+
+    public MutableLiveData<String> getImage() {
+        return image;
+    }
+
+    @BindingAdapter("image")
+    public static void image(ImageView view, String img){
+        Glide.with(view.getContext()).load(img).into(view);
     }
 }

@@ -64,13 +64,13 @@ public class SoLoadController extends BaseController {
     /**
      * 加载so文件
      */
-    public void loadSo(Context context,OnControllerBackListener loadListener) {
+    public void loadSo(OnControllerBackListener loadListener) {
         loadListener.onStart(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so));
-        File dir = context.getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
+        File dir = ContextController.getInstance().getApplication().getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
         File[] currentFiles;
         currentFiles = dir.listFiles();
         //这个是data/data路径，直接反射到内部路径。直接使用System.loadLibrary()方法导入SO包
-        installSoDir(context);
+        installSoDir();
         loadListener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so_suc),ControllerEnum.SOLOAD, currentFiles);
     }
 
@@ -80,13 +80,13 @@ public class SoLoadController extends BaseController {
      *
      * @param isCover true覆盖原文件即删除原有文件后拷贝新的文件进来
      */
-    public void copySo(Context context,boolean isCover, OnControllerBackListener listener) {
+    public void copySo(boolean isCover, OnControllerBackListener listener) {
         listener.onStart(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so));
         try {
             //调用复制so到data目录方法
-            copySo(context,"", isCover);
+            copySo("", isCover);
             //将So导入系统中
-            loadSo(context,listener);
+            loadSo(listener);
         } catch (Exception e) {
             e.printStackTrace();
             listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so_fail),ControllerEnum.SOLOAD, "SO库复制失败");
@@ -97,18 +97,18 @@ public class SoLoadController extends BaseController {
     /**
      * 复制到data文件夹中
      */
-    private void copySo(Context context,String path, boolean isCover) {
+    private void copySo(String path, boolean isCover) {
         File file = new File(ExternalStorageUtil.getDownLoadPath() + File.separator + path);
         if (file.isDirectory()) {
             //文件夹
             File[] clones = file.listFiles();
             for (File clone : clones) {
-                copySo(context,path + File.separator + clone.getName(), isCover);
+                copySo(path + File.separator + clone.getName(), isCover);
             }
         } else {
             // 若是文件
             //目标目录
-            File targetDir = context.getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
+            File targetDir = ContextController.getInstance().getApplication().getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
             //创建目录
             if (!targetDir.exists()) {
                 targetDir.mkdirs();
@@ -165,19 +165,19 @@ public class SoLoadController extends BaseController {
      *
      * @param context 引用
      */
-    public void installSoDir(Context context) {
-        File soDirFile = context.getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
+    public void installSoDir() {
+        File soDirFile = ContextController.getInstance().getApplication().getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
         if (!soDirFile.exists()) {
             soDirFile.mkdirs();
         }
         if (Build.VERSION.SDK_INT >= Build.VERSION_CODES.M) {
             //这里是6.0以上版本
-            v23Install(soDirFile, context);
+            v23Install(soDirFile, ContextController.getInstance().getApplication());
         } else if (Build.VERSION.SDK_INT < Build.VERSION_CODES.ICE_CREAM_SANDWICH) {
-            belowLevel14(soDirFile, context); // 4.0以下系统
+            belowLevel14(soDirFile, ContextController.getInstance().getApplication()); // 4.0以下系统
         } else {
             //4.0以上6.0以下
-            v14Install(soDirFile, context);
+            v14Install(soDirFile, ContextController.getInstance().getApplication());
         }
     }
 

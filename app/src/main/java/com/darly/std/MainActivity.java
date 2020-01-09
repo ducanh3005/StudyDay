@@ -10,7 +10,6 @@ package com.darly.std;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.util.Log;
 import android.view.Menu;
 import android.view.MenuItem;
 import android.widget.Toast;
@@ -20,6 +19,8 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
+import com.darly.chinese.common.LogController;
+import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
@@ -27,12 +28,15 @@ import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
+import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
 
+import java.io.File;
 import java.util.ArrayList;
-import java.util.Random;
 
+import static com.darly.std.vm.MainViewModel.Action.IMAGEEIDT;
 import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
+import static com.darly.std.vm.MainViewModel.Action.TABLEEDIT;
 import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
 
 /**
@@ -99,20 +103,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     private void doAction(MainViewModel.Action action) {
         switch (action.getValue()) {
             case TIMERCOUNT:
-                int cout = (int) action.getParam();
-                binding.idProgress.setProgress(cout);
+                int count = (int) action.getParam();
+                binding.idProgress.setProgress(count);
                 break;
             case NEXTPAGE:
-//                String authorModel = (String) action.getParam();
-//                Intent intent = new Intent(this, RecyclerViewActivity.class);
-//                intent.putExtra("Title", authorModel);
-//                startActivity(intent);
-                if (new Random().nextBoolean()) {
-                    Intent intent = new Intent(this, BlackTableActivity.class);
-                    startActivityForResult(intent, 100);
-                }else {
-                    EditImageActivity.start(this,"",200);
-                }
+                String authorModel = (String) action.getParam();
+                Intent intent = new Intent(this, RecyclerViewActivity.class);
+                intent.putExtra("Title", authorModel);
+                startActivity(intent);
+                break;
+            case IMAGEEIDT:
+                EditImageActivity.start(this, ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg",200);
+                break;
+            case TABLEEDIT:
+                Intent intentTable = new Intent(this, BlackTableActivity.class);
+                startActivityForResult(intentTable, 100);
                 break;
         }
     }
@@ -135,13 +140,13 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     public void onUiMessage(BaseEvent event) {
         super.onUiMessage(event);
-        Log.d("MainActivity", "onUiMessage() called with: event = [" + event.position() + "]");
+        LogController.d("MainActivity", "onUiMessage() called with: event = [" + event.position() + "]");
     }
 
     @Override
     public void onTrMessage(BaseEvent event) {
         super.onTrMessage(event);
-        Log.d("MainActivity", "onTrMessage() called with: event = [" + event.position() + "]");
+        LogController.d("MainActivity", "onTrMessage() called with: event = [" + event.position() + "]");
     }
 
     @Override
@@ -211,6 +216,10 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         }
         if (requestCode == 100){
             ArrayList<BlackTable> tables = data.getParcelableArrayListExtra("KEY");
+        }
+
+        if (requestCode == 200){
+            viewModel.updateImage(ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg");
         }
     }
 }

@@ -14,30 +14,24 @@ import android.content.pm.PackageManager;
 import android.os.Build;
 import android.os.Bundle;
 import android.os.Handler;
-import android.util.Log;
 import android.widget.Toast;
 
 import androidx.annotation.NonNull;
 import androidx.core.app.ActivityCompat;
 import androidx.core.content.ContextCompat;
+import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.base.ControllerEnum;
-import com.darly.chinese.common.LogController;
-import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.OnControllerBackListener;
-import com.darly.chinese.controller.decompression.DecompressionController;
-import com.darly.chinese.controller.fileload.ExternalStorageUtil;
-import com.darly.chinese.controller.fileload.FileController;
-import com.darly.chinese.controller.parse.ParseJsonController;
-import com.darly.chinese.controller.soload.SoLoadController;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
-import com.darly.widget.titlebar.TitleBar;
 
-import java.util.List;
-import java.util.Random;
+import static com.darly.std.vm.GuideViewModel.Action.MAINPRO;
+import static com.darly.std.vm.GuideViewModel.Action.NEXTPAGE;
+import static com.darly.std.vm.GuideViewModel.Action.PROGRESSINIT;
+import static com.darly.std.vm.GuideViewModel.Action.SECPRO;
+import static com.darly.std.vm.GuideViewModel.Action.TITLE;
 
 /**
  * Description TODO: 欢迎界面，在这里进行初次打开数据校验（使用MVVM框架进行实现）
@@ -48,7 +42,7 @@ import java.util.Random;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewModel> implements OnControllerBackListener {
+public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewModel> {
 
     /**
      * 加载框更新
@@ -76,9 +70,6 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        binding.idMainProgress.setProgress(0);
-
-
         if (Build.VERSION.SDK_INT >= 23) {
             //缺少权限，进行权限申请
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
@@ -86,11 +77,11 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                 return;
             } else {
                 //权限同意，不需要处理
-                resourceInit();
+                viewModel.resourceInit();
             }
         } else {
             //低于23 不需要特殊处理
-            resourceInit();
+            viewModel.resourceInit();
         }
 
     }
@@ -98,25 +89,37 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
 
     @Override
     public void initObservableView() {
-
+        viewModel.getAction().observe(this, new Observer<GuideViewModel.Action>() {
+            @Override
+            public void onChanged(GuideViewModel.Action action) {
+                if (action != null) {
+                    doAction(action);
+                }
+            }
+        });
     }
 
-
-    public void resourceInit() {
-        if (SpController.getInstance().getValue(SpEnum.SOVERSION.getDesc(), 0) == 0) {
-            //初次加载
-            LogController.d("resourceInit","初次加载");
-            FileController.getInstance().copyFile("DownLoad", this);
-        } else {
-            //非初次加载
-            if (SpController.getInstance().getValue(SpEnum.SOVERSION.getDesc(), 0) != 2){
-                //有新版本需要更新
-                LogController.d("resourceInit","有新版本需要更新");
-                FileController.getInstance().copyFile("DownLoad", this);
-            }else {
-                LogController.d("resourceInit","不需要更新");
-                //需要导入SO，否则崩溃
-                SoLoadController.getInstance().installSoDir(this);
+    /**
+     * 开始调用
+     *
+     * @param action 传递Action
+     */
+    private void doAction(GuideViewModel.Action action) {
+        switch (action.getValue()) {
+            case TITLE:
+                binding.idMainType.setText((String) action.getParam());
+                break;
+            case PROGRESSINIT:
+                binding.idMainProgress.setProgress(0);
+                binding.idMainUpProgress.setProgress(0);
+                break;
+            case MAINPRO:
+                binding.idMainProgress.setProgress((int) action.getParam());
+                break;
+            case SECPRO:
+                binding.idMainUpProgress.setProgress((int) action.getParam());
+                break;
+            case NEXTPAGE:
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
@@ -124,98 +127,10 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                         finish();
                     }
                 }, 1000);
-            }
+                break;
         }
     }
 
-
-    //解压和解析
-    @Override
-    public void onStart(String type) {
-        binding.idMainType.setText(type);
-        binding.idMainProgress.setProgress(0);
-        binding.idMainUpProgress.setProgress(0);
-    }
-
-
-    @Override
-    public void onProgress(final int percent) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                binding.idMainProgress.setProgress(percent);
-            }
-        });
-    }
-
-    @Override
-    public void onSecProgress(final int percent) {
-        runOnUiThread(new Runnable() {
-            @Override
-            public void run() {
-                binding.idMainUpProgress.setProgress(percent);
-            }
-        });
-    }
-
-    @Override
-    public void onComplete(String title, ControllerEnum type, Object ob) {
-        binding.idMainType.setText(title);
-        LogController.d("onComplete", "onComplete() called with: title = [" + title + "], type = [" + type + "], ob = [" + ob + "]");
-        if (FileController.getInstance().getType().equals(type)) {
-            if (ob instanceof List) {
-                //复制的文件中包含压缩包
-                DecompressionController.getInstance().decompressionInit((List<String>) ob, ExternalStorageUtil.getDownLoadPath(), this);
-            }
-        }
-        if (DecompressionController.getInstance().getType().equals(type)) {
-            SoLoadController.getInstance().copySo(this,false, this);
-        }
-
-        if (SoLoadController.getInstance().getType().equals(type)) {
-            //这个是data/data路径下，直接使用System.load()方法导入SO包
-//        if (ob instanceof File[]){
-//            File[] fils = (File[]) ob;
-//            //这里进行SO初始化操作
-//            PhotoProcessing.initABIS(fils);
-//        }
-            ParseJsonController.getInstance().initParseJson(this);
-            Toast.makeText(this, "导入成功", Toast.LENGTH_SHORT).show();
-        }
-
-        if (ParseJsonController.getInstance().getType().equals(type)) {
-            SpController.getInstance().putValue(SpEnum.SOVERSION.getDesc(), new Random().nextInt(4));
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(GuideActivity.this, MainActivity.class));
-                    finish();
-                }
-            }, 1000);
-        }
-    }
-
-
-    @Override
-    public void onFailed(String title, ControllerEnum type, String msg) {
-        Toast.makeText(this, title + "\r\n" + msg, Toast.LENGTH_SHORT).show();
-        binding.idMainType.setText(title);
-        LogController.d("onFailed", "onFailed() called with: title = [" + title + "], type = [" + type + "], msg = [" + msg + "]");
-        if (FileController.getInstance().getType().equals(type)) {
-
-        }
-        if (DecompressionController.getInstance().getType().equals(type)) {
-
-        }
-
-        if (SoLoadController.getInstance().getType().equals(type)) {
-
-        }
-
-        if (ParseJsonController.getInstance().getType().equals(type)) {
-
-        }
-    }
 
     //参数 requestCode是我们在申请权限的时候使用的唯一的申请码
     //String[] permission则是权限列表，一般用不到
@@ -227,7 +142,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
         if (requestCode == PERMISSION) {            //当然权限多了，建议使用Switch，不必纠结于此
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "权限申请成功", Toast.LENGTH_SHORT).show();
-                resourceInit();
+                viewModel.resourceInit();
             } else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, "权限申请失败，用户拒绝权限", Toast.LENGTH_SHORT).show();
             }

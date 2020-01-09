@@ -80,13 +80,11 @@ public class ParseJsonController extends BaseController {
         listener.onStart(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse));
         VersionBean versionBean = DataBaseController.selectSingle(VersionBean.class);
         if (versionBean == null) {
+            //清空作者表
+            DataBaseController.clear(SongCiAuthorBean.class);
+            //清空词表
+            DataBaseController.clear(SongCiBean.class);
             //新安裝需要同步数据
-            versionBean = new VersionBean();
-            versionBean.setAutoId(UUID.randomUUID());
-            versionBean.setPackagename(VersionController.packageName());
-            versionBean.setVersioncode(VersionController.versionCode());
-            versionBean.setVersionname(VersionController.versionName());
-            DataBaseController.save(versionBean);
             insertChineseMessage(listener, "");
         } else {
             if (VersionController.versionCode() != versionBean.getVersioncode()) {
@@ -112,8 +110,6 @@ public class ParseJsonController extends BaseController {
                 }
             }
         }
-
-
     }
 
     /**
@@ -259,6 +255,12 @@ public class ParseJsonController extends BaseController {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
                 if (task.getResult()) {
+                    VersionBean versionBean = new VersionBean();
+                    versionBean.setAutoId(UUID.randomUUID());
+                    versionBean.setPackagename(VersionController.packageName());
+                    versionBean.setVersioncode(VersionController.versionCode());
+                    versionBean.setVersionname(VersionController.versionName());
+                    DataBaseController.save(versionBean);
                     listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc),ControllerEnum.PARSE, null);
                     DLog.d("数据重新初始化完成");
                 } else {

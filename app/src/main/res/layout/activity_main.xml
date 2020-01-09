@@ -21,13 +21,7 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextAppearance="@style/TitleText"
-            android:visibility="gone"/>
-
-        <com.darly.widget.progress.BeautifulProgressBar
-            android:id="@+id/id_progress"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp15"/>
+            app:titleTextAppearance="@style/TitleText" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -36,5 +30,51 @@
             app:items="@{mainViewModel.items}"
             app:layoutManager="@{LayoutManagers.grid(2)}" />
 
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="0dp"
+            android:layout_weight="1">
+
+            <ImageView
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:src="@mipmap/ic_guide_bg"
+                app:image="@{mainViewModel.image}" />
+
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:onClick="@{(view)->mainViewModel.tableClick(mainViewModel.image,view)}"
+                android:text="表格控件" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:onClick="@{() -> mainViewModel.click()}"
+                android:text="空值按钮" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentRight="true"
+                android:layout_alignParentBottom="true"
+                android:onClick="@{() -> mainViewModel.click(mainViewModel.image)}"
+                android:text="有值按钮" />
+
+            <Button
+                android:layout_width="wrap_content"
+                android:layout_height="wrap_content"
+                android:layout_alignParentBottom="true"
+                android:onClick="@{mainViewModel::imageClick}"
+                android:text="图片控件" />
+        </RelativeLayout>
+
+        <com.darly.widget.progress.BeautifulProgressBar
+            android:id="@+id/id_progress"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp15"
+            android:layout_marginBottom="@dimen/dp20" />
     </LinearLayout>
 </layout>

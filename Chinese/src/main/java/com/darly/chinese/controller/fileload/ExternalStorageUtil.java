@@ -267,6 +267,7 @@ public class ExternalStorageUtil {
     public static void delete() {
         File file = new File(getExternalStoragePath() + GOODS_DETAIL_PATH);
         deleteFile(file);
+        creatFile(ExternalStorageUtil.GOODS_DETAIL_PATH);
     }
 
 
@@ -285,9 +286,11 @@ public class ExternalStorageUtil {
     private static void deleteFile(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
-            for (int i = 0; i < files.length; i++) {
-                File f = files[i];
-                deleteFile(f);
+            if (files!=null&&files.length>0) {
+                for (int i = 0; i < files.length; i++) {
+                    File f = files[i];
+                    deleteFile(f);
+                }
             }
             file.delete();//如要保留文件夹，只删除文件，请注释这行
         } else if (file.exists()) {
