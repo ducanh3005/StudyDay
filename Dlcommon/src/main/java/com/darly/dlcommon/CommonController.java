@@ -9,16 +9,16 @@
 package com.darly.dlcommon;
 
 import android.content.Context;
-import android.util.Log;
 
+import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.framework.ContextController;
 import com.darly.dlcommon.framework.EventBusController;
+import com.darly.dlcommon.framework.SharePerferenceController;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
 import com.raizlabs.android.dbflow.config.GeneratedDatabaseHolder;
 
-import org.greenrobot.eventbus.EventBus;
 
 /**
  * Description TODO: 工具类初始化方案。
@@ -36,12 +36,13 @@ public class CommonController {
     public static void init(Context context) {
         ContextController.getInstance().setApplication(context);
         ContextController.getInstance().setEventBusController(new EventBusController());
+        ContextController.getInstance().setSharePerferenceController(new SharePerferenceController(context));
 //        FlowManager.init(context);
 //        FlowManager.init(new FlowConfig.Builder(context).build());
         //添加日志
         FlowManager.init(FlowConfig.builder(context).addDatabaseHolder(GeneratedDatabaseHolder.class).build());
         FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
-        Log.d("CommonController", "init() called with: context = [" + context + "]");
+        DLog.d("CommonController", "init() called with: context = [" + context + "]");
     }
 
 }

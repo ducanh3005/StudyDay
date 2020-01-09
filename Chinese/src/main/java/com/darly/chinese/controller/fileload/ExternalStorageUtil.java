@@ -2,7 +2,7 @@
  * 版权所有 2009-2019山东新北洋信息技术股份有限公司保留所有权利。
  */
 
-package com.darly.chinese.fileload;
+package com.darly.chinese.controller.fileload;
 
 import android.os.Environment;
 

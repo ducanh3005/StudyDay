@@ -9,7 +9,6 @@
 package com.darly.std;
 
 import android.Manifest;
-import android.app.Activity;
 import android.content.Intent;
 import android.content.pm.PackageManager;
 import android.os.Build;
@@ -24,23 +23,24 @@ import androidx.core.content.ContextCompat;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.decompression.DecompressionController;
-import com.darly.chinese.fileload.ExternalStorageUtil;
-import com.darly.chinese.fileload.FileController;
-import com.darly.chinese.fileload.OnCopyFileListener;
-import com.darly.chinese.parse.OnParseJsonListener;
-import com.darly.chinese.parse.ParseJsonController;
-import com.darly.chinese.soload.OnSoLoadListener;
-import com.darly.chinese.soload.SoLoadController;
+import com.darly.chinese.base.ControllerEnum;
+import com.darly.chinese.common.LogController;
+import com.darly.chinese.common.SpController;
+import com.darly.chinese.controller.OnControllerBackListener;
+import com.darly.chinese.controller.decompression.DecompressionController;
+import com.darly.chinese.controller.fileload.ExternalStorageUtil;
+import com.darly.chinese.controller.fileload.FileController;
+import com.darly.chinese.controller.parse.ParseJsonController;
+import com.darly.chinese.controller.soload.SoLoadController;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
-import com.xinlan.imageeditlibrary.editimage.fliter.PhotoProcessing;
+import com.darly.widget.titlebar.TitleBar;
 
-import java.io.File;
 import java.util.List;
+import java.util.Random;
 
 /**
- * Description TODO: 欢迎界面，在这里进行初次打开数据校验
+ * Description TODO: 欢迎界面，在这里进行初次打开数据校验（使用MVVM框架进行实现）
  * Package com.darly.std
  *
  * @author zhangyuhui
@@ -48,12 +48,16 @@ import java.util.List;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewModel> implements OnParseJsonListener, OnCopyFileListener, OnSoLoadListener {
+public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewModel> implements OnControllerBackListener {
 
-
+    /**
+     * 加载框更新
+     */
     private Handler handler = new Handler();
-
-    private static int PERMATION = 0x0012;
+    /**
+     * 动态申请权限标记位
+     */
+    private static int PERMISSION = 0x0012;
 
     @Override
     protected int layoutId() {
@@ -73,19 +77,22 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     @Override
     public void initView(Bundle savedInstanceState) {
         binding.idMainProgress.setProgress(0);
+
+
         if (Build.VERSION.SDK_INT >= 23) {
             //缺少权限，进行权限申请
             if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMATION);
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION);
                 return;
             } else {
                 //权限同意，不需要处理
-                FileController.getInstance().copyFile("DownLoad", this);
+                resourceInit();
             }
         } else {
             //低于23 不需要特殊处理
-            FileController.getInstance().copyFile("DownLoad", this);
+            resourceInit();
         }
+
     }
 
 
@@ -94,26 +101,33 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
 
     }
 
-    //文件复制
-    @Override
-    public void onCopyStart(String type) {
-        binding.idMainType.setText(type);
-        binding.idMainProgress.setProgress(0);
-        binding.idMainUpProgress.setProgress(0);
-    }
 
-    @Override
-    public void onCopyComplete(String type, Object ob) {
-        if (ob instanceof List) {
-            //复制的文件中包含压缩包
-            DecompressionController.getInstance().decompressionInit((List<String>) ob, ExternalStorageUtil.getDownLoadPath(), this);
+    public void resourceInit() {
+        if (SpController.getInstance().getValue(SpEnum.SOVERSION.getDesc(), 0) == 0) {
+            //初次加载
+            LogController.d("resourceInit","初次加载");
+            FileController.getInstance().copyFile("DownLoad", this);
+        } else {
+            //非初次加载
+            if (SpController.getInstance().getValue(SpEnum.SOVERSION.getDesc(), 0) != 2){
+                //有新版本需要更新
+                LogController.d("resourceInit","有新版本需要更新");
+                FileController.getInstance().copyFile("DownLoad", this);
+            }else {
+                LogController.d("resourceInit","不需要更新");
+                //需要导入SO，否则崩溃
+                SoLoadController.getInstance().installSoDir(this);
+                handler.postDelayed(new Runnable() {
+                    @Override
+                    public void run() {
+                        startActivity(new Intent(GuideActivity.this, MainActivity.class));
+                        finish();
+                    }
+                }, 1000);
+            }
         }
     }
 
-    @Override
-    public void onCopyFailed(String type, String msg) {
-        Log.d(getClass().getSimpleName(), "onCopyFailed() called with: msg = [" + msg + "]");
-    }
 
     //解压和解析
     @Override
@@ -123,28 +137,9 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
         binding.idMainUpProgress.setProgress(0);
     }
 
-    @Override
-    public void onComplete(String type, Object ob) {
-        if (DecompressionController.getInstance().type.equals(type)) {
-            SoLoadController.getInstance().init(this);
-            SoLoadController.getInstance().copySo(false, this);
-        }
-
-        Log.d(getClass().getSimpleName(), "onComplete() called");
-        if (ParseJsonController.getInstance().type.equals(type)) {
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    startActivity(new Intent(GuideActivity.this, MainActivity.class));
-                    finish();
-                }
-            }, 1000);
-        }
-    }
 
     @Override
     public void onProgress(final int percent) {
-        Log.d("onProgress", "onProgress() called with: percent = [" + percent + "]");
         runOnUiThread(new Runnable() {
             @Override
             public void run() {
@@ -161,12 +156,65 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                 binding.idMainUpProgress.setProgress(percent);
             }
         });
-
     }
 
     @Override
-    public void onFailed(String type, String msg) {
-        Log.d(getClass().getSimpleName(), "onFailed() called with: msg = [" + msg + "]");
+    public void onComplete(String title, ControllerEnum type, Object ob) {
+        binding.idMainType.setText(title);
+        LogController.d("onComplete", "onComplete() called with: title = [" + title + "], type = [" + type + "], ob = [" + ob + "]");
+        if (FileController.getInstance().getType().equals(type)) {
+            if (ob instanceof List) {
+                //复制的文件中包含压缩包
+                DecompressionController.getInstance().decompressionInit((List<String>) ob, ExternalStorageUtil.getDownLoadPath(), this);
+            }
+        }
+        if (DecompressionController.getInstance().getType().equals(type)) {
+            SoLoadController.getInstance().copySo(this,false, this);
+        }
+
+        if (SoLoadController.getInstance().getType().equals(type)) {
+            //这个是data/data路径下，直接使用System.load()方法导入SO包
+//        if (ob instanceof File[]){
+//            File[] fils = (File[]) ob;
+//            //这里进行SO初始化操作
+//            PhotoProcessing.initABIS(fils);
+//        }
+            ParseJsonController.getInstance().initParseJson(this);
+            Toast.makeText(this, "导入成功", Toast.LENGTH_SHORT).show();
+        }
+
+        if (ParseJsonController.getInstance().getType().equals(type)) {
+            SpController.getInstance().putValue(SpEnum.SOVERSION.getDesc(), new Random().nextInt(4));
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(new Intent(GuideActivity.this, MainActivity.class));
+                    finish();
+                }
+            }, 1000);
+        }
+    }
+
+
+    @Override
+    public void onFailed(String title, ControllerEnum type, String msg) {
+        Toast.makeText(this, title + "\r\n" + msg, Toast.LENGTH_SHORT).show();
+        binding.idMainType.setText(title);
+        LogController.d("onFailed", "onFailed() called with: title = [" + title + "], type = [" + type + "], msg = [" + msg + "]");
+        if (FileController.getInstance().getType().equals(type)) {
+
+        }
+        if (DecompressionController.getInstance().getType().equals(type)) {
+
+        }
+
+        if (SoLoadController.getInstance().getType().equals(type)) {
+
+        }
+
+        if (ParseJsonController.getInstance().getType().equals(type)) {
+
+        }
     }
 
     //参数 requestCode是我们在申请权限的时候使用的唯一的申请码
@@ -176,36 +224,14 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     @Override
     public void onRequestPermissionsResult(int requestCode, @NonNull String[] permissions, @NonNull int[] grantResults) {
         super.onRequestPermissionsResult(requestCode, permissions, grantResults);
-        if (requestCode == PERMATION) {            //当然权限多了，建议使用Switch，不必纠结于此
+        if (requestCode == PERMISSION) {            //当然权限多了，建议使用Switch，不必纠结于此
             if (grantResults[0] == PackageManager.PERMISSION_GRANTED) {
                 Toast.makeText(this, "权限申请成功", Toast.LENGTH_SHORT).show();
-                FileController.getInstance().copyFile("DownLoad", this);
+                resourceInit();
             } else if (grantResults[0] == PackageManager.PERMISSION_DENIED) {
                 Toast.makeText(this, "权限申请失败，用户拒绝权限", Toast.LENGTH_SHORT).show();
             }
         }
     }
 
-    @Override
-    public void onSoStart(String type) {
-        binding.idMainType.setText(type);
-        binding.idMainProgress.setProgress(0);
-        binding.idMainUpProgress.setProgress(0);
-    }
-
-    @Override
-    public void onSoComplete(String type, Object ob) {
-        if (ob instanceof File[]){
-            File[] fils = (File[]) ob;
-            //这里进行SO初始化操作
-            PhotoProcessing.initABIS(fils);
-        }
-        ParseJsonController.getInstance().initParseJson(this);
-        Toast.makeText(this, "导入成功", Toast.LENGTH_SHORT).show();
-    }
-
-    @Override
-    public void onSoFailed(String type, String msg) {
-        Toast.makeText(this, "导入失败", Toast.LENGTH_SHORT).show();
-    }
 }

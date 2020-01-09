@@ -75,9 +75,9 @@ public class PhotoProcessing {
     }
 
     // /////////////////////////////////////////////
-//    static {
-//        System.loadLibrary("photoprocessing");
-//    }
+    static {
+        System.loadLibrary("photoprocessing");
+    }
 
     public static native int nativeInitBitmap(int width, int height);
 

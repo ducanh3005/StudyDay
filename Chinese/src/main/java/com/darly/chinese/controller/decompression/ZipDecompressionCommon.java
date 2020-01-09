@@ -1,4 +1,4 @@
-package com.darly.chinese.decompression;
+package com.darly.chinese.controller.decompression;
 
 import android.util.Log;
 

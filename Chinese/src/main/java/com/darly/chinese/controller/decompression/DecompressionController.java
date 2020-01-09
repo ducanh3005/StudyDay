@@ -1,7 +1,9 @@
-package com.darly.chinese.decompression;
+package com.darly.chinese.controller.decompression;
 
 import com.darly.chinese.R;
-import com.darly.chinese.parse.OnParseJsonListener;
+import com.darly.chinese.base.BaseController;
+import com.darly.chinese.base.ControllerEnum;
+import com.darly.chinese.controller.OnControllerBackListener;
 import com.darly.dlcommon.common.bolts.tasks.Task;
 import com.darly.dlcommon.common.bolts.tasks.iface.Continuation;
 import com.darly.dlcommon.framework.ContextController;
@@ -17,14 +19,14 @@ import java.util.concurrent.Callable;
  * date:2020-01-0614:15
  * description: 解压工具类，这里使用工具进行网络下载的压缩包进行解压到目标文件内。进行后续处理
  */
-public class DecompressionController {
-
-    /**
-     * 提示信息
-     */
-    public String type = ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress);
+public class DecompressionController extends BaseController {
 
     private DecompressionController() {
+    }
+
+    @Override
+    public ControllerEnum getType() {
+        return ControllerEnum.DECOMPRESS;
     }
 
     static class DecompressionControllerHolder {
@@ -42,8 +44,8 @@ public class DecompressionController {
      * @param tagDec   解压路径
      * @param listener 回调
      */
-    public void decompressionInit(final List<String> zipFile, final String tagDec, final OnParseJsonListener listener) {
-        listener.onStart(type);
+    public void decompressionInit(final List<String> zipFile, final String tagDec, final OnControllerBackListener listener) {
+        listener.onStart(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress));
         Task.call(new Callable<List<File>>() {
             @Override
             public List<File> call() throws Exception {
@@ -51,9 +53,10 @@ public class DecompressionController {
                     List<File> files = new ArrayList<>();
                     for (int i = 1;i<=zipFile.size();i++) {
                         List<File> file = ZipDecompressionCommon.unzipFile(zipFile.get(i-1), tagDec);
-                        listener.onProgress(i*100/zipFile.size());
+                        listener.onSecProgress(i*100/zipFile.size());
                         files.addAll(file);
                     }
+                    listener.onProgress(100);
                     return files;
                 }catch (IOException e){
                     e.printStackTrace();
@@ -65,9 +68,9 @@ public class DecompressionController {
             @Override
             public Void then(Task<List<File>> task) throws Exception {
                 if (task.getResult() != null) {
-                    listener.onComplete(type, task.getResult());
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress_suc),ControllerEnum.DECOMPRESS, task.getResult());
                 } else {
-                    listener.onFailed(type, task.getError().getMessage());
+                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress_fail),ControllerEnum.DECOMPRESS, task.getError().getMessage());
                 }
                 return null;
             }

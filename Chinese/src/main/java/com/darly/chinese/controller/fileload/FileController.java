@@ -1,7 +1,10 @@
-package com.darly.chinese.fileload;
+package com.darly.chinese.controller.fileload;
 
 
 import com.darly.chinese.R;
+import com.darly.chinese.base.BaseController;
+import com.darly.chinese.base.ControllerEnum;
+import com.darly.chinese.controller.OnControllerBackListener;
 import com.darly.dlcommon.common.bolts.tasks.Task;
 import com.darly.dlcommon.common.bolts.tasks.iface.Continuation;
 import com.darly.dlcommon.framework.ContextController;
@@ -18,14 +21,15 @@ import java.util.concurrent.Callable;
  * date:2020-01-0709:32
  * description: 下载文件、本地文件处理控制类
  */
-public class FileController {
+public class FileController extends BaseController {
 
-    /**
-     * 提示信息
-     */
-    public String type = ContextController.getInstance().getApplication().getResources().getString(R.string.type_file);
 
     private FileController() {
+    }
+
+    @Override
+    public ControllerEnum getType() {
+        return ControllerEnum.FILELOAD;
     }
 
     static class FileControllerHolder {
@@ -46,28 +50,29 @@ public class FileController {
     /**
      * 从assets中复制文件
      */
-    public void copyFile(final String assetsFile, final OnCopyFileListener listener) {
-        listener.onCopyStart(type);
+    public void copyFile(final String assetsFile, final OnControllerBackListener listener) {
+        listener.onStart(ContextController.getInstance().getApplication().getResources().getString(R.string.type_file));
         Task.call(new Callable<List<String>>() {
             @Override
             public List<String> call() throws Exception {
                 try {
-                    if (ExternalStorageUtil.isExternalStorageReadable()&&ExternalStorageUtil.isExternalStorageWritable()){
+                    if (ExternalStorageUtil.isExternalStorageReadable() && ExternalStorageUtil.isExternalStorageWritable()) {
+                        //将文件复制到SD卡中
                         ExternalStorageUtil.creatFile(ExternalStorageUtil.GOODS_DETAIL_PATH);
                         copyAssetsFiles(assetsFile, ExternalStorageUtil.GOODS_DETAIL_PATH);
-                        File file = new File(ExternalStorageUtil.getExternalStoragePath()+ExternalStorageUtil.GOODS_DETAIL_PATH);
+                        File file = new File(ExternalStorageUtil.getExternalStoragePath() + ExternalStorageUtil.GOODS_DETAIL_PATH);
                         File[] files = file.listFiles();
                         List<String> tagFiles = new ArrayList<>();
-                        for (File tagCompress:files) {
-                            if (tagCompress.getName().endsWith(".rar")||tagCompress.getName().endsWith(".zip")){
+                        for (File tagCompress : files) {
+                            if (tagCompress.getName().endsWith(".rar") || tagCompress.getName().endsWith(".zip")) {
                                 tagFiles.add(tagCompress.getAbsolutePath());
                             }
                         }
                         return tagFiles;
-                    }else {
+                    } else {
                         return null;
                     }
-                }catch (Exception e){
+                } catch (Exception e) {
                     e.printStackTrace();
                     return null;
                 }
@@ -76,10 +81,10 @@ public class FileController {
         }, Task.BACKGROUND_EXECUTOR).continueWith(new Continuation<List<String>, Void>() {
             @Override
             public Void then(Task<List<String>> task) throws Exception {
-                if (task.getResult()!=null) {
-                    listener.onCopyComplete(type, task.getResult());
+                if (task.getResult() != null) {
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_file_suc), ControllerEnum.FILELOAD, task.getResult());
                 } else {
-                    listener.onCopyFailed(type, task.getError().getMessage());
+                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_file_fail), ControllerEnum.FILELOAD, task.getError().getMessage());
                 }
                 return null;
             }
@@ -114,8 +119,8 @@ public class FileController {
             }
         } else {
             // 若是文件
-            File file = new File(ExternalStorageUtil.getExternalStoragePath()+mSavePath);
-            if (!file.exists()){
+            File file = new File(ExternalStorageUtil.getExternalStoragePath() + mSavePath);
+            if (!file.exists()) {
                 file.createNewFile();
             }
             InputStream is = ContextController.getInstance().getApplication().getResources().getAssets().open(mAssetsPath);

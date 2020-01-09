@@ -6,15 +6,18 @@
  * Vestibulum commodo. Ut rhoncus gravida arcu.
  */
 
-package com.darly.chinese.parse;
+package com.darly.chinese.controller.parse;
 
 import android.text.TextUtils;
 
 import com.darly.chinese.R;
+import com.darly.chinese.base.BaseController;
+import com.darly.chinese.base.ControllerEnum;
+import com.darly.chinese.controller.OnControllerBackListener;
 import com.darly.chinese.db.chinese.table.SongCiAuthorBean;
 import com.darly.chinese.db.chinese.table.SongCiBean;
 import com.darly.chinese.db.crud.DataBaseController;
-import com.darly.chinese.fileload.ExternalStorageUtil;
+import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.dlcommon.common.JsonConverter;
 import com.darly.dlcommon.common.VersionController;
 import com.darly.dlcommon.common.bolts.tasks.Task;
@@ -42,22 +45,19 @@ import java.util.concurrent.Callable;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class ParseJsonController {
+public class ParseJsonController extends BaseController {
 
-    /**
-     * Assets里面的目标文件名称
-     */
-    private String fileName = "chinese";
     /**
      * 所有json集合
      */
     private List<String> jsonFile = new ArrayList<>();
-    /**
-     * 提示信息
-     */
-    public String type = ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse);
 
     private ParseJsonController() {
+    }
+
+    @Override
+    public ControllerEnum getType() {
+        return ControllerEnum.PARSE;
     }
 
     static class ParseJsonControllerHolder {
@@ -74,10 +74,10 @@ public class ParseJsonController {
      *
      * @param listener 回调
      */
-    public void initParseJson(OnParseJsonListener listener) {
+    public void initParseJson(OnControllerBackListener listener) {
         //首先进行数据库数据查询。数据库中已经存在数据。则不在进行数据更新。否则将文件导入数据库中。
         //同时这里需要进行版本更新操作，当APK是最新版本，需要重新导入
-        listener.onStart(type);
+        listener.onStart(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse));
         VersionBean versionBean = DataBaseController.selectSingle(VersionBean.class);
         if (versionBean == null) {
             //新安裝需要同步数据
@@ -105,7 +105,7 @@ public class ParseJsonController {
                     //无需重新加载
                     listener.onProgress(100);
 
-                    listener.onComplete(type, null);
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc),ControllerEnum.PARSE, null);
                     DLog.d("数据库信息一致，无需修改");
                 } else {
                     insertChineseMessage(listener, "");
@@ -119,7 +119,7 @@ public class ParseJsonController {
     /**
      * 读取数据到数据库
      */
-    private void insertChineseMessage(OnParseJsonListener listener, String name) {
+    private void insertChineseMessage(OnControllerBackListener listener, String name) {
         jsonFile.clear();
         insertListWithAssets(name);
         DLog.i(jsonFile.size());
@@ -206,7 +206,7 @@ public class ParseJsonController {
      *
      * @param listener
      */
-    private void insertChinese(final OnParseJsonListener listener) {
+    private void insertChinese(final OnControllerBackListener listener) {
         Task.call(new Callable<Boolean>() {
             @Override
             public Boolean call() throws Exception {
@@ -259,10 +259,10 @@ public class ParseJsonController {
             @Override
             public Void then(Task<Boolean> task) throws Exception {
                 if (task.getResult()) {
-                    listener.onComplete(type, null);
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc),ControllerEnum.PARSE, null);
                     DLog.d("数据重新初始化完成");
                 } else {
-                    listener.onFailed(type, task.getError().getMessage());
+                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_fail),ControllerEnum.PARSE, task.getError().getMessage());
                     DLog.d("数据重新初始化失败" + task.getError().getMessage());
                 }
                 return null;
