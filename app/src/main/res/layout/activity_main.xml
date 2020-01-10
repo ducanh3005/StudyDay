@@ -30,11 +30,6 @@
             app:items="@{mainViewModel.items}"
             app:layoutManager="@{LayoutManagers.grid(2)}" />
 
-        <com.facebook.react.ReactRootView
-            android:id="@+id/react_root_view"
-            android:layout_width="match_parent"
-            android:layout_height="100dp"/>
-
         <RelativeLayout
             android:layout_width="match_parent"
             android:layout_height="0dp"

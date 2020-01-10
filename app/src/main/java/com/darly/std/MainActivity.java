@@ -81,7 +81,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 viewModel.firstGuideView(binding.toolbar);
             }
         });
-        binding.reactRootView.startReactApplication(((ReactApplication)this.getApplicationContext()).getReactNativeHost().getReactInstanceManager(),"StudyDay");
+//        binding.reactRootView.startReactApplication(((ReactApplication)this.getApplicationContext()).getReactNativeHost().getReactInstanceManager(),"StudyDay");
     }
 
 
