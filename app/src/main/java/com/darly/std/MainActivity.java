@@ -26,16 +26,19 @@ import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
 import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.std.databinding.ActivityMainBinding;
+import com.darly.std.rn.ui.RNStudyActivity;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
+import com.facebook.react.ReactApplication;
 
 import java.io.File;
 import java.util.ArrayList;
 
 import static com.darly.std.vm.MainViewModel.Action.IMAGEEIDT;
 import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
+import static com.darly.std.vm.MainViewModel.Action.RNPAGE;
 import static com.darly.std.vm.MainViewModel.Action.TABLEEDIT;
 import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
 
@@ -49,7 +52,6 @@ import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
  * EMail zhangyuhui@newbeiyang.com
  */
 public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
-
 
     @Override
     protected int layoutId() {
@@ -79,6 +81,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 viewModel.firstGuideView(binding.toolbar);
             }
         });
+        binding.reactRootView.startReactApplication(((ReactApplication)this.getApplicationContext()).getReactNativeHost().getReactInstanceManager(),"StudyDay");
     }
 
 
@@ -118,6 +121,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case TABLEEDIT:
                 Intent intentTable = new Intent(this, BlackTableActivity.class);
                 startActivityForResult(intentTable, 100);
+                break;
+            case RNPAGE:
+                startActivity(new Intent(this, RNStudyActivity.class));
                 break;
         }
     }

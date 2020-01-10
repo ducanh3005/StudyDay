@@ -71,7 +71,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
             }, 0, 100);
         }
         DataReposController.test();
-        image.setValue(ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg");
+//        image.setValue(ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg");
     }
 
     public ObservableList<ItemMainViewModel> items = new ObservableArrayList<>();
@@ -133,6 +133,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
      */
     public void click() {
         LogController.d("click");
+        action.postValue(new Action(Action.RNPAGE,null));
     }
 
     /**
@@ -160,6 +161,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
         public static final int TIMERCOUNT = 1;
         public static final int IMAGEEIDT = 2;
         public static final int TABLEEDIT = 3;
+        public static final int RNPAGE = 4;
         private final int mAction;
 
         private Object param;

@@ -1,19 +1,28 @@
 apply plugin: 'com.android.application'
 
+
+project.ext.react = [
+        entryFile: "index.js",
+        enableHermes: true,  // clean and rebuild if changing
+]
+def jscFlavor = 'org.webkit:android-jsc:+'
+def enableHermes = project.ext.react.get("enableHermes", false)
+
 android {
-    compileSdkVersion 28
+    compileSdkVersion rootProject.ext.compileSdkVersion
     defaultConfig {
         applicationId "com.darly.std"
-        minSdkVersion 15
-        targetSdkVersion 28
-        versionCode 1
-        versionName "1.0"
+        minSdkVersion rootProject.ext.minSdkVersion
+        targetSdkVersion rootProject.ext.targetSdkVersion
+        versionCode rootProject.ext.versionCode
+        versionName rootProject.ext.versionName
         testInstrumentationRunner "androidx.test.runner.AndroidJUnitRunner"
 
         ndk {
             abiFilters "armeabi","armeabi-v7a","x86"
         }
     }
+
     buildTypes {
         release {
             minifyEnabled false
@@ -38,5 +47,14 @@ dependencies {
     implementation project(path: ':Widget')
     //图片处理，包含了SO，进行SO动态加载
     implementation project(path: ':Imageeditor')
+    //添加RN依赖
+    implementation "com.facebook.react:react-native:+"
+    if (enableHermes) {
+        def hermesPath = "$rootDir/node_modules/hermes-engine/android/"
+        debugImplementation files(hermesPath + "hermes-debug.aar")
+        releaseImplementation files(hermesPath + "hermes-release.aar")
+    } else {
+        implementation jscFlavor
+    }
 
 }

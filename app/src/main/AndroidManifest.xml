@@ -72,6 +72,12 @@
 
         <activity
             android:name="com.darly.std.ui.BlackTableActivity"/>
+
+        <activity android:name=".rn.ui.RNStudyActivity"
+            android:label="@string/app_name"
+            android:theme="@style/Theme.AppCompat.Light.NoActionBar"/>
+
+        <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
     </application>
 
 </manifest>

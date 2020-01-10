@@ -11,6 +11,14 @@ package com.darly.std;
 import com.darly.chinese.ChineseApplication;
 import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
+import com.facebook.react.ReactApplication;
+import com.facebook.react.ReactNativeHost;
+import com.facebook.react.ReactPackage;
+import com.facebook.react.shell.MainReactPackage;
+import com.facebook.soloader.SoLoader;
+
+import java.util.Arrays;
+import java.util.List;
 
 /**
  * Description TODO:
@@ -20,7 +28,8 @@ import com.darly.chinese.controller.fileload.ExternalStorageUtil;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class BaseApplication extends ChineseApplication {
+
+public class BaseApplication extends ChineseApplication implements ReactApplication {
 
     @Override
     public void onCreate() {
@@ -28,6 +37,26 @@ public class BaseApplication extends ChineseApplication {
         if (BuildConfig.DEBUG){
             ExternalStorageUtil.delete();
         }
+        SoLoader.init(this, false);
         SpController.getInstance().setName("study");
     }
+
+    @Override
+    public ReactNativeHost getReactNativeHost() {
+        return mReactNativeHost;
+    }
+
+    private final ReactNativeHost mReactNativeHost = new ReactNativeHost(this) {
+        @Override
+        public boolean getUseDeveloperSupport() {
+            return BuildConfig.DEBUG;
+        }
+
+        @Override
+        protected List<ReactPackage> getPackages() {
+            return Arrays.<ReactPackage>asList(
+                    new MainReactPackage()
+            );
+        }
+    };
 }

@@ -1,0 +1,34 @@
+{
+  "name": "StudyDay",
+  "version": "1.0.0",
+  "description": "在RN分支上，增加RN（在已有Android项目中增加React Native)",
+  "main": "index.js",
+  "scripts": {
+    "start": "node node_modules/react-native/local-cli/cli.js start",
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/Darlyyuhui/StudyDay.git"
+  },
+  "author": "Darlyyuhui",
+  "license": "ISC",
+  "bugs": {
+    "url": "https://github.com/Darlyyuhui/StudyDay/issues"
+  },
+  "homepage": "https://github.com/Darlyyuhui/StudyDay#readme",
+  "dependencies": {
+    "prop-types": "^15.7.2",
+    "react": "^16.12.0",
+    "react-native": "^0.61.5",
+    "react-native-navigation": "^4.4.0",
+    "react-native-radio-buttons": "^1.0.0"
+  },
+  "devDependencies": {
+    "react-redux": "^7.1.3",
+    "redux": "^4.0.5",
+    "redux-devtools": "^3.5.0",
+    "redux-logger": "^3.0.6",
+    "redux-thunk": "^2.3.0"
+  }
+}
