@@ -11,6 +11,7 @@ package com.darly.std;
 import com.darly.chinese.ChineseApplication;
 import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
+import com.darly.rnmodule.RnModulePackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -55,7 +56,8 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         @Override
         protected List<ReactPackage> getPackages() {
             return Arrays.<ReactPackage>asList(
-                    new MainReactPackage()
+                    new MainReactPackage(),
+                    new RnModulePackage()
             );
         }
     };

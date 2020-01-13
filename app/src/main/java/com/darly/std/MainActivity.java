@@ -25,13 +25,12 @@ import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
 import com.darly.imageeditor.editimage.EditImageActivity;
+import com.darly.rnmodule.RNStudyActivity;
 import com.darly.std.databinding.ActivityMainBinding;
-import com.darly.std.rn.ui.RNStudyActivity;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
-import com.facebook.react.ReactApplication;
 
 import java.io.File;
 import java.util.ArrayList;
@@ -81,7 +80,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 viewModel.firstGuideView(binding.toolbar);
             }
         });
-//        binding.reactRootView.startReactApplication(((ReactApplication)this.getApplicationContext()).getReactNativeHost().getReactInstanceManager(),"StudyDay");
     }
 
 

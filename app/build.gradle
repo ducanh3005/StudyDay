@@ -1,12 +1,6 @@
 apply plugin: 'com.android.application'
 
 
-project.ext.react = [
-        entryFile: "index.js",
-        enableHermes: true,  // clean and rebuild if changing
-]
-def jscFlavor = 'org.webkit:android-jsc:+'
-def enableHermes = project.ext.react.get("enableHermes", false)
 
 android {
     compileSdkVersion rootProject.ext.compileSdkVersion
@@ -47,14 +41,7 @@ dependencies {
     implementation project(path: ':Widget')
     //图片处理，包含了SO，进行SO动态加载
     implementation project(path: ':Imageeditor')
-    //添加RN依赖
-    implementation "com.facebook.react:react-native:+"
-    if (enableHermes) {
-        def hermesPath = "$rootDir/node_modules/hermes-engine/android/"
-        debugImplementation files(hermesPath + "hermes-debug.aar")
-        releaseImplementation files(hermesPath + "hermes-release.aar")
-    } else {
-        implementation jscFlavor
-    }
+    //RN依赖
+    implementation project(path: ':RnModule')
 
 }
