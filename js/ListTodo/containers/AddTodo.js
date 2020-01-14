@@ -8,20 +8,19 @@ import {
     Text,
     TouchableOpacity,
     StyleSheet,
-    Platform,
     requireNativeComponent,
-    DeviceEventEmitter,
-    Alert
+    DeviceEventEmitter
 } from 'react-native'
 import {connect} from 'react-redux'
 import {addTodo} from '../actions'
 import Value from '../../Global/common'
-import NativeListModule from '../modules/NativeListModule';
-const ToastView = requireNativeComponent("ToastManager", null) ;
-
+import store from "../../Global/stores";
+const NativeListModule = require('../../Global/modules/NativeListModule');
+const ToastView = requireNativeComponent("ToastManager") ;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
+        backgroundColor: 'white'
     },
     input: {
         flex: 1,
@@ -40,20 +39,33 @@ class AddTodo extends Component {
     constructor(props) {
         super(props);
         this.inputValue = '';
-        DeviceEventEmitter.addListener('InputNull', () => {
+        DeviceEventEmitter.addListener('InputNull', async() => {
             NativeListModule.showToast();
             NativeListModule.showActin(Value("success"));
             NativeListModule.showExit(Value("success"));
+            for (let item =0;item< 100;item++){
+                let key = await store.get(item+"");
+                console.log("获取数据："+key);
+            }
             alert(Value("success"));
         });
+
+
+        for (let item =0;item< 100;item++){
+            store.save(item+"",item+"");
+        }
+        console.log("保存数据："+store);
     }
+
 
     render() {
         let {dispatch} = this.props;
+
         console.log("增加功能的props" + JSON.stringify(this.props));
         return (
             <View style={styles.container}>
                 {
+                    //在这里增加Android提供的控件
                         <ToastView style={styles.button}/>
                 }
                 <TextInput

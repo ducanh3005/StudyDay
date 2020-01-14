@@ -4,7 +4,11 @@ package="com.darly.rnmodule" >
 <application>
     <!--图片编辑Activity-->
     <activity
-        android:name=".RNStudyActivity">
+        android:name=".ui.RNStudyActivity">
     </activity>
+    <activity
+        android:name=".ui.ListEntityActivity">
+    </activity>
+    <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
 </application>
 </manifest>

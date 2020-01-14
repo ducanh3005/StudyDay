@@ -25,7 +25,7 @@ import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
 import com.darly.imageeditor.editimage.EditImageActivity;
-import com.darly.rnmodule.RNStudyActivity;
+import com.darly.rnmodule.ui.RNStudyActivity;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;

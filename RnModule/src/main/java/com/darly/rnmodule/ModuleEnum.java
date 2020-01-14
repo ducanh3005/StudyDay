@@ -6,18 +6,15 @@ package com.darly.rnmodule;
  * description:所有RN调用原生方法的类返回名称
  */
 public enum ModuleEnum {
-
+    //提供React Native进行调用的原生方法
     LISTMODULE("ListModule"),
 
-    //是否第一次打开应用，是否进入欢迎页面
-    FIRSTOPEN("firstopen"),
-    //是否已经设置用户信息，是否进入信息设置引导页面。
-    SYSTEMUSERINFO("systemuserinfo"),
-    //用户信息保存主键
-    USERINFO("userinfo"),
+    //提供React Native进行调用的原生封装控件
+    TOASTMANAGER("ToastManager"),
 
-    TOASTMANAGER("ToastManager");
-
+    //提供React Native界面调用入口（对应的Android原生界面）
+    RNSTUDYACTIVITY("RNStudyActivity"),
+    LISTENTITYACTIVITY("ListEntityActivity");
 
     private String desc;
 

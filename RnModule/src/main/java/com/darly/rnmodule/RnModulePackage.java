@@ -18,6 +18,8 @@ import java.util.List;
  * description: Rn 调用所有的Java方法对象集合
  */
 public class RnModulePackage implements ReactPackage {
+
+
     @NonNull
     @Override
     public List<NativeModule> createNativeModules(@NonNull ReactApplicationContext reactContext) {
