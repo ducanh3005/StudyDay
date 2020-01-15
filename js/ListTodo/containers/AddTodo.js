@@ -15,8 +15,9 @@ import {connect} from 'react-redux'
 import {addTodo} from '../actions'
 import Value from '../../Global/common'
 import store from "../../Global/stores";
+import JTextView from './JTextView';
+import {Navigator} from "../../VisitRecord/ListEntity/containers/containerApp";
 const NativeListModule = require('../../Global/modules/NativeListModule');
-const ToastView = requireNativeComponent("ToastManager") ;
 const styles = StyleSheet.create({
     container: {
         flexDirection: 'row',
@@ -36,6 +37,7 @@ const styles = StyleSheet.create({
 });
 
 class AddTodo extends Component {
+
     constructor(props) {
         super(props);
         this.inputValue = '';
@@ -43,7 +45,7 @@ class AddTodo extends Component {
             NativeListModule.showToast();
             NativeListModule.showActin(Value("success"));
             NativeListModule.showExit(Value("success"));
-            for (let item =0;item< 100;item++){
+            for (let item =0;item< 10;item++){
                 let key = await store.get(item+"");
                 console.log("获取数据："+key);
             }
@@ -51,22 +53,33 @@ class AddTodo extends Component {
         });
 
 
-        for (let item =0;item< 100;item++){
+        for (let item =0;item< 10;item++){
             store.save(item+"",item+"");
         }
         console.log("保存数据："+store);
     }
 
+    componentWillUnmount() {
+        //React Native生命周期消失时。
+        this.clear();
+        console.log("清除数据："+store);
+    }
+
+    async clear(){
+        for (let item =0;item< 10;item++){
+            await store.delete(item+"");
+        }
+    }
+
 
     render() {
         let {dispatch} = this.props;
-
         console.log("增加功能的props" + JSON.stringify(this.props));
         return (
             <View style={styles.container}>
                 {
                     //在这里增加Android提供的控件
-                        <ToastView style={styles.button}/>
+                        <JTextView />
                 }
                 <TextInput
                     style={styles.input}

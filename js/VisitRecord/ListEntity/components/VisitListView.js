@@ -1,28 +1,35 @@
-import React, { Component } from 'react'
+/*
+    列表展示
+ */
+
+import React, {Component} from 'react'
 import {
     View,
     TouchableOpacity,
     Text,
+    Image,
     InteractionManager,
-    Image
-} from 'react-native'
-import AddTodo from '../containers/AddTodo'
-import Filters from './Filters'
-import VisibleTodoList from '../containers/VisibleTodoList'
-import R from "../../Global/values";
+    FlatList
+} from 'react-native';
+import R from '../../../Global/values'
 
-export default class Group extends Component {
+class VisitListView extends Component {
+
+    constructor(props) {
+        super(props)
+    }
 
     initHeaderView() {
         return (
             <View style={[R.styles.navigationView,{backgroundColor:R.color.titleBg}]}>
                 <TouchableOpacity style={[R.styles.navigationButtonLeft,{backgroundColor:R.color.titleBg}]}
-                                  onPress={()=>this.backPress()}>
-                    <Image style={[R.styles.navigationButton]} source={require('../../Global/img/heart.png')}/>
+                    onPress={()=>this.backPress()}
+                >
+                    <Image style={[R.styles.navigationButton]} source={require('../../../Global/img/heart.png')}/>
                 </TouchableOpacity>
                 <Text style={[R.styles.navigationTitleFont]} numberOfLines = {1}> 标题 </Text>
                 <TouchableOpacity style={[R.styles.navigationButtonRight,{backgroundColor:R.color.titleBg}]}>
-                    <Image style={[R.styles.navigationButton]} source={require('../../Global/img/heart.png')}/>
+                    <Image style={[R.styles.navigationButton]} source={require('../../../Global/img/heart.png')}/>
                 </TouchableOpacity>
             </View>
         );
@@ -36,17 +43,19 @@ export default class Group extends Component {
             }
         });
     }
-    render() {
-        return (
 
+    render() {
+        console.log("VisitListView加载数据");
+        return (
             <View style={{flex: 1, backgroundColor: R.color.white}}>
                 {this.initHeaderView()}
-                <View style={[{margin:5,backgroundColor:R.color.white}]}>
-                    <AddTodo/>
-                    <Filters/>
-                    <VisibleTodoList/>
-                </View>
+                <FlatList
+                />
             </View>
-        );
+
+
+        )
     }
 }
+
+export default VisitListView;

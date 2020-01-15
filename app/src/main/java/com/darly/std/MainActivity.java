@@ -25,6 +25,7 @@ import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
 import com.darly.imageeditor.editimage.EditImageActivity;
+import com.darly.rnmodule.ui.ListEntityActivity;
 import com.darly.rnmodule.ui.RNStudyActivity;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.BlackTableActivity;
@@ -38,6 +39,7 @@ import java.util.ArrayList;
 import static com.darly.std.vm.MainViewModel.Action.IMAGEEIDT;
 import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
 import static com.darly.std.vm.MainViewModel.Action.RNPAGE;
+import static com.darly.std.vm.MainViewModel.Action.RNVISIT;
 import static com.darly.std.vm.MainViewModel.Action.TABLEEDIT;
 import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
 
@@ -114,7 +116,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 startActivity(intent);
                 break;
             case IMAGEEIDT:
-                EditImageActivity.start(this, ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg",200);
+                EditImageActivity.start(this, ExternalStorageUtil.getDownLoadPath() + File.separator + "pic.jpg", 200);
                 break;
             case TABLEEDIT:
                 Intent intentTable = new Intent(this, BlackTableActivity.class);
@@ -122,6 +124,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 break;
             case RNPAGE:
                 startActivity(new Intent(this, RNStudyActivity.class));
+                break;
+            case RNVISIT:
+                startActivity(new Intent(this, ListEntityActivity.class));
                 break;
         }
     }
@@ -198,7 +203,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
                 //设置界面
             case R.id.id_menu_help:
                 //帮助界面
-                Toast.makeText(this,"功能未实现",Toast.LENGTH_LONG).show();
+                Toast.makeText(this, "功能未实现", Toast.LENGTH_LONG).show();
                 break;
             case R.id.id_menu_collection:
                 //统计界面
@@ -215,15 +220,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
-        if (data==null){
+        if (data == null) {
             return;
         }
-        if (requestCode == 100){
+        if (requestCode == 100) {
             ArrayList<BlackTable> tables = data.getParcelableArrayListExtra("KEY");
         }
 
-        if (requestCode == 200){
-            viewModel.updateImage(ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg");
+        if (requestCode == 200) {
+            viewModel.updateImage(ExternalStorageUtil.getDownLoadPath() + File.separator + "pic.jpg");
         }
     }
 }

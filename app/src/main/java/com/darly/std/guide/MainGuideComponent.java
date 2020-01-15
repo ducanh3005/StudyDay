@@ -25,7 +25,7 @@ public class MainGuideComponent implements Component {
         ll.setLayoutParams(param);
         TextView textView = new TextView(inflater.getContext());
         textView.setText(R.string.main_guide);
-        textView.setTextColor(inflater.getContext().getResources().getColor(R.color.color_white_F6));
+        textView.setTextColor(inflater.getContext().getResources().getColor(R.color.text));
         textView.setTextSize(20);
         btn = new Button(inflater.getContext());
         btn.setText(R.string.i_ok);

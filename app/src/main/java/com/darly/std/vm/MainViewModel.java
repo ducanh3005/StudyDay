@@ -9,6 +9,9 @@
 package com.darly.std.vm;
 
 import android.app.Activity;
+import android.graphics.Color;
+import android.graphics.Paint;
+import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -52,6 +55,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
 
     private MutableLiveData<Action> action = new MutableLiveData<>();
     private MutableLiveData<String> image = new MutableLiveData<>();
+
     public MainViewModel() {
         items.add(new ItemMainViewModel(SongCiAuthorModel.getClassName(), this));
         items.add(new ItemMainViewModel(SongCiModel.getClassName(), this));
@@ -120,20 +124,20 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     /**
      * 1. 带view的参数：@{(view)->mainViewModel.tableClick(mainViewModel.image,view)}
      * 跳转到表格界面
+     *
      * @param view 参数
      */
-    public void tableClick(String path,View view) {
-        LogController.d("tableClick", path+view);
-        action.postValue(new Action(Action.TABLEEDIT,null));
+    public void tableClick(String path, View view) {
+        LogController.d("tableClick", path + view);
+        action.postValue(new Action(Action.TABLEEDIT, null));
     }
 
     /**
      * 2. 不带参数：@{() -> viewModel.click()}
-     *
      */
     public void click() {
         LogController.d("click");
-        action.postValue(new Action(Action.RNPAGE,null));
+        action.postValue(new Action(Action.RNPAGE, null));
     }
 
     /**
@@ -143,16 +147,18 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
      */
     public void click(String id) {
         LogController.d("click", id);
+        action.postValue(new Action(Action.RNVISIT, null));
     }
 
     /**
      * 4. @{viewModel::imageClick}
      * 跳转到图片编辑页面
+     *
      * @param view 参数
      */
     public void imageClick(View view) {
         LogController.d("imageClick", view);
-        action.postValue(new Action(Action.IMAGEEIDT,null));
+        action.postValue(new Action(Action.IMAGEEIDT, null));
     }
 
 
@@ -162,6 +168,8 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
         public static final int IMAGEEIDT = 2;
         public static final int TABLEEDIT = 3;
         public static final int RNPAGE = 4;
+        public static final int RNVISIT = 5;
+
         private final int mAction;
 
         private Object param;
@@ -185,7 +193,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
     }
 
     @BindingAdapter("image")
-    public static void image(ImageView view, String img){
+    public static void image(ImageView view, String img) {
         Glide.with(view.getContext()).load(img).into(view);
     }
 }

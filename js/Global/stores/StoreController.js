@@ -15,7 +15,8 @@ let storeType ={
     },
 
     delete: async function _delete(key) {
-        await stores.delete(key);
+        let value = await stores.delete(key);
+        return value;
     }
 }
 export default storeType;
