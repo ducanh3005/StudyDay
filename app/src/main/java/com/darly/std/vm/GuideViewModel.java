@@ -9,6 +9,8 @@
 package com.darly.std.vm;
 
 
+import android.view.View;
+
 import androidx.lifecycle.MutableLiveData;
 import androidx.lifecycle.ViewModel;
 
@@ -39,7 +41,10 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
 
     private MutableLiveData<Action> action = new MutableLiveData<>();
 
+    private MutableLiveData<Boolean> isOpenReactNative = new MutableLiveData<>();
+
     public GuideViewModel(){
+        isOpenReactNative.setValue(false);
     }
 
 
@@ -123,6 +128,19 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
     }
 
 
+
+    /**
+     * 4. @{viewModel::openRN}
+     * 跳转到图片编辑页面
+     *
+     * @param view 参数
+     */
+    public void openRN(View view) {
+        isOpenReactNative.postValue(true);
+        LogController.d("openRN", view);
+    }
+
+
     public class Action {
         public static final int NEXTPAGE = 0;
         public static final int PROGRESSINIT = 1;
@@ -149,5 +167,9 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
 
     public MutableLiveData<Action> getAction() {
         return action;
+    }
+
+    public MutableLiveData<Boolean> getIsOpenReactNative() {
+        return isOpenReactNative;
     }
 }

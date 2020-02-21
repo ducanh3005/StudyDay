@@ -53,7 +53,7 @@
                 android:layout_height="wrap_content"
                 android:layout_alignParentRight="true"
                 android:onClick="@{() -> mainViewModel.click()}"
-                android:text="空值按钮" />
+                android:text="RN测试" />
 
             <Button
                 android:layout_width="wrap_content"
@@ -61,7 +61,7 @@
                 android:layout_alignParentRight="true"
                 android:layout_alignParentBottom="true"
                 android:onClick="@{() -> mainViewModel.click(mainViewModel.image)}"
-                android:text="有值按钮" />
+                android:text="RN首页" />
 
             <Button
                 android:layout_width="wrap_content"

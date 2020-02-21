@@ -23,7 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.controller.OnControllerBackListener;
+import com.darly.rnmodule.ui.ReactNativeMainActivity;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
 
@@ -123,7 +123,11 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        startActivity(new Intent(GuideActivity.this, MainActivity.class));
+                        if (viewModel.getIsOpenReactNative().getValue()){
+                            startActivity(new Intent(GuideActivity.this, ReactNativeMainActivity.class));
+                        }else {
+                            startActivity(new Intent(GuideActivity.this, MainActivity.class));
+                        }
                         finish();
                     }
                 }, 1000);

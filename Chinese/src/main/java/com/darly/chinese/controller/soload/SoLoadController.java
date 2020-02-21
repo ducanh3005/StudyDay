@@ -163,7 +163,6 @@ public class SoLoadController extends BaseController {
      * 反射将so放到加载对应路径中。
      * 主要任务是将SO库加载的内部路径更新
      *
-     * @param context 引用
      */
     public void installSoDir() {
         File soDirFile = ContextController.getInstance().getApplication().getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);
@@ -228,7 +227,7 @@ public class SoLoadController extends BaseController {
         if (pathList != null) {
             //获取当前类的属性
             try {
-                Class<?> elementClass = Class.forName("dalvik.system.DexPathList$Element");
+                Class<?> elementClass = Class.forName("dalvik.system.DexPathList$NativeLibraryElement");
                 Constructor<?> constructor = elementClass.getConstructor(File.class, boolean.class, File.class, DexFile.class);
                 constructor.setAccessible(true);
 

@@ -36,6 +36,38 @@ const styles = {
         fontSize: 18,
         flex:1
     },
+
+    box: {
+        paddingTop: 4,
+        flexDirection: 'column',
+        justifyContent: 'flex-start',
+        alignItems: 'center',
+    },
+    text20: {
+        color: '#aaf10c',
+        fontSize: 20,
+        textAlign: 'center',
+    },
+    text16: {
+        color: '#d38322',
+        fontSize: 16,
+        textAlign: 'center',
+    },
+    text14: {
+        color: '#b326a1',
+        fontSize: 14,
+        textAlign: 'center',
+    },
+    text12: {
+        color: '#601685',
+        fontSize: 12,
+        textAlign: 'center',
+    },
+    text10: {
+        color: '#6A7280',
+        fontSize: 10,
+        textAlign: 'center',
+    }
 }
 
 var Resource ={

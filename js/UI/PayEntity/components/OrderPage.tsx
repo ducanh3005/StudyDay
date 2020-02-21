@@ -8,14 +8,11 @@ import {
     TouchableOpacity,
     Text,
     Image,
-    InteractionManager,
-    FlatList
+    InteractionManager
 } from 'react-native';
 import R from '../../../Global/values'
 
-class VisitListView extends Component {
-
-    Pay = null;
+class OrderPage extends Component {
 
     constructor(props) {
         super(props)
@@ -29,9 +26,8 @@ class VisitListView extends Component {
                 >
                     <Image style={[R.styles.navigationButton]} source={require('../../../Global/img/heart.png')}/>
                 </TouchableOpacity>
-                <Text style={[R.styles.navigationTitleFont]} numberOfLines = {1}> 标题 </Text>
+                <Text style={[R.styles.navigationTitleFont]} numberOfLines = {1}> 皇后 </Text>
                 <TouchableOpacity style={[R.styles.navigationButtonRight,{backgroundColor:R.color.titleBg}]}
-                    onPress={()=>this.nextPage()}
                 >
                     <Image style={[R.styles.navigationButton]} source={require('../../../Global/img/heart.png')}/>
                 </TouchableOpacity>
@@ -42,21 +38,10 @@ class VisitListView extends Component {
         InteractionManager.runAfterInteractions(() => {
             if (this.props.navigator) {
                 console.log("界面需要关闭");
+                this.props.navigator.pop();
             } else {
                 console.log("Actions界面需要关闭");
             }
-        });
-    }
-    nextPage(){
-        InteractionManager.runAfterInteractions(() => {
-            if (!this.Pay) {
-                this.Pay = require('../../../UI/PayEntity').default;
-            }
-            this.props.navigator.replace({
-                component:this.Pay,
-            });
-            console.log("跳转下一页");
-
         });
     }
 
@@ -65,8 +50,6 @@ class VisitListView extends Component {
         return (
             <View style={{flex: 1, backgroundColor: R.color.white}}>
                 {this.initHeaderView()}
-                <FlatList
-                />
             </View>
 
 
@@ -74,4 +57,4 @@ class VisitListView extends Component {
     }
 }
 
-export default VisitListView;
+export default OrderPage;

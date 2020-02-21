@@ -2,6 +2,9 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
 package="com.darly.rnmodule" >
 <application>
+    <activity
+        android:name=".ui.ReactNativeMainActivity">
+    </activity>
     <!--图片编辑Activity-->
     <activity
         android:name=".ui.RNStudyActivity">

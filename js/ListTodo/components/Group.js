@@ -5,7 +5,9 @@ import {
     Text,
     InteractionManager,
     Image
-} from 'react-native'
+} from 'react-native';
+import { Keyboard } from 'react-native';
+import {Actions} from 'react-native-xsy-router-flux';
 import AddTodo from '../containers/AddTodo'
 import Filters from './Filters'
 import VisibleTodoList from '../containers/VisibleTodoList'
@@ -29,10 +31,13 @@ export default class Group extends Component {
     }
     backPress(){
         InteractionManager.runAfterInteractions(() => {
+            Keyboard.dismiss();
             if (this.props.navigator) {
                 console.log("界面需要关闭");
+                this.props.navigator.pop();
             } else {
                 console.log("Actions界面需要关闭");
+                Actions.pop();
             }
         });
     }
