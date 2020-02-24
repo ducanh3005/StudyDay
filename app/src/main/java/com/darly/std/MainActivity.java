@@ -84,7 +84,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         });
         DoMainView view = binding.idMainDomain;
         view.connect();
-        initTable();
     }
 
 

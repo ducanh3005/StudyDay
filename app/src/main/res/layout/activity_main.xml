@@ -28,10 +28,6 @@
             android:layout_width="match_parent"
             android:layout_height="@dimen/dp64"/>
 
-        <com.darly.widget.progress.BeautifulProgressBar
-            android:id="@+id/id_progress"
-            android:layout_width="match_parent"
-            android:layout_height="@dimen/dp15"/>
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
