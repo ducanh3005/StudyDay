@@ -26,17 +26,17 @@
                 <category android:name="android.intent.category.LAUNCHER" />
             </intent-filter>
         </activity>
-        <activity android:name="com.darly.std.opengl.OpenGlActivity"
-            android:launchMode="singleInstance"
-            android:icon="@mipmap/icon_white_search"
-            android:label="OpenGL"
-            android:process=":process.opengl">
-            <intent-filter>
-                <action android:name="android.intent.action.MAIN" />
+<!--        <activity android:name="com.darly.std.opengl.OpenGlActivity"-->
+<!--            android:launchMode="singleInstance"-->
+<!--            android:icon="@mipmap/icon_white_search"-->
+<!--            android:label="OpenGL"-->
+<!--            android:process=":process.opengl">-->
+<!--            <intent-filter>-->
+<!--                <action android:name="android.intent.action.MAIN" />-->
 
-                <category android:name="android.intent.category.LAUNCHER" />
-            </intent-filter>
-        </activity>
+<!--                <category android:name="android.intent.category.LAUNCHER" />-->
+<!--            </intent-filter>-->
+<!--        </activity>-->
         <activity
             android:name="com.darly.std.MainActivity"
             android:launchMode="singleTask" />
