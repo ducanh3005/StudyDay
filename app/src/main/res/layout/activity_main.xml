@@ -23,6 +23,11 @@
             android:background="?attr/colorPrimary"
             app:titleTextAppearance="@style/TitleText" />
 
+        <com.darly.std.widget.view.DoMainView
+            android:id="@+id/id_main_domain"
+            android:layout_width="match_parent"
+            android:layout_height="@dimen/dp64"/>
+
         <com.darly.widget.progress.BeautifulProgressBar
             android:id="@+id/id_progress"
             android:layout_width="match_parent"

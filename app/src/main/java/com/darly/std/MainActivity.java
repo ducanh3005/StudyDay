@@ -42,6 +42,8 @@ import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
+import com.darly.std.widget.view.DoMainModule;
+import com.darly.std.widget.view.DoMainView;
 import com.darly.widget.dialog.SelectItemDialog;
 
 import java.util.ArrayList;
@@ -96,6 +98,8 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             }
         });
 
+        DoMainView view = binding.idMainDomain;
+        view.connect();
         initTable();
     }
 
