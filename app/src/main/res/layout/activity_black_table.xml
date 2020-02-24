@@ -1,0 +1,51 @@
+<?xml version="1.0" encoding="utf-8"?>
+<layout xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto">
+
+        <data>
+
+                <variable
+                    name="blackTableViewModel"
+                    type="com.darly.std.vm.BlackTableViewModel" />
+        </data>
+        <RelativeLayout
+            android:layout_width="match_parent"
+            android:layout_height="match_parent">
+
+                <com.darly.widget.titlebar.TitleBar
+                    android:id="@+id/toolbar"
+                    android:layout_width="match_parent"
+                    android:layout_height="?attr/actionBarSize"
+                    android:background="?attr/colorPrimary"
+                    app:titleTextAppearance="@style/TitleText"
+                    android:visibility="gone"/>
+
+                <com.bin.david.form.core.SmartTable
+                    android:layout_below="@+id/toolbar"
+                    android:id="@+id/id_bt_table"
+                    android:layout_width="match_parent"
+                    android:layout_height="match_parent"
+                    />
+                <Button
+                    android:id="@+id/id_bt_add"
+                    android:layout_width="@dimen/dp48"
+                    android:layout_height="@dimen/dp48"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentRight="true"
+                    android:layout_margin="@dimen/sp20"
+                    android:background="@color/color_sync"
+                    android:textColor="@color/black"
+                    android:text="新增"/>
+
+                <Button
+                    android:id="@+id/id_bt_common"
+                    android:layout_width="@dimen/dp48"
+                    android:layout_height="@dimen/dp48"
+                    android:layout_alignParentBottom="true"
+                    android:layout_alignParentLeft="true"
+                    android:layout_margin="@dimen/sp20"
+                    android:background="@color/color_sync"
+                    android:textColor="@color/black"
+                    android:text="提交"/>
+        </RelativeLayout>
+</layout>

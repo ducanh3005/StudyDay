@@ -4,29 +4,28 @@
     <data>
 
         <variable
-            name="itemModel"
+            name="itemMainViewModel"
             type="com.darly.std.vm.ItemMainViewModel" />
     </data>
 
     <LinearLayout
         android:layout_width="match_parent"
         android:layout_height="wrap_content"
-        android:background="@mipmap/ic_main_bg"
-        android:onClick="@{itemModel.itemClick}"
+        android:onClick="@{itemMainViewModel.itemClick}"
         android:orientation="vertical"
         android:padding="@dimen/dp5">
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{itemModel.title}"
+            android:text="@{itemMainViewModel.title}"
             android:textColor="@color/blue_sy"
             android:textSize="@dimen/sp18" />
 
         <TextView
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:text="@{itemModel.title}"
+            android:text="@{itemMainViewModel.title}"
             android:textColor="@color/black"
             android:textSize="@dimen/sp14" />
     </LinearLayout>

@@ -8,4 +8,18 @@
 
 <resources>
     <string name="app_chinese">Chinese</string>
+    <string name="type_file">正在获取资源列表...</string>
+    <string name="type_file_suc">资源获取成功</string>
+    <string name="type_file_fail">资源获取失败，请点击重试。如无法解决请确认网络是否正常</string>
+    <string name="type_decompress">正在解压资源文件...</string>
+    <string name="type_decompress_suc">资源文件解压成功</string>
+    <string name="type_decompress_fail">资源文件解压失败，请点击重试。如无法解决请确认网络是否正常</string>
+    <string name="type_parse">正在解析资源文件...</string>
+    <string name="type_parse_suc">资源文件解析成功</string>
+    <string name="type_parse_fail">资源文件解析失败，请点击重试。如无法解决请确认网络是否正常</string>
+
+    <string name="type_so">正在加载SO资源库...</string>
+    <string name="type_so_suc">SO资源库加载成功</string>
+    <string name="type_so_fail">SO资源库加载失败，请点击重试。如无法解决请确认网络是否正常</string>
+
 </resources>

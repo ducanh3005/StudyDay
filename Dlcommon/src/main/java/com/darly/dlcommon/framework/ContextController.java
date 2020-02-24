@@ -55,4 +55,12 @@ public class ContextController {
         map.put("EventBusController",value);
     }
 
+    public SharePerferenceController getSharePerferenceController(){
+        return (SharePerferenceController)map.get("SharePerferenceController");
+    }
+
+    public void setSharePerferenceController(Object value){
+        map.put("SharePerferenceController",value);
+    }
+
 }

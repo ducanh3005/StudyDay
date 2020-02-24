@@ -1,1 +1,1 @@
-include ':app', ':Chinese', ':Dlcommon', ':Widget'
+include ':app', ':Chinese', ':Dlcommon', ':Widget', ':Imageeditor'

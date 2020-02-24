@@ -31,6 +31,7 @@
             
 
             <TextView
+                android:id="@+id/id_main_type"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:gravity="center"
@@ -39,14 +40,15 @@
                 android:textSize="@dimen/sp18" />
 
             <com.darly.widget.progress.BeautifulProgressBar
-                android:id="@+id/id_main_up_progress"
+                android:id="@+id/id_main_progress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp15" />
 
             <com.darly.widget.progress.BeautifulProgressBar
-                android:id="@+id/id_main_progress"
+                android:id="@+id/id_main_up_progress"
                 android:layout_width="match_parent"
                 android:layout_height="@dimen/dp15" />
+
             <View
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
