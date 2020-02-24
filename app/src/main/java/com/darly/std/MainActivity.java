@@ -30,9 +30,7 @@ import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
-import com.darly.std.widget.view.DoMainModule;
 import com.darly.std.widget.view.DoMainView;
-import com.darly.widget.dialog.SelectItemDialog;
 
 import java.io.File;
 import java.util.ArrayList;

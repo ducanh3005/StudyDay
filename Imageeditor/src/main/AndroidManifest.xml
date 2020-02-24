@@ -3,7 +3,8 @@
     <application>
     <!--图片编辑Activity-->
     <activity
-        android:name=".editimage.EditImageActivity">
+        android:name=".editimage.EditImageActivity"
+        android:screenOrientation="portrait">
     </activity>
     </application>
 </manifest>

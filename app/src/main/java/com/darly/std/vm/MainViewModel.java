@@ -114,7 +114,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
 
 
     public void updateImage(String path) {
-        image.setValue(path);
+        image.postValue(path);
     }
 
     /**
