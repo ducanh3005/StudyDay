@@ -20,6 +20,7 @@ import com.darly.std.BR;
 import com.darly.std.R;
 import com.darly.std.databinding.ActivityRecyclerBinding;
 import com.darly.std.vm.RecyclerViewModel;
+import com.darly.widget.titlebar.TitleBar;
 
 /**
  * Description TODO: 列表界面，展示数据
@@ -33,6 +34,16 @@ import com.darly.std.vm.RecyclerViewModel;
 public class RecyclerViewActivity extends BaseActivity<ActivityRecyclerBinding, RecyclerViewModel> {
 
     private String title;
+
+    @Override
+    protected TitleBar getTitleBar() {
+        title = getIntent().getStringExtra("Title");
+        viewModel.setItemTag(title);
+        binding.toolbar.setCenterTitle(title);
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        return binding.toolbar;
+    }
 
     @Override
     protected int layoutId() {
@@ -52,11 +63,7 @@ public class RecyclerViewActivity extends BaseActivity<ActivityRecyclerBinding, 
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        title = getIntent().getStringExtra("Title");
-        viewModel.setItemTag(title);
-        binding.toolbar.setCenterTitle(title);
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 

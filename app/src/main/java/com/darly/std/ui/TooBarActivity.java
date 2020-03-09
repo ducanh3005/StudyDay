@@ -23,6 +23,7 @@ import com.darly.std.R;
 import com.darly.std.bean.TooBarEvent;
 import com.darly.std.databinding.ActivityToobarBinding;
 import com.darly.std.vm.ToolBarViewModel;
+import com.darly.widget.titlebar.TitleBar;
 
 /**
  * Description TODO:TooBar测试
@@ -34,6 +35,14 @@ import com.darly.std.vm.ToolBarViewModel;
  * EMail zhangyuhui@newbeiyang.com
  */
 public class TooBarActivity extends BaseActivity<ActivityToobarBinding, ToolBarViewModel> {
+
+    @Override
+    protected TitleBar getTitleBar() {
+        binding.toolbar.setCenterTitle(getIntent().getStringExtra("id"));
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        return binding.toolbar;
+    }
 
     @Override
     protected int layoutId() {
@@ -53,15 +62,7 @@ public class TooBarActivity extends BaseActivity<ActivityToobarBinding, ToolBarV
     @Override
     public void initView(Bundle savedInstanceState) {
 
-        binding.toolbar.setCenterTitle(getIntent().getStringExtra("id"));
-        binding.toolbar.setNavigationOnClickListener(new View.OnClickListener() {
-            @Override
-            public void onClick(View v) {
-                finish();
-            }
-        });
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 

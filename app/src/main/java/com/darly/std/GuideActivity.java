@@ -26,6 +26,7 @@ import com.darly.chinese.base.BaseActivity;
 import com.darly.rnmodule.ui.ReactNativeMainActivity;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
+import com.darly.widget.titlebar.TitleBar;
 
 import static com.darly.std.vm.GuideViewModel.Action.MAINPRO;
 import static com.darly.std.vm.GuideViewModel.Action.NEXTPAGE;
@@ -52,6 +53,11 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
      * 动态申请权限标记位
      */
     private static int PERMISSION = 0x0012;
+
+    @Override
+    protected TitleBar getTitleBar() {
+        return null;
+    }
 
     @Override
     protected int layoutId() {

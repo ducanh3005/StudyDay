@@ -74,6 +74,8 @@
         <activity
             android:name="com.darly.std.ui.BlackTableActivity"/>
 
+        <activity android:name=".crm.SongCiCreateActivity"/>
+
     </application>
 
 </manifest>

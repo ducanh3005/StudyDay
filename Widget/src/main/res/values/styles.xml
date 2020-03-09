@@ -10,4 +10,13 @@
         <item name="android:paddingTop">40dp</item>
         <item name="android:paddingBottom">40dp</item>
     </style>
+
+    <!--    自定义ToolBar  -->
+    <declare-styleable name="CustomToolbar">
+        <attr name="leftButtonIcon" format="reference"/>
+        <attr name="rightButtonIcon" format="reference"/>
+        <attr name="myTitle" format="string"/>
+        <attr name="showLeft" format="boolean"/>
+        <attr name="showRight" format="boolean"/>
+    </declare-styleable>
 </resources>

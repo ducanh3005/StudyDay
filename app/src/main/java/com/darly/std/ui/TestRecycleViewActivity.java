@@ -9,6 +9,7 @@ import com.darly.std.BR;
 import com.darly.std.R;
 import com.darly.std.databinding.ActivityTestRecycleBinding;
 import com.darly.std.vm.TestRecycleViewModel;
+import com.darly.widget.titlebar.TitleBar;
 
 /**
  * Description TODO:
@@ -20,6 +21,11 @@ import com.darly.std.vm.TestRecycleViewModel;
  * EMail zhangyuhui@newbeiyang.com
  */
 public class TestRecycleViewActivity extends BaseActivity<ActivityTestRecycleBinding, TestRecycleViewModel> {
+
+    @Override
+    protected TitleBar getTitleBar() {
+        return null;
+    }
 
     @Override
     protected int layoutId() {

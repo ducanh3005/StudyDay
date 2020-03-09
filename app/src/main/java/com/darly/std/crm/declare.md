@@ -1,0 +1,1 @@
+这个包里面是继承CreateEntityActivity，尝试进行实体对象增删查改一体化操作。

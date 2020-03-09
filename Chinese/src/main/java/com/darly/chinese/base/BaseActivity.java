@@ -9,6 +9,7 @@
 package com.darly.chinese.base;
 
 import android.os.Bundle;
+import android.view.View;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -19,6 +20,8 @@ import androidx.lifecycle.ViewModel;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
+import com.darly.widget.titlebar.TitleBar;
+import com.darly.widget.titlebar.TitleBar.OnLeftButtonClickListener;
 
 import org.greenrobot.eventbus.Subscribe;
 import org.greenrobot.eventbus.ThreadMode;
@@ -32,7 +35,7 @@ import org.greenrobot.eventbus.ThreadMode;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity {
+public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewModel> extends AppCompatActivity implements OnLeftButtonClickListener {
 
     protected B binding;
     protected V viewModel;
@@ -49,7 +52,22 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
 
         initView(savedInstanceState);
         initObservableView();
+        
+        initHeader();
     }
+
+    /**
+     * 设置顶部标题栏.只对左边按钮进行设置
+     */
+    protected void initHeader() {
+        TitleBar bar = getTitleBar();
+        if (bar!=null) {
+            bar.setOnLeftButtonClickListener(this);
+        }
+    }
+
+    protected abstract TitleBar getTitleBar();
+
 
     /**
      * 获取界面Layout
@@ -111,4 +129,9 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
         return StringUtil.isEmpty(arg);
     }
 
+
+    @Override
+    public void onClick(View view) {
+        finish();
+    }
 }

@@ -25,6 +25,7 @@ import com.darly.std.R;
 import com.darly.std.bean.TooBarEvent;
 import com.darly.std.databinding.ActivityDetailBinding;
 import com.darly.std.vm.DetailViewModel;
+import com.darly.widget.titlebar.TitleBar;
 
 /**
  * Description TODO:详细信息界面
@@ -36,6 +37,22 @@ import com.darly.std.vm.DetailViewModel;
  * EMail zhangyuhui@newbeiyang.com
  */
 public class DetailActivity extends BaseActivity<ActivityDetailBinding, DetailViewModel> {
+
+    @Override
+    protected TitleBar getTitleBar() {
+        BaseBean bean = (BaseBean) getIntent().getSerializableExtra("BaseBean");
+        viewModel.initModel(bean);
+        if (bean instanceof SongCiAuthorModel) {
+            binding.toolbar.setCenterTitle(((SongCiAuthorModel) bean).getName());
+        } else if (bean instanceof SongCiModel) {
+            binding.toolbar.setCenterTitle(((SongCiModel) bean).getRhythmic());
+        } else {
+            binding.toolbar.setCenterTitle(bean.getUUID().toString());
+        }
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        return binding.toolbar;
+    }
 
     @Override
     protected int layoutId() {
@@ -54,17 +71,7 @@ public class DetailActivity extends BaseActivity<ActivityDetailBinding, DetailVi
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        BaseBean bean = (BaseBean) getIntent().getSerializableExtra("BaseBean");
-        viewModel.initModel(bean);
-        if (bean instanceof SongCiAuthorModel) {
-            binding.toolbar.setCenterTitle(((SongCiAuthorModel) bean).getName());
-        } else if (bean instanceof SongCiModel) {
-            binding.toolbar.setCenterTitle(((SongCiModel) bean).getRhythmic());
-        } else {
-            binding.toolbar.setCenterTitle(bean.getUUID().toString());
-        }
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
 

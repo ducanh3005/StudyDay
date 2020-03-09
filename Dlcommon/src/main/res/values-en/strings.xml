@@ -1,0 +1,4 @@
+<resources>
+    <string name="app_dlcommon">DlCommon</string>
+    <string name="common_jsonCheck">Check file parsing</string>
+</resources>

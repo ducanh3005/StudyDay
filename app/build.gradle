@@ -37,10 +37,6 @@ dependencies {
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.2.0'
     //业务模块
     implementation project(path: ':Chinese')
-    //自定义控件集合
-    implementation project(path: ':Widget')
-    //图片处理，包含了SO，进行SO动态加载
-    implementation project(path: ':Imageeditor')
     //RN依赖
     implementation project(path: ':RnModule')
 

@@ -1,2 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.darly.chinese" />
+    package="com.darly.chinese" >
+
+    <application>
+        <activity android:name=".base.BaseActivity" />
+    </application>
+</manifest>

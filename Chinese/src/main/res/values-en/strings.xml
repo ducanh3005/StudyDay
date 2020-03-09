@@ -1,0 +1,19 @@
+<resources>
+    <string name="app_chinese">Chinese</string>
+    <string name="type_file">Getting resource list...</string>
+    <string name="type_file_suc">Resource acquisition succeeded</string>
+    <string name="type_file_fail">Resource acquisition failed, please click retry. If it cannot be resolved, please confirm whether the network is normal</string>
+    <string name="type_decompress">Extracting resource files...</string>
+    <string name="type_decompress_suc">The resource file was successfully decompressed</string>
+    <string name="type_decompress_fail">Decompression of the resource file failed, please click retry. If it cannot be resolved, please confirm whether the network is normal</string>
+    <string name="type_parse">Parsing resource file...</string>
+    <string name="type_parse_suc">Resource file parsed successfully</string>
+    <string name="type_parse_fail">The resource file failed to parse, please click retry. If it cannot be resolved, please confirm whether the network is normal</string>
+
+    <string name="type_so">Loading SO resource library...</string>
+    <string name="type_so_suc">SO resource library loaded successfully</string>
+    <string name="type_so_fail">SO resource library failed to load, please click retry. If it cannot be resolved, please confirm whether the network is normal</string>
+
+    <string name="entity_create">Create</string>
+    <string name="entity_save">Save</string>
+</resources>

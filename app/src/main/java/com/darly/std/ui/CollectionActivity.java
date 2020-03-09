@@ -18,6 +18,7 @@ import com.darly.std.BR;
 import com.darly.std.R;
 import com.darly.std.databinding.ActivityCollectionBinding;
 import com.darly.std.vm.CollectionViewModel;
+import com.darly.widget.titlebar.TitleBar;
 
 /**
  * Description TODO: 列表界面，展示数据
@@ -29,6 +30,15 @@ import com.darly.std.vm.CollectionViewModel;
  * EMail zhangyuhui@newbeiyang.com
  */
 public class CollectionActivity extends BaseActivity<ActivityCollectionBinding, CollectionViewModel> {
+    @Override
+    protected TitleBar getTitleBar() {
+        String title = getIntent().getStringExtra("Title");
+        binding.toolbar.setCenterTitle(title);
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        return binding.toolbar;
+    }
+
     @Override
     protected int layoutId() {
         return R.layout.activity_collection;
@@ -46,10 +56,7 @@ public class CollectionActivity extends BaseActivity<ActivityCollectionBinding, 
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        String title = getIntent().getStringExtra("Title");
-        binding.toolbar.setCenterTitle(title);
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(true);
+
     }
 
     @Override

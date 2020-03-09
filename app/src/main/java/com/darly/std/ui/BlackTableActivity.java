@@ -23,6 +23,7 @@ import com.darly.std.R;
 import com.darly.std.databinding.ActivityBlackTableBinding;
 import com.darly.std.vm.BlackTableViewModel;
 import com.darly.widget.dialog.SelectItemDialog;
+import com.darly.widget.titlebar.TitleBar;
 
 import java.util.ArrayList;
 import java.util.List;
@@ -38,6 +39,14 @@ import java.util.Random;
  * EMail zhangyuhui@newbeiyang.com
  */
 public class BlackTableActivity extends BaseActivity<ActivityBlackTableBinding, BlackTableViewModel> implements OnColumnItemClickListener<String>{
+
+    @Override
+    protected TitleBar getTitleBar() {
+        binding.toolbar.setCenterTitle(R.string.app_name);
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        return binding.toolbar;
+    }
 
     @Override
     protected int layoutId() {
@@ -56,10 +65,7 @@ public class BlackTableActivity extends BaseActivity<ActivityBlackTableBinding, 
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        binding.toolbar.setTitleVisibly(true);
-        binding.toolbar.setCenterTitle(R.string.app_name);
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         initTable();
     }
 

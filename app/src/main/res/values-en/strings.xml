@@ -1,0 +1,14 @@
+<resources>
+    <string name="app_name">learning software</string>
+    <string name="loading_guide">Loading data, please wait ...</string>
+
+    <string name="drawer_open">Open</string>
+    <string name="drawer_close">Close</string>
+    <string name="menu_search">Search content</string>
+
+    <string name="main_guide">Title bar, here you can enter the setting interface</string>
+    <string name="i_ok">Got it</string>
+
+    <string name="entity_create_songci">{0} Song Ci</string>
+
+</resources>

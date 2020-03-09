@@ -9,13 +9,18 @@
 package com.darly.widget.titlebar;
 
 import android.content.Context;
+import android.content.res.TypedArray;
+import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
 import android.view.Gravity;
 import android.view.View;
+import android.widget.ImageView;
 import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.widget.Toolbar;
+
+import com.darly.widget.R;
 
 /**
  * Description TODO: 自定义一个标题栏
@@ -28,63 +33,155 @@ import androidx.appcompat.widget.Toolbar;
  */
 public class TitleBar extends Toolbar {
 
-    private TextView titleView;
+    private TextView toolbar_title;
+    private ImageView toolbar_leftButton;
+    private ImageView toolbar_rightButton_img;
+    private TextView toolbar_rightButton;
+    private View mChildView;
+    private Drawable left_button_icon;
+    private Drawable right_button_icon;
+    private String title;
+
+    public interface OnLeftButtonClickListener {
+        void onClick(View view);
+    }
+
+    public interface OnRightButtonClickListener {
+        void onClick(View view);
+
+    }
+
+    private OnLeftButtonClickListener onLeftButtonClickListener;
+    private OnRightButtonClickListener onRightButtonClickListener;
+
+    public void setOnLeftButtonClickListener(OnLeftButtonClickListener listener) {
+        onLeftButtonClickListener = listener;
+    }
+
+    public void setOnRightButtonClickListener(OnRightButtonClickListener listener) {
+        onRightButtonClickListener = listener;
+    }
 
     public TitleBar(Context context) {
-        super(context);
+        this(context, null, 0);
     }
 
     public TitleBar(Context context, @Nullable AttributeSet attrs) {
-        super(context, attrs);
+        this(context, attrs, 0);
     }
 
     public TitleBar(Context context, @Nullable AttributeSet attrs, int defStyleAttr) {
         super(context, attrs, defStyleAttr);
+        //获取自定义属性
+        final TypedArray a = context.getTheme().obtainStyledAttributes(attrs, R.styleable.CustomToolbar, defStyleAttr, 0);
+        left_button_icon = a.getDrawable(R.styleable.CustomToolbar_leftButtonIcon);
+        right_button_icon = a.getDrawable(R.styleable.CustomToolbar_rightButtonIcon);
+        title = a.getString(R.styleable.CustomToolbar_myTitle);
+        a.recycle();
+        initView();//初始化视图
+        initListener();//初始化监听器
     }
 
-    public void setCenterTitle(String title) {
-        setTitle(title);
-        for (int i = 0; i < getChildCount(); i++) {
-            View view = getChildAt(i);
-            if (view instanceof TextView) {
-                TextView textView = (TextView) view;
-                if (title.equals(textView.getText())) {
-                    titleView = textView;
-                    textView.setGravity(Gravity.CENTER);
-                    Toolbar.LayoutParams params = new Toolbar.LayoutParams(Toolbar.LayoutParams.WRAP_CONTENT, LayoutParams.WRAP_CONTENT);
-                    params.gravity = Gravity.CENTER;
-                    textView.setLayoutParams(params);
+    private void initListener() {
+        toolbar_leftButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onLeftButtonClickListener!=null) {
+                    onLeftButtonClickListener.onClick(view);
                 }
+            }
+        });
+
+        toolbar_rightButton.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onRightButtonClickListener!=null) {
+                    onRightButtonClickListener.onClick(view);
+                }
+            }
+        });
+        toolbar_rightButton_img.setOnClickListener(new OnClickListener() {
+            @Override
+            public void onClick(View view) {
+                if (onRightButtonClickListener!=null) {
+                    onRightButtonClickListener.onClick(view);
+                }
+            }
+        });
+    }
+
+    private void initView() {
+        if (mChildView == null) {
+            mChildView = View.inflate(getContext(), R.layout.custom_toolbar, null);
+            toolbar_leftButton = mChildView.findViewById(R.id.toolbar_leftButton);
+            toolbar_rightButton_img = mChildView.findViewById(R.id.toolbar_rightButton_img);
+            toolbar_rightButton = mChildView.findViewById(R.id.toolbar_rightButton);
+            toolbar_title = mChildView.findViewById(R.id.toolbar_title);
+            addView(mChildView);
+            if (left_button_icon != null) {
+                toolbar_leftButton.setImageDrawable(left_button_icon);
+            }
+            if (right_button_icon !=null){
+                toolbar_rightButton_img.setImageDrawable(right_button_icon);
+            }
+            toolbar_leftButton.setVisibility(VISIBLE);
+            toolbar_rightButton.setVisibility(VISIBLE);
+            toolbar_rightButton_img.setVisibility(GONE);
+            if(toolbar_title != null) {
+                toolbar_title.setText(title);
             }
         }
     }
 
-    public void setCenterTitle(int res) {
-        Context context = this.getContext();
-        String title = context.getResources().getString(res);
-        setCenterTitle(title);
+    public void setCenterTitle(String title){
+        toolbar_title.setText(title);
     }
 
+    public void setCenterTitle(int resId){
+        toolbar_title.setText(resId);
+    }
 
-    public void setTitleVisibly(boolean visibly) {
-        if (titleView != null) {
-            if (visibly) {
-                titleView.setVisibility(GONE);
-            } else {
-                titleView.setVisibility(VISIBLE);
-            }
-        } else {
-            for (int i = 0; i < getChildCount(); i++) {
-                View view = getChildAt(i);
-                if (view instanceof TextView) {
-                    TextView textView = (TextView) view;
-                    if (visibly) {
-                        textView.setVisibility(GONE);
-                    } else {
-                        textView.setVisibility(VISIBLE);
-                    }
-                }
-            }
+    /**
+     * 设置左右按钮的图标
+     *
+     * @param d
+     */
+    public void setLeftButtonIconDrawable(Drawable d) {
+        toolbar_leftButton.setImageDrawable(d);
+    }
+
+    public void setRightButtonIconDrawable(Drawable d) {
+        toolbar_rightButton_img.setImageDrawable(d);
+    }
+
+    public void setRightButtonText(String rightButtonText) {
+        toolbar_rightButton.setText(rightButtonText);
+    }
+
+    public void setLeftVisiable(boolean show) {
+        if (show){
+            toolbar_leftButton.setVisibility(VISIBLE);
+        }else {
+            toolbar_leftButton.setVisibility(INVISIBLE);
+        }
+
+    }
+
+    public void setRightVisiable(boolean show) {
+
+        if (show){
+            toolbar_rightButton.setVisibility(VISIBLE);
+        }else {
+            toolbar_rightButton.setVisibility(INVISIBLE);
         }
     }
+
+    public void setRightImgVisiable(boolean show) {
+        if (show){
+            toolbar_rightButton_img.setVisibility(VISIBLE);
+        }else {
+            toolbar_rightButton_img.setVisibility(GONE);
+        }
+    }
+
 }

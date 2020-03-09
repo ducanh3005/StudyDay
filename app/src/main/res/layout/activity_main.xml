@@ -21,7 +21,9 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="?attr/colorPrimary"
-            app:titleTextAppearance="@style/TitleText" />
+            app:titleTextAppearance="@style/TitleText"
+            app:showLeft = "false"
+            />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"

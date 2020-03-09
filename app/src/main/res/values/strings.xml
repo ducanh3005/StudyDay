@@ -8,4 +8,7 @@
 
     <string name="main_guide">标题栏，这里可以进入设置界面</string>
     <string name="i_ok">知道了</string>
+
+    <string name="entity_create_songci">{0}宋词</string>
+
 </resources>

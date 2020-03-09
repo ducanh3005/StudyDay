@@ -12,6 +12,7 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.view.Menu;
 import android.view.MenuItem;
+import android.view.View;
 import android.widget.Toast;
 
 import androidx.annotation.Nullable;
@@ -21,20 +22,26 @@ import androidx.lifecycle.ViewModelProviders;
 import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.common.LogController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
+import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
 import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.rnmodule.ui.ListEntityActivity;
 import com.darly.rnmodule.ui.RNStudyActivity;
+import com.darly.std.crm.SongCiCreateActivity;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
+import com.darly.widget.titlebar.TitleBar;
+import com.darly.widget.titlebar.TitleBar.OnRightButtonClickListener;
 
 import java.io.File;
 import java.util.ArrayList;
+import java.util.Random;
+import java.util.UUID;
 
 import static com.darly.std.vm.MainViewModel.Action.IMAGEEIDT;
 import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
@@ -52,7 +59,18 @@ import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> {
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements OnRightButtonClickListener{
+
+    @Override
+    protected TitleBar getTitleBar() {
+        binding.toolbar.setCenterTitle(R.string.app_name);
+        setSupportActionBar(binding.toolbar);
+        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+        binding.toolbar.setRightButtonText("测试");
+        binding.toolbar.setOnRightButtonClickListener(this);
+        binding.toolbar.setLeftVisiable(false);
+        return binding.toolbar;
+    }
 
     @Override
     protected int layoutId() {
@@ -71,10 +89,7 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        binding.toolbar.setTitleVisibly(true);
-        binding.toolbar.setCenterTitle(R.string.app_name);
-        setSupportActionBar(binding.toolbar);
-        getSupportActionBar().setDisplayHomeAsUpEnabled(false);
+
         OperController.init();
         binding.toolbar.post(new Runnable() {
             @Override
@@ -159,65 +174,6 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
     }
 
     @Override
-    public boolean onCreateOptionsMenu(Menu menu) {
-        getMenuInflater().inflate(R.menu.menu_main, menu);
-//        // Get the SearchView and set the searchable configuration
-//        SearchManager searchManager = (SearchManager) getSystemService(Context.SEARCH_SERVICE);
-//        SearchView searchView = (SearchView) menu.findItem(R.id.id_menu_search).getActionView();
-//        searchView.setQueryHint("搜索内容");
-//        // Assumes current activity is the searchable activity
-//        searchView.setSearchableInfo(searchManager.getSearchableInfo(getComponentName()));
-//        searchView.setOnQueryTextListener(new SearchView.OnQueryTextListener() {
-//            @Override
-//            public boolean onQueryTextSubmit(String query) {
-//                return false;
-//            }
-//
-//            @Override
-//            public boolean onQueryTextChange(String newText) {
-//                return false;
-//            }
-//        });
-//        //searchview 的关闭监听
-//        searchView.setOnCloseListener(new SearchView.OnCloseListener() {
-//            @Override
-//            public boolean onClose() {
-//                return false;
-//            }
-//        });
-//        //根据id-search_src_text获取TextView
-//        SearchView.SearchAutoComplete searchViewOfKnowledge = searchView.findViewById(R.id.search_src_text);
-//        //改变输入文字的颜色
-//        searchViewOfKnowledge.setTextColor(ContextCompat.getColor(this, R.color.colorAccent));
-        return true;
-    }
-
-    @Override
-    public boolean onOptionsItemSelected(MenuItem item) {
-        int id = item.getItemId();
-//        if (id == R.id.id_menu_search) {
-//            return true;
-//        }
-        switch (id) {
-            case R.id.id_menu_setting:
-                //设置界面
-            case R.id.id_menu_help:
-                //帮助界面
-                Toast.makeText(this, "功能未实现", Toast.LENGTH_LONG).show();
-                break;
-            case R.id.id_menu_collection:
-                //统计界面
-                Intent intent = new Intent(this, CollectionActivity.class);
-                intent.putExtra("Title", "统计");
-                startActivity(intent);
-                break;
-            default:
-                break;
-        }
-        return super.onOptionsItemSelected(item);
-    }
-
-    @Override
     protected void onActivityResult(int requestCode, int resultCode, @Nullable Intent data) {
         super.onActivityResult(requestCode, resultCode, data);
         if (data == null) {
@@ -230,5 +186,21 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         if (requestCode == 200) {
             viewModel.updateImage(ExternalStorageUtil.getDownLoadPath() + File.separator + "pic.jpg");
         }
+    }
+
+    @Override
+    public void onClick(View view) {
+        //测试新建功能
+        if (new Random().nextBoolean()) {
+            SongCiCreateActivity.goCreate(this);
+        }else {
+            SongCiModel data = new SongCiModel(UUID.randomUUID(),"key","KKKKK","hans");
+            SongCiCreateActivity.goEdit(this,"编辑",data);
+        }
+
+        //统计界面
+//        Intent intent = new Intent(this, CollectionActivity.class);
+//        intent.putExtra("Title", "统计");
+//        startActivity(intent);
     }
 }
