@@ -42,4 +42,13 @@ public class BaseReactNativeActivity extends ReactActivity {
             super.onBackPressed();
         }
     }
+
+    @Override
+    protected void onDestroy() {
+        super.onDestroy();
+        if (getReactInstanceManager() != null) {
+            Log.d("BaseReactNativeActivity", "onDestroy() ");
+            getReactInstanceManager().onHostDestroy(this);
+        }
+    }
 }

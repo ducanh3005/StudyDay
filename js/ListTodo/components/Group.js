@@ -21,7 +21,7 @@ export default class Group extends Component {
             <View style={[R.styles.navigationView,{backgroundColor:R.color.titleBg}]}>
                 <TouchableOpacity style={[R.styles.navigationButtonLeft,{backgroundColor:R.color.titleBg}]}
                                   onPress={()=>this.backPress()}>
-                    <Image style={[R.styles.navigationButton]} source={require('../../Global/img/heart.png')}/>
+                    <Image style={[R.styles.navigationButton]} source={require('../../Global/img/ic_back.png')}/>
                 </TouchableOpacity>
                 <Text style={[R.styles.navigationTitleFont]} numberOfLines = {1}> 标题 </Text>
                 <TouchableOpacity style={[R.styles.navigationButtonRight,{backgroundColor:R.color.titleBg}]}>

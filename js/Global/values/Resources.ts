@@ -3,7 +3,7 @@
  */
 
 const color ={
-    titleBg:'#444eee',
+    titleBg:'#bcb1ec',
     white:'#88ffff',
 }
 
