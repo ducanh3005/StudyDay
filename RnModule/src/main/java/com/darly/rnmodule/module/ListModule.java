@@ -1,5 +1,6 @@
 package com.darly.rnmodule.module;
 
+import android.app.Activity;
 import android.util.Log;
 
 import androidx.annotation.NonNull;
@@ -42,6 +43,21 @@ public class ListModule extends ReactContextBaseJavaModule {
         Log.d(ModuleEnum.LISTMODULE.getDesc(), "showToast() called with: key = [" + key + "], promise = [" + promise + "]");
         promise.resolve(key);
 
+    }
+
+    /**
+     * 提供RN调用退出时的方法。
+     */
+    @ReactMethod
+    public void finish() {
+        try {
+            getCurrentActivity().setResult(Activity.RESULT_OK);
+            getCurrentActivity().finish();
+        }catch (Exception e){
+
+        }catch (Error e){
+
+        }
     }
 
 }

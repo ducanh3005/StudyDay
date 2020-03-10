@@ -8,6 +8,8 @@
 
 package com.darly.chinese.db.chinese.table;
 
+import androidx.annotation.NonNull;
+
 import com.darly.chinese.db.chinese.database.ChineseDataBase;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -80,5 +82,11 @@ public class SongCiAuthorBean extends BaseModel{
 
     public void setShort_description(String short_description) {
         this.short_description = short_description;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return " autoId："+autoId+" name："+name+" description："+description+" short_description:"+short_description;
     }
 }

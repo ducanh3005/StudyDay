@@ -48,3 +48,10 @@ ext {
 task clean(type: Delete) {
     delete rootProject.buildDir
 }
+
+ext {
+    keystoreFilepath = '/Users/rkhd/Desktop/StudioWork/StudyDay/study.keystore'
+    keystorePSW = '123456'
+    keystoreAlias = 'StudyDay'
+    keystoreAliasPSW = '123456'
+}

@@ -19,3 +19,7 @@
 # If you keep the line number information, uncomment this to
 # hide the original source file name.
 #-renamesourcefileattribute SourceFile
+
+# 保留包：com.darly.dlcommon.db.version.table 下面的类以及类成员
+-keep public class com.darly.dlcommon.db.version.table.**
+-keep public class com.darly.chinese.db.chinese.table.**

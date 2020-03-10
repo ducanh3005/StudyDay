@@ -8,6 +8,8 @@
 
 package com.darly.dlcommon.db.version.table;
 
+import androidx.annotation.NonNull;
+
 import com.darly.dlcommon.db.version.database.VersionDataBase;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -78,5 +80,11 @@ public class VersionBean extends BaseModel {
 
     public void setVersionname(String versionname) {
         this.versionname = versionname;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return " autoId："+autoId+" packagename："+packagename+" versioncode："+versioncode+" versionname:"+versionname;
     }
 }

@@ -8,6 +8,8 @@
 
 package com.darly.chinese.db.chinese.table;
 
+import androidx.annotation.NonNull;
+
 import com.darly.chinese.db.chinese.database.ChineseDataBase;
 import com.raizlabs.android.dbflow.annotation.Column;
 import com.raizlabs.android.dbflow.annotation.PrimaryKey;
@@ -79,5 +81,11 @@ public class SongCiBean extends BaseModel {
 
     public void setRhythmic(String rhythmic) {
         this.rhythmic = rhythmic;
+    }
+
+    @NonNull
+    @Override
+    public String toString() {
+        return " autoId："+autoId+" author："+author+" paragraphs："+paragraphs+" rhythmic:"+rhythmic;
     }
 }

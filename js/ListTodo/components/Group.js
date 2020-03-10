@@ -12,6 +12,7 @@ import AddTodo from '../containers/AddTodo'
 import Filters from './Filters'
 import VisibleTodoList from '../containers/VisibleTodoList'
 import R from "../../Global/values";
+const NativeListModule = require('../../Global/modules/NativeListModule');
 
 export default class Group extends Component {
 
@@ -37,7 +38,7 @@ export default class Group extends Component {
                 this.props.navigator.pop();
             } else {
                 console.log("Actions界面需要关闭");
-                Actions.pop();
+                NativeListModule.finish();
             }
         });
     }

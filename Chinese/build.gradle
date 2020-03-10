@@ -12,7 +12,7 @@ android {
 
 
     defaultConfig {
-        minSdkVersion 15
+        minSdkVersion 16
         targetSdkVersion 28
         versionCode 1
         versionName "1.0"
@@ -68,5 +68,7 @@ dependencies {
     //图片处理，包含了SO，进行SO动态加载
     api project(path: ':Imageeditor')
     api project(path: ':Dlcommon')
+    //RN依赖
+    api project(path: ':RnModule')
 
 }

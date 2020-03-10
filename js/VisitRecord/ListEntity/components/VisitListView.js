@@ -12,6 +12,7 @@ import {
     FlatList
 } from 'react-native';
 import R from '../../../Global/values'
+const NativeListModule = require('../../../Global/modules/NativeListModule');
 
 class VisitListView extends Component {
 
@@ -41,6 +42,7 @@ class VisitListView extends Component {
     backPress(){
         InteractionManager.runAfterInteractions(() => {
             if (this.props.navigator) {
+                NativeListModule.finish();
                 console.log("界面需要关闭");
             } else {
                 console.log("Actions界面需要关闭");
