@@ -11,10 +11,13 @@ import {
     InteractionManager,
     FlatList
 } from 'react-native';
+
 import R from '../../../Global/values'
 const NativeListModule = require('../../../Global/modules/NativeListModule');
 
+
 class VisitListView extends Component {
+
 
     Pay = null;
 
