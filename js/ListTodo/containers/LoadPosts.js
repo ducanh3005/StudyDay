@@ -31,7 +31,7 @@ class LoadPosts extends Component {
         dispatch(fetchPostsIfNeeded(selectedSubreddit))
     }
 
-    componentWillReceiveProps(nextProps) {
+    UNSAFE_componentWillReceiveProps(nextProps) {
         if (nextProps.selectedSubreddit !== this.props.selectedSubreddit) {
             const { dispatch, selectedSubreddit } = nextProps;
             dispatch(fetchPostsIfNeeded(selectedSubreddit))
