@@ -24,13 +24,11 @@ import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.db.chinese.bean.ParsableBean;
-import com.darly.rnmodule.ui.ReactNativeMainActivity;
+import com.darly.rnmodule.ui.RNNavigatorActivity;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
 import com.darly.widget.titlebar.TitleBar;
 
-import org.json.JSONException;
-import org.json.JSONObject;
 
 import static com.darly.std.vm.GuideViewModel.Action.MAINPRO;
 import static com.darly.std.vm.GuideViewModel.Action.NEXTPAGE;
@@ -134,7 +132,7 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                     @Override
                     public void run() {
                         if (viewModel.getIsOpenReactNative().getValue()){
-                            startActivity(new Intent(GuideActivity.this, ReactNativeMainActivity.class));
+                            startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
                         }else {
                             String json = "{\"action\":\"loginCallBack\"}";
                             Intent intent = new Intent(GuideActivity.this, MainActivity.class);

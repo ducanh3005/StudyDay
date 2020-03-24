@@ -58,6 +58,11 @@ android {
     dataBinding {
         enabled = true
     }
+
+    project.ext.react = [
+            entryFile: "index.js",
+            enableHermes: true
+    ]
 }
 dependencies {
     implementation fileTree(dir: 'libs', include: ['*.jar'])

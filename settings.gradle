@@ -1,1 +1,10 @@
 include ':app', ':Chinese', ':Dlcommon', ':Widget', ':Imageeditor', ':RnModule'
+
+//react-navigation 3.x版本的安装以及react-native-gesture-handler配置
+include ':react-native-gesture-handler'
+println("rootProject.projectDir"+rootProject.projectDir)
+project(':react-native-gesture-handler').projectDir = new File(rootProject.projectDir, '../StudyDay/node_modules/react-native-gesture-handler/android')
+
+
+include ':react-native-safe-area-context'
+project(':react-native-safe-area-context').projectDir = new File(rootProject.projectDir, '../StudyDay/node_modules/react-native-safe-area-context/android')

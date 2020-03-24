@@ -12,6 +12,10 @@ package="com.darly.rnmodule" >
     <activity
         android:name=".ui.ListEntityActivity">
     </activity>
+    <!--增加有导航的界面-->
+    <activity
+        android:name=".ui.RNNavigatorActivity">
+    </activity>
     <activity android:name="com.facebook.react.devsupport.DevSettingsActivity"/>
 </application>
 </manifest>

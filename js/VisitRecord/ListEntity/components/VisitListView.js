@@ -9,7 +9,8 @@ import {
     Text,
     Image,
     InteractionManager,
-    FlatList
+    FlatList,
+    YellowBox
 } from 'react-native';
 
 import R from '../../../Global/values'
@@ -23,6 +24,11 @@ class VisitListView extends Component {
 
     constructor(props) {
         super(props)
+        YellowBox.ignoreWarnings([
+            'Warning: componentWillMount is deprecated',
+            'Warning: componentWillReceiveProps is deprecated',
+        ]);
+
     }
 
     initHeaderView() {

@@ -47,4 +47,10 @@ dependencies {
     } else {
         implementation jscFlavor
     }
+
+    implementation 'androidx.appcompat:appcompat:1.1.0-rc01'
+    implementation 'androidx.swiperefreshlayout:swiperefreshlayout:1.1.0-alpha02'
+    //react-navigation 3.x版本的安装以及react-native-gesture-handler配置
+    api project(path: ':react-native-gesture-handler')
+    api project(path: ':react-native-safe-area-context')
 }

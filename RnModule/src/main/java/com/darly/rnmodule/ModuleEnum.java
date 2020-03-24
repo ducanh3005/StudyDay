@@ -15,8 +15,11 @@ public enum ModuleEnum {
     //提供React Native界面调用入口（对应的Android原生界面）
     RNSTUDYACTIVITY("RNStudyActivity"),
     LISTENTITYACTIVITY("ListEntityActivity"),
+    //有导航界面的React Native
+    RNNAVIGATORACTIVITY("RNNavigatorActivity"),
     //React Native首页
     REACTNATIVEMAINACTIVITY("ReactNativeMainActivity");
+
 
     private String desc;
 

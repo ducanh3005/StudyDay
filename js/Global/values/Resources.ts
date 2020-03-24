@@ -2,6 +2,10 @@
     资源文件
  */
 
+import {StyleSheet} from 'react-native';
+
+const hairlineWidth = StyleSheet.hairlineWidth;
+
 const color ={
     titleBg:'#bcb1ec',
     white:'#88ffff',
@@ -70,9 +74,12 @@ const styles = {
     }
 }
 
-var Resource ={
+let Resource ={
     color,
     styles,
+    hairlineWidth,
 }
+
+
 
 export default Resource;
