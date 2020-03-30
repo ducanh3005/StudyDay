@@ -17,6 +17,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
 
@@ -62,7 +63,9 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
                     new RnModulePackage(),
                     //react-navigation 3.x版本的安装以及react-native-gesture-handler配置
                     new RNGestureHandlerPackage(),
-                    new SafeAreaContextPackage()
+                    new SafeAreaContextPackage(),
+                    //React Native图标
+                    new VectorIconsPackage()
             );
         }
     };

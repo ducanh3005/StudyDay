@@ -131,16 +131,16 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-                        if (viewModel.getIsOpenReactNative().getValue()){
+//                        if (viewModel.getIsOpenReactNative().getValue()){
                             startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
-                        }else {
-                            String json = "{\"action\":\"loginCallBack\"}";
-                            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
-                            ParsableBean bean = new ParsableBean();
-                                bean.skills.add(json);
-                            intent.putExtra("ParsableBean",bean);
-                            startActivity(intent);
-                        }
+//                        }else {
+//                            String json = "{\"action\":\"loginCallBack\"}";
+//                            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+//                            ParsableBean bean = new ParsableBean();
+//                                bean.skills.add(json);
+//                            intent.putExtra("ParsableBean",bean);
+//                            startActivity(intent);
+//                        }
                         finish();
                     }
                 }, 1000);

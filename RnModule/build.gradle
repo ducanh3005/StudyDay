@@ -53,4 +53,6 @@ dependencies {
     //react-navigation 3.x版本的安装以及react-native-gesture-handler配置
     api project(path: ':react-native-gesture-handler')
     api project(path: ':react-native-safe-area-context')
+    //React Native图标
+    api project(path: ':react-native-vector-icons')
 }

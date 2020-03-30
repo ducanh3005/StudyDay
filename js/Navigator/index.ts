@@ -18,7 +18,8 @@ yarn add react-navigation-stack
  */
 
 // import 'react-native-gesture-handler';
-import App from './Stack';
+// import App from './Stack';
+import App from './Tab';
 // import App from './Calendar';
 console.log("进入主选项")
 export default App;
