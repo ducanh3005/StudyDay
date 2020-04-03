@@ -3,15 +3,26 @@
  */
 import 'react-native-gesture-handler';
 import React from 'react';
-import { Text, View, Button} from 'react-native';
+import { Text, View, ListView, Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Ionicons  from 'react-native-vector-icons/EvilIcons';
+import SettingScreem from '../components/SettingScreem'
+
+let balance:string = "0";
+let value:string = "1.00000009E14"
+if(value.includes("e")||value.includes("E")){
+    let num = new Number(value)
+    balance = num.toLocaleString();
+}else{
+    balance = value
+}
 
 function HomeScreen({ navigation }) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-
+            <Text>{(parseFloat(balance) - parseFloat("11111111111111.14"))} </Text>
+            <Text>{balance.length} </Text>
             <Ionicons name="id-card" size={15} color="red" />
             <Ionicons name="id-card" size={25} color="yellow" />
             <Ionicons name="id-card" size={35} color="black" />
@@ -28,14 +39,15 @@ function HomeScreen({ navigation }) {
 function SettingsScreen({ navigation }) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>Settings!</Text>
-            <Button title="Go to Home" onPress={() => navigation.navigate('Home')} />
+            <SettingScreem navigation={navigation}/>
         </View>
     );
+
+
+
 }
 
 function IconWithBadge(props) {
-    console.log("name:"+props.name+"badgeCount:"+props.badgeCount+"color:"+props.color+"size:"+props.size)
     return (
         <View style={{ width: 24, height: 24, margin: 5 }}>
             <Ionicons name={props.name} size={props.size} color={props.color} />
@@ -64,8 +76,12 @@ function IconWithBadge(props) {
 }
 
 function HomeIconWithBadge(props) {
+    props ={
+        ...props,
+        badgeCount:3
+    }
     // You should pass down the badgeCount in some other ways like React Context API, Redux, MobX or event emitters.
-    return <IconWithBadge {...props} badgeCount={3} />;
+    return <IconWithBadge {props} />;
 }
 
 const Tab = createBottomTabNavigator();

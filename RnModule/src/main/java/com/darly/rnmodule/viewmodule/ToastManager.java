@@ -13,7 +13,7 @@ import com.facebook.react.uimanager.ThemedReactContext;
 /**
  * author:zhangyuhui
  * date:2020-01-1313:53
- * description:
+ * description: RN引用Java封装的控件
  */
 public class ToastManager extends SimpleViewManager<View> {
     @NonNull

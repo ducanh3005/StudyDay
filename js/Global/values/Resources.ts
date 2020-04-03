@@ -11,6 +11,15 @@ const color ={
     white:'#88ffff',
 }
 
+/* eslint no-bitwise: 0 */
+const hashCode = function(str) {
+    let hash = 15;
+    for (let ii = str.length - 1; ii >= 0; ii--) {
+        hash = ((hash << 5) - hash) + str.charCodeAt(ii);
+    }
+    return hash;
+};
+
 const styles = {
     navigationView:{
         flexDirection: 'row',
@@ -71,13 +80,27 @@ const styles = {
         color: '#6A7280',
         fontSize: 10,
         textAlign: 'center',
-    }
+    },
+    row: {
+        flexDirection: 'row',
+        justifyContent: 'center',
+        padding: 10,
+        backgroundColor: '#F6F6F6',
+    },
+    thumb: {
+        width: 64,
+        height: 64,
+    },
+    text: {
+        flex: 1,
+    },
 }
 
 let Resource ={
     color,
     styles,
     hairlineWidth,
+    hashCode,
 }
 
 
