@@ -64,8 +64,12 @@ function IconWithBadge(props) {
 }
 
 function HomeIconWithBadge(props) {
+    props ={
+        ...props,
+        badgeCount:3
+    }
     // You should pass down the badgeCount in some other ways like React Context API, Redux, MobX or event emitters.
-    return <IconWithBadge {...props} badgeCount={3} />;
+    return <IconWithBadge {...props}/>;
 }
 
 const Tab = createBottomTabNavigator();

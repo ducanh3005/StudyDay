@@ -60,3 +60,5 @@ freeline_project_description.json
 # fastlane
 fastlane/*
 .idea/*
+node_modules/*
+*.lock
