@@ -94,6 +94,10 @@ const styles = {
     text: {
         flex: 1,
     },
+    map: {
+        width: 200,
+        height: 200,
+    },
 }
 
 let Resource ={

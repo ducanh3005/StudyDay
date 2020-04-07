@@ -3,6 +3,7 @@ package com.darly.rnmodule;
 import androidx.annotation.NonNull;
 
 import com.darly.rnmodule.module.ListModule;
+import com.darly.rnmodule.viewmodule.LbsMapManager;
 import com.darly.rnmodule.viewmodule.ToastManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
@@ -35,6 +36,7 @@ public class RnModulePackage implements ReactPackage {
         //这个是提供Android封装的控件对象，RN直接引用Java控件
         List<ViewManager> managers = new ArrayList<>();
         managers.add(new ToastManager());
+        managers.add(new LbsMapManager());
         return managers;
     }
 }

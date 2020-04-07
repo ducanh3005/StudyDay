@@ -11,6 +11,8 @@ public enum ModuleEnum {
 
     //提供React Native进行调用的原生封装控件
     TOASTMANAGER("ToastManager"),
+    //提供React Native进行调用的原生封装控件地图组件
+    LBSMAPMANAGER("LbsMapManager"),
 
     //提供React Native界面调用入口（对应的Android原生界面）
     RNSTUDYACTIVITY("RNStudyActivity"),
