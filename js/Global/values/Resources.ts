@@ -12,7 +12,7 @@ const color ={
 }
 
 /* eslint no-bitwise: 0 */
-const hashCode = function(str) {
+const hashCode = function(str:any) {
     let hash = 15;
     for (let ii = str.length - 1; ii >= 0; ii--) {
         hash = ((hash << 5) - hash) + str.charCodeAt(ii);
