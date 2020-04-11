@@ -7,36 +7,16 @@ import { Text, View, ListView, Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
 import  Ionicons  from 'react-native-vector-icons/EvilIcons';
-import SettingScreem from '../components/SettingScreem'
+import SettingScreem from '../components/SettingScreem';
+import HomeScreenView from '../components/HomeScreem';
 
-let balance:string = "0";
-let value:string = "1.00000009E14"
-if(value.includes("e")||value.includes("E")){
-    let num = new Number(value)
-    balance = num.toLocaleString();
-}else{
-    balance = value
-}
-
-function HomeScreen({ navigation }) {
+function HomeScreen({ navigation }:{ navigation:any }) {
     return (
-        <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
-            <Text>{(parseFloat(balance) - parseFloat("11111111111111.14"))} </Text>
-            <Text>{balance.length} </Text>
-            <Ionicons name="id-card" size={15} color="red" />
-            <Ionicons name="id-card" size={25} color="yellow" />
-            <Ionicons name="id-card" size={35} color="black" />
-            <Ionicons name="id-card" size={32} color="green" />
-            <Text>Home!</Text>
-            <Button
-                title="Go to Settings"
-                onPress={() => navigation.navigate('Settings')}
-            />
-        </View>
+        <HomeScreenView navigation={navigation}/>
     );
 }
 
-function SettingsScreen({ navigation }) {
+function SettingsScreen({ navigation }:{ navigation:any }) {
     return (
         <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
             <SettingScreem navigation={navigation}/>
@@ -47,7 +27,7 @@ function SettingsScreen({ navigation }) {
 
 }
 
-function IconWithBadge(props) {
+function IconWithBadge(props:any) {
     return (
         <View style={{ width: 24, height: 24, margin: 5 }}>
             <Ionicons name={props.name} size={props.size} color={props.color} />
