@@ -62,3 +62,4 @@ fastlane/*
 .idea/*
 node_modules/*
 *.lock
+package-lock.json

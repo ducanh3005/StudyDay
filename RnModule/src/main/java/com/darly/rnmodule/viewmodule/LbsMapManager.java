@@ -29,6 +29,10 @@ public class LbsMapManager extends SimpleViewManager<View> {
         return mapView;
     }
 
+    public void setTag(MapView mapView,int tag){
+        mapView.setTag(tag);
+    }
+
     public AMap getMap(MapView mapView){
         if (mapView!=null){
             //初始化地图控制器对象
