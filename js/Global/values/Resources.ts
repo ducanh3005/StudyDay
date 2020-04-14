@@ -2,7 +2,11 @@
     资源文件
  */
 
-import {StyleSheet} from 'react-native';
+import {
+    StyleSheet,
+    Dimensions,
+    Platform
+} from 'react-native';
 
 const hairlineWidth = StyleSheet.hairlineWidth;
 
@@ -12,7 +16,7 @@ const color ={
 }
 
 /* eslint no-bitwise: 0 */
-const hashCode = function(str:any) {
+const hashCode = (str:any) => {
     let hash = 15;
     for (let ii = str.length - 1; ii >= 0; ii--) {
         hash = ((hash << 5) - hash) + str.charCodeAt(ii);
@@ -100,11 +104,25 @@ const styles = {
     },
 }
 
+const isIphoneX = () => {
+    const dimen = Dimensions.get('window');
+    return (
+        Platform.OS === 'ios' &&
+        !Platform.isPad &&
+        !Platform.isTVOS &&
+        (dimen.height === 812 || dimen.width === 812) ||
+        (dimen.height === 896 || dimen.width === 896) ||
+        (dimen.height === 1125 || dimen.width === 828) ||
+        (dimen.height === 1792 / 3 || dimen.width === 1792 / 3)
+    );
+}
+
 let Resource ={
     color,
     styles,
     hairlineWidth,
     hashCode,
+    isIphoneX,
 }
 
 
