@@ -78,18 +78,30 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        if (Build.VERSION.SDK_INT >= 23) {
-            //缺少权限，进行权限申请
-            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION);
-                return;
+        if (BuildConfig.DEBUG){
+            //DEBUG模式下，直接跳转界面
+            Toast.makeText(this, "DEBUG模式", Toast.LENGTH_SHORT).show();
+            handler.postDelayed(new Runnable() {
+                @Override
+                public void run() {
+                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
+                    finish();
+                }
+            }, 1000);
+        }else {
+            if (Build.VERSION.SDK_INT >= 23) {
+                //缺少权限，进行权限申请
+                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION);
+                    return;
+                } else {
+                    //权限同意，不需要处理
+                    viewModel.resourceInit();
+                }
             } else {
-                //权限同意，不需要处理
+                //低于23 不需要特殊处理
                 viewModel.resourceInit();
             }
-        } else {
-            //低于23 不需要特殊处理
-            viewModel.resourceInit();
         }
 
     }

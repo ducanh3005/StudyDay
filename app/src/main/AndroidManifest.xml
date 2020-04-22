@@ -78,10 +78,21 @@
         <activity android:name=".crm.SongCiCreateActivity"/>
 
         <!-- 注册系统广播接收，在这里启动软件 -->
-        <receiver android:name="com.darly.std.boot.BootBroadcastReceiver">
-            <intent-filter>
-            <action android:name="android.intent.action.BOOT_COMPLETED" />
-            <category android:name="android.intent.category.HOME" />
+        <receiver android:name="com.darly.std.boot.BootSystemBroadcastReceiver"
+            android:installLocation="internalOnly"
+            android:permission="android.permission.RECEIVE_BOOT_COMPLETED">
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.BOOT_COMPLETED" />
+            </intent-filter>
+            <intent-filter android:priority="999">
+                <action android:name="RestartSerivcesForSystemEventReceiver" />
+            </intent-filter>
+            <intent-filter android:priority="999">
+                <action android:name="android.intent.action.MEDIA_MOUNTED" />
+                <action android:name="android.intent.action.MEDIA_UNMOUNTED" />
+                <action android:name="android.intent.action.MEDIA_EJECT" />
+                <data android:scheme="file" >
+                </data>
             </intent-filter>
         </receiver>
     </application>
