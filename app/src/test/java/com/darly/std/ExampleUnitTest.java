@@ -1,6 +1,5 @@
 package com.darly.std;
 
-import android.text.TextUtils;
 
 import org.junit.Test;
 
@@ -46,11 +45,11 @@ public class ExampleUnitTest {
         long time = System.currentTimeMillis();
         String d = "asdkfj;ladsjf.asdfjklasjdhfmasdkf,sdfkajsdhf.lkjds";
         System.out.println( (getNumber(d)==null)+"_"+("".equals(getNumber(d))));
-        String a="2300next234..csdn.34.23";
-        String b = "太10s(00)0.00下1US";
+        String a="-2300next234..csdn.34.23";
+        String b = "-太10s(00)0.00下1US";
         System.out.println( getNumber(a));
         System.out.println( getNumber(b));
-        String c = "A10s(00)0B001U.S";
+        String c = "100-01US";
         System.out.println( getNumber(c));
 
         String e = "111123213.00232";
@@ -67,7 +66,7 @@ public class ExampleUnitTest {
     }
 
     /**
-     * 将字符串转换成数字
+     * 将字符串转换成数字（防止用户输入或者后台返回的数据中包含非数字，导致转换崩溃。耗时大概3ms）
      * 1、包含小数的字符串（xxx1.1xxx）进行小数点前后非数字移除，生成小数。
      * 2、不包含小数的字符串，移除非数字，生成整数。
      * 3、不包含数字的字符串，返回空字符串。
@@ -76,7 +75,11 @@ public class ExampleUnitTest {
      */
     public static String getNumber(String str){
         if (str == null){
-            return null;
+            return str;
+        }
+        StringBuffer buffer = new StringBuffer();
+        if (str.startsWith("-")){
+            buffer.append("-");
         }
         // 控制正则表达式的匹配行为的参数(小数)
         Pattern p = Pattern.compile("(\\d+\\.\\d+)");
@@ -88,12 +91,11 @@ public class ExampleUnitTest {
             //group()中的参数：0表示匹配整个正则，1表示匹配第一个括号的正则,2表示匹配第二个正则,在这只有一个括号,即1和0是一样的
             String mui = m.group(1) == null ? "" : m.group(1);
             //这个小数进行保存，由这个小数拆分字符串，对整数和小数进行前后补充。
-            StringBuffer buffer = new StringBuffer();
             if (str.startsWith(mui)){
                 buffer.append(mui);
                 //字符串开始就是小数，则后面的数字都补充到小数后。
                 String split  = str.replace(mui,"");
-                if (split!=null&&!"".equals(split)){
+                if (split != null){
                     split = getIntegerNumber(split);
                     buffer.append(split);
                 }
@@ -101,7 +103,7 @@ public class ExampleUnitTest {
             }else if (str.endsWith(mui)){
                 //字符串结束就是小数，则前面的数字都补充到小数前。
                 String split  = str.replace(mui,"");
-                if (split!=null&&!"".equals(split)){
+                if (split !=null){
                     split = getIntegerNumber(split);
                     buffer.append(split);
                 }
@@ -113,14 +115,14 @@ public class ExampleUnitTest {
                 String [] split = str.split(mui);
                 //整数补充部分
                 String intNumber = split[0];
-                if (intNumber!=null&&!"".equals(intNumber)){
+                if (intNumber!=null){
                     intNumber = getIntegerNumber(intNumber);
                     buffer.append(intNumber);
                 }
                 buffer.append(mui);
                 //小数补充部分
                 String cosNumber = split[1];
-                if (cosNumber!=null&&!"".equals(cosNumber)){
+                if (cosNumber!=null){
                     cosNumber = getIntegerNumber(cosNumber);
                     buffer.append(cosNumber);
                 }
@@ -128,9 +130,9 @@ public class ExampleUnitTest {
             }
         } else {
             //如果匹配不到小数，就进行整数匹配
-            str = getIntegerNumber(str);
+            buffer.append(getIntegerNumber(str));
         }
-        return str;
+        return buffer.toString();
     }
 
     /**
@@ -146,6 +148,7 @@ public class ExampleUnitTest {
         }
         return str;
     }
+
 
     @Test
     public void intet(){
