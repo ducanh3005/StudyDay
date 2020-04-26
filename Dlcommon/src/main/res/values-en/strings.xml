@@ -1,4 +1,10 @@
 <resources>
     <string name="app_dlcommon">DlCommon</string>
     <string name="common_jsonCheck">Check file parsing</string>
+    <!--Use iconfont.ttf -->
+    <string name="common_back">&#xe601;</string>
+    <string name="common_location">&#xe638;</string>
+    <string name="common_location_start">&#xe621;</string>
+    <string name="common_location_end">&#xe600;</string>
+    <string name="common_location_middle">&#xe69f;</string>
 </resources>

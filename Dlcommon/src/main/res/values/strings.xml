@@ -1,12 +1,10 @@
-<!--
-  ~ Copyright (c) 2019. Lorem ipsum dolor sit amet, consectetur adipiscing elit.
-  ~ Morbi non lorem porttitor neque feugiat blandit. Ut vitae ipsum eget quam lacinia accumsan.
-  ~ Etiam sed turpis ac ipsum condimentum fringilla. Maecenas magna.
-  ~ Proin dapibus sapien vel ante. Aliquam erat volutpat. Pellentesque sagittis ligula eget metus.
-  ~ Vestibulum commodo. Ut rhoncus gravida arcu.
-  -->
-
 <resources>
     <string name="app_dlcommon">DlCommon</string>
     <string name="common_jsonCheck">检查文件解析</string>
+    <!--Use iconfont.ttf -->
+    <string name="common_back">&#xe601;</string>
+    <string name="common_location">&#xe638;</string>
+    <string name="common_location_start">&#xe621;</string>
+    <string name="common_location_end">&#xe600;</string>
+    <string name="common_location_middle">&#xe69f;</string>
 </resources>

@@ -65,4 +65,6 @@ dependencies {
     //高德地图
     api 'com.amap.api:map2d:latest.integration'
     api 'com.amap.api:location:latest.integration'
+    //底层工具类
+    api project(path: ':Dlcommon')
 }

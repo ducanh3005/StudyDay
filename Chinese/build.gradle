@@ -67,7 +67,6 @@ dependencies {
     api project(path: ':Widget')
     //图片处理，包含了SO，进行SO动态加载
     api project(path: ':Imageeditor')
-    api project(path: ':Dlcommon')
     //RN依赖
     api project(path: ':RnModule')
 

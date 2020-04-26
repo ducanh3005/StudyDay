@@ -3,7 +3,7 @@ package com.darly.rnmodule;
 import androidx.annotation.NonNull;
 
 import com.darly.rnmodule.module.ListModule;
-import com.darly.rnmodule.viewmodule.LbsMapManager;
+import com.darly.rnmodule.viewmodule.lbsmap.LbsMapManager;
 import com.darly.rnmodule.viewmodule.ToastManager;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.bridge.NativeModule;
