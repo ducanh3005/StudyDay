@@ -77,6 +77,8 @@
 
         <activity android:name=".crm.SongCiCreateActivity"/>
 
+        <activity android:name=".ui.ListViewActivity"/>
+
         <!-- 注册系统广播接收，在这里启动软件 -->
         <receiver android:name="com.darly.std.boot.BootSystemBroadcastReceiver"
             android:installLocation="internalOnly"

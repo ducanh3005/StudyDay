@@ -26,6 +26,7 @@ import com.darly.chinese.base.BaseActivity;
 import com.darly.chinese.db.chinese.bean.ParsableBean;
 import com.darly.rnmodule.ui.RNNavigatorActivity;
 import com.darly.std.databinding.ActivityGuideBinding;
+import com.darly.std.ui.ListViewActivity;
 import com.darly.std.vm.GuideViewModel;
 import com.darly.widget.titlebar.TitleBar;
 
@@ -84,7 +85,8 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
+                    startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
+//                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
                     finish();
                 }
             }, 1000);
