@@ -110,10 +110,13 @@ public class ListViewAdapter extends BaseAdapter{
      * @return
      */
     public View getSubList(String data){
-       final View view = View.inflate(context, R.layout.item_list_sub, null);
+       final View view = View.inflate(context, R.layout.item_list, null);
+//       view.setPadding(50,0,0,0);
+        ((TextView)view.findViewById(R.id.id_test_item_tv)).setPadding(50,0,0,0);
         ((TextView)view.findViewById(R.id.id_test_item_tv)).setText(data);
         ((TextView)view.findViewById(R.id.id_test_item_des)).setText(data);
         final LinearLayout id_test_item_action = ((LinearLayout)view.findViewById(R.id.id_test_item_action));
+        id_test_item_action.setPadding(50,0,0,0);
         ((TextView)view.findViewById(R.id.id_test_item_des)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
