@@ -85,8 +85,8 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-                    startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
-//                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
+//                    startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
+                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
                     finish();
                 }
             }, 1000);

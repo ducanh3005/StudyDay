@@ -5,7 +5,7 @@
 
 import React from 'react';
 import { Text, View,  Button, requireNativeComponent} from 'react-native';
-import  Ionicons  from 'react-native-vector-icons/EvilIcons';
+import IconFont from '../../../iconfont';
 import R from '../../../Global/values'
 
 
@@ -49,10 +49,10 @@ export default class HomeScreem extends React.Component<PropsInterface,IState> {
             <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
                 <Text>{(parseFloat(balance) - parseFloat("11111111111111.14"))} </Text>
                 <Text>{balance.length} </Text>
-                <Ionicons name="id-card" size={15} color="red" />
-                <Ionicons name="id-card" size={25} color="yellow" />
-                <Ionicons name="id-card" size={35} color="black" />
-                <Ionicons name="id-card" size={32} color="green" />
+                <IconFont name="kaishi" size={15} color="red" />
+                <IconFont name="location" size={25} color="yellow" />
+                <IconFont name="jieshu" size={35} color="black" />
+                <IconFont name="yuandian" size={32} color={['green', 'orange']} />
                 <Text>Home!</Text>
                 <Button
                     title="Go to Settings"

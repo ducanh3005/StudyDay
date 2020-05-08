@@ -6,9 +6,9 @@ import React from 'react';
 import { Text, View, ListView, Button} from 'react-native';
 import { NavigationContainer } from '@react-navigation/native';
 import { createBottomTabNavigator } from '@react-navigation/bottom-tabs';
-import  Ionicons  from 'react-native-vector-icons/EvilIcons';
 import SettingScreem from '../components/SettingScreem';
 import HomeScreenView from '../components/HomeScreem';
+import Ionicons from '../../../iconfont';
 
 function HomeScreen({ navigation }:{ navigation:any }) {
     return (
@@ -74,10 +74,10 @@ export default function App() {
                     let iconName;
                     if (route.name === 'Home') {
                         iconName = focused
-                            ? "id-card"
-                            : "id-card";
+                            ? "kaishi"
+                            : "jieshu";
                     } else if (route.name === 'Settings') {
-                        iconName = focused ? "user" : "user";
+                        iconName = focused ? "location" : "yuandian";
                     }
 
                     // You can return any component that you like here!
