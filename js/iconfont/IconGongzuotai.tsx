@@ -1,0 +1,29 @@
+/* tslint:disable */
+/* eslint-disable */
+
+import React, { FunctionComponent } from 'react';
+import { ViewProps } from 'react-native';
+import { Svg, GProps, Path } from 'react-native-svg';
+import { getIconColor } from './helper';
+
+interface Props extends GProps, ViewProps {
+  size?: number;
+  color?: string | string[];
+}
+
+const IconGongzuotai: FunctionComponent<Props> = ({ size, color, ...rest }) => {
+  return (
+    <Svg viewBox="0 0 1024 1024" width={size} height={size} {...rest}>
+      <Path
+        d="M910.762667 369.664l-135.765334 135.765333a85.333333 85.333333 0 0 1-120.661333 0l-135.765333-135.765333a85.333333 85.333333 0 0 1 0-120.661333l135.765333-135.765334a85.333333 85.333333 0 0 1 120.661333 0l135.765334 135.765334a85.333333 85.333333 0 0 1 0 120.661333zM362.666667 938.666667H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334v-192a85.333333 85.333333 0 0 1 85.333334-85.333333h192a85.333333 85.333333 0 0 1 85.333333 85.333333v192a85.333333 85.333333 0 0 1-85.333333 85.333334z m0-448H170.666667a85.333333 85.333333 0 0 1-85.333334-85.333334v-192a85.333333 85.333333 0 0 1 85.333334-85.333333h192a85.333333 85.333333 0 0 1 85.333333 85.333333v192a85.333333 85.333333 0 0 1-85.333333 85.333334z m256 85.333333h192a85.333333 85.333333 0 0 1 85.333333 85.333333v192a85.333333 85.333333 0 0 1-85.333333 85.333334h-192a85.333333 85.333333 0 0 1-85.333334-85.333334v-192a85.333333 85.333333 0 0 1 85.333334-85.333333z"
+        fill={getIconColor(color, 0, '#333333')}
+      />
+    </Svg>
+  );
+};
+
+IconGongzuotai.defaultProps = {
+  size: 18,
+};
+
+export default IconGongzuotai;

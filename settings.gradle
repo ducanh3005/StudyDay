@@ -11,3 +11,6 @@ project(':react-native-safe-area-context').projectDir = new File(rootProject.pro
 //React Native图标
 include ':react-native-vector-icons'
 project(':react-native-vector-icons').projectDir = new File(rootProject.projectDir, '../StudyDay/node_modules/react-native-vector-icons/android')
+//SVG图标配置，使用ICONFONT
+include ':react-native-svg'
+project(':react-native-svg').projectDir = new File(rootProject.projectDir, '../StudyDay/node_modules/react-native-svg/android')

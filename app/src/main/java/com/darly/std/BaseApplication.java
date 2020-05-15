@@ -8,6 +8,8 @@
 
 package com.darly.std;
 
+import androidx.multidex.MultiDex;
+
 import com.darly.chinese.ChineseApplication;
 import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
@@ -17,6 +19,7 @@ import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
 import com.facebook.react.shell.MainReactPackage;
 import com.facebook.soloader.SoLoader;
+import com.horcrux.svg.SvgPackage;
 import com.oblador.vectoricons.VectorIconsPackage;
 import com.swmansion.gesturehandler.react.RNGestureHandlerPackage;
 import com.th3rdwave.safeareacontext.SafeAreaContextPackage;
@@ -38,6 +41,9 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
     @Override
     public void onCreate() {
         super.onCreate();
+        // 方法数量大于65536
+        MultiDex.install(this);
+
         if (BuildConfig.DEBUG){
             ExternalStorageUtil.delete();
         }
@@ -65,7 +71,9 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
                     new RNGestureHandlerPackage(),
                     new SafeAreaContextPackage(),
                     //React Native图标
-                    new VectorIconsPackage()
+                    new VectorIconsPackage(),
+                    //iconfont图标
+                    new SvgPackage()
             );
         }
     };

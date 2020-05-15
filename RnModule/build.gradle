@@ -60,7 +60,8 @@ dependencies {
     api project(path: ':react-native-safe-area-context')
     //React Native图标
     api project(path: ':react-native-vector-icons')
-
+    //SVG图标配置，使用ICONFONT
+    api project(path: ':react-native-svg')
 
     //高德地图
     api 'com.amap.api:map2d:latest.integration'

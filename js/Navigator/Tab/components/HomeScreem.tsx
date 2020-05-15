@@ -4,10 +4,11 @@
 
 
 import React from 'react';
-import { Text, View,  Button, requireNativeComponent} from 'react-native';
+import { Text, View,  Button} from 'react-native';
 import IconFont from '../../../iconfont';
-import R from '../../../Global/values'
-
+import Toast from 'react-native-simple-toast';
+import * as CONS from '../../Util/util';
+import CalendarView from "../../Calendar/components/CalendarView"
 
 export interface PropsInterface {
     navigation:any
@@ -17,10 +18,8 @@ interface IState {
     dataSource: any,
     value:string,
 }
-let MapView:any =null
 
 export default class HomeScreem extends React.Component<PropsInterface,IState> {
-
 
     constructor(props:PropsInterface){
         super(props)
@@ -28,16 +27,11 @@ export default class HomeScreem extends React.Component<PropsInterface,IState> {
             dataSource: null,
             value:"1.00000009E14",
         }
-        if (!MapView){
-            MapView = requireNativeComponent("LbsMapManager");
-        }
+        console.log("[HomeScreem]"+JSON.stringify(this.props.navigation));
+        // this.props.navigation.navigate(this.props.navigation.state.key)
     }
 
-
-
     render(){
-
-
         let balance = "0";
         if(this.state.value.includes("e")||this.state.value.includes("E")){
             let num = new Number(this.state.value)
@@ -45,8 +39,10 @@ export default class HomeScreem extends React.Component<PropsInterface,IState> {
         }else{
             balance = this.state.value
         }
+        //首页展示日历
         return(
-            <View style={{ flex: 1, justifyContent: 'center', alignItems: 'center' }}>
+            <View style={{ flex: 1}}>
+                <CalendarView/>
                 <Text>{(parseFloat(balance) - parseFloat("11111111111111.14"))} </Text>
                 <Text>{balance.length} </Text>
                 <IconFont name="kaishi" size={15} color="red" />
@@ -55,11 +51,12 @@ export default class HomeScreem extends React.Component<PropsInterface,IState> {
                 <IconFont name="yuandian" size={32} color={['green', 'orange']} />
                 <Text>Home!</Text>
                 <Button
-                    title="Go to Settings"
-                    onPress={() => this.props.navigation.navigate('Settings')}
+                    title={"key"}
+                    onPress={() => {
+                        Toast.show('This is a toast.');
+                        this.props.navigation.navigate(CONS.APP_CENTER)
+                    }}
                 />
-                <MapView style={R.styles.map}/>
-
             </View>
         );
     }

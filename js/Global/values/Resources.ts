@@ -7,12 +7,14 @@ import {
     Dimensions,
     Platform
 } from 'react-native';
-
+let { width,height} = Dimensions.get('window');
 const hairlineWidth = StyleSheet.hairlineWidth;
 
 const color ={
     titleBg:'#bcb1ec',
     white:'#88ffff',
+    focusedTab:'#40E0D0',
+    unfocusedTab:'#D4F2E7',
 }
 
 /* eslint no-bitwise: 0 */
@@ -99,8 +101,8 @@ const styles = {
         flex: 1,
     },
     map: {
-        width: 200,
-        height: 200,
+        width: width,
+        height: height,
     },
 }
 

@@ -13,8 +13,8 @@ import {
 export interface IProps {
     content:string,
     visible:boolean,
-    cancel?: () => void,
-    confirm?:() => void,
+    cancel: Function,
+    confirm:Function,
 }
 export interface IState {
 }
@@ -30,11 +30,9 @@ export default class DialogModal extends React.Component<IProps,IState> {
             <Modal transparent={true}
                    visible={this.props.visible}
                    onRequestClose={() => {
-                       this.props.cancel;
+                       this.props.cancel();
                    }}>
-                <TouchableOpacity style={{flex: 1}} onPress={() => {
-                    this.props.cancel;
-                }}>
+                <TouchableOpacity style={{flex: 1}}>
                     <View style={styles.dialogContainer}>
                         <View style={styles.innerContainer}>
                             <View style={styles.contentContainer}>
@@ -42,12 +40,12 @@ export default class DialogModal extends React.Component<IProps,IState> {
                             </View>
                             <View style={styles.btnContainer}>
                                 <TouchableOpacity style={styles.dialogCancelButton} onPress={() => {
-                                    this.props.cancel;
+                                    this.props.cancel();
                                 }}>
                                     <Text style={styles.hidemodalTxt}>取消</Text>
                                 </TouchableOpacity>
                                 <TouchableOpacity style={styles.dialogConfirmButton} onPress={() => {
-                                    this.props.confirm;
+                                    this.props.confirm();
                                 }}>
                                     <Text style={styles.hidemodalTxt}>确定</Text>
                                 </TouchableOpacity>

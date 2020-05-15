@@ -65,4 +65,8 @@ public class HeartLayout extends RelativeLayout {
         mAnimator.start(heartView, this);
     }
 
+    @Override
+    protected void onMeasure(int widthMeasureSpec, int heightMeasureSpec) {
+        super.onMeasure(widthMeasureSpec, heightMeasureSpec);
+    }
 }
