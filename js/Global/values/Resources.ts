@@ -13,7 +13,7 @@ const hairlineWidth = StyleSheet.hairlineWidth;
 const color ={
     titleBg:'#bcb1ec',
     white:'#88ffff',
-    focusedTab:'#40E0D0',
+    focusedTab:'#458B74',
     unfocusedTab:'#D4F2E7',
 }
 

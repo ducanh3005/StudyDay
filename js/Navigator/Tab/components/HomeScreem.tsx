@@ -8,7 +8,7 @@ import { Text, View,  Button} from 'react-native';
 import IconFont from '../../../iconfont';
 import Toast from 'react-native-simple-toast';
 import * as CONS from '../../Util/util';
-import CalendarView from "../../Calendar/components/CalendarView"
+import CalendarView from "../../../Global/Calendar/components/CalendarView"
 
 export interface PropsInterface {
     navigation:any

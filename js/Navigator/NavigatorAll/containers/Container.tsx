@@ -13,13 +13,14 @@ import {
 import {createBottomTabNavigator} from '@react-navigation/bottom-tabs';
 import SettingScreem from '../../Tab/components/SettingScreem';
 import MapScreem from '../../Tab/components/MapScreem';
-import HomeScreenView from '../../Tab/components/HomeScreem';
+import HomeScreenView from '../../../UI/MainView';
 import Ionicons from '../../../iconfont';
 import * as CONS from '../../Util/util';
 import R from '../../../Global/values';
 
 function HomeScreen({ navigation }:{ navigation:any }) {
-    //想办法修改角标
+    console.log("[首页]");
+    
     return (
         <HomeScreenView navigation={navigation}/>
     );
