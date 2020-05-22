@@ -6,8 +6,13 @@ import android.content.Intent;
 import android.net.ConnectivityManager;
 
 import com.darly.chinese.common.SpController;
+import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
+import com.darly.dlcommon.framework.ContextController;
+import com.darly.rnmodule.module.NoticeReactNativeModule;
+import com.facebook.react.bridge.Arguments;
+import com.facebook.react.bridge.WritableMap;
 
 /**
  * author:zhangyuhui
@@ -20,7 +25,13 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
     public void onReceive(Context context, Intent intent) {
         if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())){
             DLog.d("[NetStateChangeReceiver IP发生变化]");
-            SpController.getInstance().putValue(NetUtil.SYSTEM_IP, NetUtil.getIPAddress(context));
+            String localIp = NetUtil.getIPAddress(context);
+            if (!StringUtil.isEmpty(localIp)) {
+                SpController.getInstance().putValue(NetUtil.SYSTEM_IP, localIp);
+                WritableMap ip = Arguments.createMap();
+                ip.putString(NetUtil.SYSTEM_IP, localIp);
+                NoticeReactNativeModule.sendEvent(NetUtil.SYSTEM_IP, ip);
+            }
         }
 
     }

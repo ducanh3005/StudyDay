@@ -27,7 +27,7 @@ public class ApiService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // 创建对象，端口我这里设置为8080
         DLog.d("[ApiService 启动中...]");
-        HttpService myServer = new HttpService(8080);
+        HttpService myServer = new HttpService(8089);
         try {
             // 开启HTTP服务
             myServer.start();

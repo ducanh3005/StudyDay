@@ -8,6 +8,8 @@ package com.darly.rnmodule;
 public enum ModuleEnum {
     //提供React Native进行调用的原生方法
     LISTMODULE("ListModule"),
+    //初始化RN需要原生参数的方法。
+    INIT_MODULE("InitModule"),
 
     //提供React Native进行调用的原生封装控件
     TOASTMANAGER("ToastManager"),

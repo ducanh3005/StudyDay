@@ -2,7 +2,9 @@ package com.darly.rnmodule;
 
 import androidx.annotation.NonNull;
 
+import com.darly.rnmodule.module.InitModule;
 import com.darly.rnmodule.module.ListModule;
+import com.darly.rnmodule.module.NoticeReactNativeModule;
 import com.darly.rnmodule.viewmodule.lbsmap.LbsMapManager;
 import com.darly.rnmodule.viewmodule.ToastManager;
 import com.facebook.react.ReactPackage;
@@ -27,6 +29,8 @@ public class RnModulePackage implements ReactPackage {
         //这个是提供方法调用，传递参数到Java中，进行执行。（当然包含界面跳转）
         List<NativeModule> modules = new ArrayList<>();
         modules.add(new ListModule(reactContext));//测试RN调用Java方法，对接
+        modules.add(new InitModule(reactContext));//测试RN调用Java方法，对接
+        modules.add(new NoticeReactNativeModule(reactContext));//测试RN调用Java方法，对接
         return modules;
     }
 
