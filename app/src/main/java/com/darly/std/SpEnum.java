@@ -8,14 +8,14 @@ package com.darly.std;
 public enum SpEnum {
 
     //SO的版本号
-    SOVERSION("soversion"),
-
+    SO_VERSION("so_version"),
     //是否第一次打开应用，是否进入欢迎页面
-    FIRSTOPEN("firstopen"),
+    FIRST_OPEN("first_open"),
     //是否已经设置用户信息，是否进入信息设置引导页面。
-    SYSTEMUSERINFO("systemuserinfo"),
+    SYSTEM_USER_INFO("system_user_info"),
+
     //用户信息保存主键
-    USERINFO("userinfo");
+    USER_INFO("user_info");
 
 
     private String desc;

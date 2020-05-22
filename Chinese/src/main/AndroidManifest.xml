@@ -3,5 +3,7 @@
 
     <application>
         <activity android:name=".base.BaseActivity" />
+
+        <service android:name=".service.ApiService"/>
     </application>
 </manifest>

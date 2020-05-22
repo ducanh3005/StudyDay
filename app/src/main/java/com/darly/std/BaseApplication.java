@@ -8,11 +8,19 @@
 
 package com.darly.std;
 
+import android.content.Intent;
+import android.content.IntentFilter;
+import android.net.ConnectivityManager;
+
 import androidx.multidex.MultiDex;
 
 import com.darly.chinese.ChineseApplication;
 import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
+import com.darly.chinese.service.ApiService;
+import com.darly.chinese.service.NetStateChangeReceiver;
+import com.darly.dlcommon.common.net.NetUtil;
+import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.rnmodule.RnModulePackage;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
@@ -38,6 +46,8 @@ import java.util.List;
 
 public class BaseApplication extends ChineseApplication implements ReactApplication {
 
+    NetStateChangeReceiver receiver;
+
     @Override
     public void onCreate() {
         super.onCreate();
@@ -49,6 +59,14 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         }
         SoLoader.init(this, false);
         SpController.getInstance().setName("study");
+        SpController.getInstance().putValue(NetUtil.SYSTEM_IP, NetUtil.getIPAddress(this));
+        //启动服务器
+        DLog.d("[BaseApplication 服务启动中...]");
+        Intent service = new Intent(this,ApiService.class);
+        startService(service);
+        receiver = new NetStateChangeReceiver();
+        IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
+        registerReceiver(receiver,intentFilter);
     }
 
     @Override
@@ -77,4 +95,14 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
             );
         }
     };
+
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        //关闭服务器
+        DLog.d("[BaseApplication 服务关闭中...]");
+        Intent service = new Intent(this,ApiService.class);
+        stopService(service);
+        unregisterReceiver(receiver);
+    }
 }

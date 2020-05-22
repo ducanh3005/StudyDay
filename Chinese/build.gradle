@@ -70,4 +70,7 @@ dependencies {
     //RN依赖
     api project(path: ':RnModule')
 
+    //自定义服务器功能，使用NanoHTTPD生成简单服务器
+    implementation'org.nanohttpd:nanohttpd:2.2.0'
+
 }

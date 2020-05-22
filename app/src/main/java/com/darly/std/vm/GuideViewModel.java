@@ -49,13 +49,13 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
 
 
     public void resourceInit() {
-        if (SpController.getInstance().getValue(SpEnum.SOVERSION.getDesc(), 0) == 0) {
+        if (SpController.getInstance().getValue(SpEnum.SO_VERSION.getDesc(), 0) == 0) {
             //初次加载
             LogController.d("resourceInit","初次加载");
             FileController.getInstance().copyFile("DownLoad", this);
         } else {
             //非初次加载
-            if (SpController.getInstance().getValue(SpEnum.SOVERSION.getDesc(), 0) != 2){
+            if (SpController.getInstance().getValue(SpEnum.SO_VERSION.getDesc(), 0) != 2){
                 //有新版本需要更新
                 LogController.d("resourceInit","有新版本需要更新");
                 FileController.getInstance().copyFile("DownLoad", this);
@@ -114,7 +114,7 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
         }
 
         if (ParseJsonController.getInstance().getType().equals(type)) {
-            SpController.getInstance().putValue(SpEnum.SOVERSION.getDesc(), new Random().nextInt(4));
+            SpController.getInstance().putValue(SpEnum.SO_VERSION.getDesc(), new Random().nextInt(4));
             action.postValue(new Action(Action.NEXTPAGE,null));
         }
 
