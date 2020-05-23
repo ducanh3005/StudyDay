@@ -9,7 +9,6 @@ import com.darly.chinese.common.SpController;
 import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
-import com.darly.dlcommon.framework.ContextController;
 import com.darly.rnmodule.module.NoticeReactNativeModule;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;

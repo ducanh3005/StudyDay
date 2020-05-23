@@ -4,9 +4,14 @@ import android.util.Log;
 
 import com.darly.dlcommon.common.dlog.DLog;
 
+import org.json.JSONException;
+import org.json.JSONObject;
+
 import java.io.IOException;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
+import java.util.Set;
 
 import fi.iki.elonen.NanoHTTPD;
 
@@ -27,24 +32,34 @@ public class HttpService extends NanoHTTPD {
     }
 
 
+
     @Override
     public Response serve(IHTTPSession session) {
+        //可以看到是什么请求方式
         try {
-            // 这一句话必须要写，否则在获取数据时，获取不到数据
-            session.parseBody(new HashMap<String, String>());
+            /*
+             * 对于post请求，你需要先调用parseBody()方法，
+             * 直接传一个简单的新构造的map就行了
+             */
+            session.parseBody(new HashMap());
+            Map params = session.getParms();
+            String uri = session.getUri();
+            //通过uri进行匹配现有的逻辑，看看走向哪里。返回的都是
+            String json = MethodName.getMethods(uri,params);
+            return newFixedLengthResponse(json);
         } catch (IOException e) {
             e.printStackTrace();
         } catch (ResponseException e) {
             e.printStackTrace();
         }
 
-        StringBuilder builder = new StringBuilder();
-        String uri = session.getUri();
-        Map<String, String> params = session.getParms();
-        String data = params.get("data");//这里的data是POST提交表单时key
-        DLog.d("uri: "+uri);//如果有uri,会打印出uri
-        DLog.d("data: "+data);
-        builder.append("Greeting for us!");// 反馈给调用者的数据
-        return newFixedLengthResponse(builder.toString());
+        JSONObject json = new JSONObject();
+        try {
+            json.put("code",500);
+            json.put("msg","");
+        } catch (JSONException e) {
+            e.printStackTrace();
+        }
+        return newFixedLengthResponse(json.toString());
     }
 }
