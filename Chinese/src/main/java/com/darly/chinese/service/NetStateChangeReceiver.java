@@ -9,6 +9,7 @@ import com.darly.chinese.common.SpController;
 import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
+import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.rnmodule.module.NoticeReactNativeModule;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
@@ -27,6 +28,8 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
             String localIp = NetUtil.getIPAddress(context);
             if (!StringUtil.isEmpty(localIp)) {
                 SpController.getInstance().putValue(NetUtil.SYSTEM_IP, localIp);
+                String url = "http://"+ localIp+":8089";
+                RxjavaRetrofitRequestUtil.setBaseUrl(url);
                 WritableMap ip = Arguments.createMap();
                 ip.putString(NetUtil.SYSTEM_IP, localIp);
                 NoticeReactNativeModule.sendEvent(NetUtil.SYSTEM_IP, ip);

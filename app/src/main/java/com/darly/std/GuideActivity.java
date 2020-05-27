@@ -23,13 +23,21 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.db.chinese.bean.ParsableBean;
+import com.darly.dlcommon.common.dlog.DLog;
+import com.darly.dlcommon.common.net.NetUtil;
+import com.darly.dlcommon.framework.ContextController;
+import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.rnmodule.ui.RNNavigatorActivity;
 import com.darly.std.databinding.ActivityGuideBinding;
-import com.darly.std.ui.ListViewActivity;
+import com.darly.std.retrofit.HttpInterface;
 import com.darly.std.vm.GuideViewModel;
 import com.darly.widget.titlebar.TitleBar;
+import com.google.gson.JsonObject;
 
+
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 import static com.darly.std.vm.GuideViewModel.Action.MAINPRO;
 import static com.darly.std.vm.GuideViewModel.Action.NEXTPAGE;
@@ -81,13 +89,42 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
     public void initView(Bundle savedInstanceState) {
         if (BuildConfig.DEBUG){
             //DEBUG模式下，直接跳转界面
+
             Toast.makeText(this, "DEBUG模式", Toast.LENGTH_SHORT).show();
             handler.postDelayed(new Runnable() {
                 @Override
                 public void run() {
-//                    startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
-                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
-                    finish();
+                    //尝试网络请求
+
+                    RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getKey((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
+                            .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
+                            .observeOn(AndroidSchedulers.mainThread())
+                            .map(new Func1<JsonObject, String >() {
+                                @Override
+                                public String call(JsonObject s) {
+                                    DLog.json("Func1", s.toString());
+                                    return s.toString();
+                                }
+                            })
+                            .subscribe(new rx.Observer<String>() {
+                                @Override
+                                public void onCompleted() {
+
+                                }
+
+                                @Override
+                                public void onError(Throwable e) {
+
+                                }
+
+                                @Override
+                                public void onNext(String s) {
+                                    DLog.json("onNext", s);
+//                                  startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
+                                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
+                                    finish();
+                                }
+                            });
                 }
             }, 1000);
         }else {

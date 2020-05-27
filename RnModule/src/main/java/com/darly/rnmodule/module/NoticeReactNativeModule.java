@@ -18,6 +18,9 @@ import javax.annotation.Nullable;
  */
 public class NoticeReactNativeModule extends ReactContextBaseJavaModule {
 
+
+    public static String NATIVE_GET_CALL = "nativeGetCall";//原生接口调用回传通知RN
+
     private static ReactContext mReactContext;
 
     public NoticeReactNativeModule(@NonNull ReactApplicationContext reactContext) {

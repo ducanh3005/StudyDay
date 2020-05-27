@@ -6,6 +6,7 @@ import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.framework.ContextController;
+import com.google.gson.JsonArray;
 
 import org.json.JSONException;
 import org.json.JSONObject;
@@ -28,9 +29,12 @@ public class MobileApi implements UserApiInterface{
             if (paramer!=null) {
                 String ip = paramer.get("ip");
                 if (!StringUtil.isEmpty(ip)){
+                    JSONObject ob = new JSONObject();
+                    ob.put("key", ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP));
                     //接口正确
                     json.put("code",200);
                     json.put("ip", ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP));
+                    json.put("data",ob);
                     json.put("msg","");
                 }else {
                     json.put("code",201);
@@ -64,8 +68,12 @@ public class MobileApi implements UserApiInterface{
                     int over = object.optInt("over");
                     if (over == 1){
                         //接口正确
+                        JSONObject ob = new JSONObject();
+                        ob.put("key", ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP));
+                        //接口正确
                         json.put("code",200);
                         json.put("ip", ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP));
+                        json.put("data",ob);
                         json.put("msg","");
                     }else {
                         json.put("code",201);

@@ -52,4 +52,12 @@ dependencies {
     api 'com.alibaba:fastjson:1.2.59'
     api 'org.greenrobot:eventbus:3.1.1'
 
+
+    api 'io.reactivex:rxandroid:1.2.1'
+    api 'io.reactivex:rxjava:1.2.3'
+    api 'com.squareup.retrofit2:retrofit:2.1.0'
+    api 'com.squareup.retrofit2:converter-gson:2.1.0'
+    api 'com.squareup.retrofit2:adapter-rxjava:2.1.0'
+    api 'com.squareup.okhttp3:logging-interceptor:3.5.0'
+
 }

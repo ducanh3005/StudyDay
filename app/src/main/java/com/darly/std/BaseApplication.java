@@ -10,6 +10,8 @@ package com.darly.std;
 
 import android.content.Intent;
 import android.content.IntentFilter;
+import android.content.pm.PackageInfo;
+import android.content.pm.PackageManager;
 import android.net.ConnectivityManager;
 
 import androidx.multidex.MultiDex;
@@ -21,7 +23,13 @@ import com.darly.chinese.service.ApiService;
 import com.darly.chinese.service.NetStateChangeReceiver;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.common.dlog.DLog;
+import com.darly.dlcommon.retrofit.RxInterceptor;
+import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.rnmodule.RnModulePackage;
+import com.darly.rnmodule.obs.RNModule;
+import com.darly.std.obs.NotificationToApp;
+import com.darly.std.retrofit.HttpInterface;
+import com.darly.std.retrofit.RetrofitCfg;
 import com.facebook.react.ReactApplication;
 import com.facebook.react.ReactNativeHost;
 import com.facebook.react.ReactPackage;
@@ -67,6 +75,14 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         receiver = new NetStateChangeReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(receiver,intentFilter);
+        //初始化网络工具
+        RxInterceptor.setVersionCode(getVersionCode());
+        RxInterceptor.init(new RetrofitCfg());
+        String url = "http://"+ SpController.getInstance().getValue(NetUtil.SYSTEM_IP)+":8089";
+        RxjavaRetrofitRequestUtil.setBaseUrl(url);
+
+        RNModule.init().initRetrofit(NotificationToApp.class);
+
     }
 
     @Override
@@ -95,6 +111,21 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
             );
         }
     };
+
+
+    public int getVersionCode() {
+        int version = 0;
+
+        try {
+            PackageInfo e = this.getPackageManager().getPackageInfo(this.getPackageName(), 0);
+            version = e.versionCode;
+        } catch (PackageManager.NameNotFoundException var3) {
+            var3.printStackTrace();
+        }
+
+        return version;
+    }
+
 
     @Override
     public void onTerminate() {

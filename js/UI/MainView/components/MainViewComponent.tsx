@@ -4,7 +4,7 @@
 import * as React from 'react';
 import { View ,DeviceEventEmitter, Button} from 'react-native';
 import CalendarView from "../../../Global/Calendar";
-import {SYSTEM_IP} from '../../../Global/common/Const';
+import {SYSTEM_IP,NATIVE_GET_CALL} from '../../../Global/common/Const';
 
 
 const NativeInitModule = require('../../../Global/modules/NativeInitModule');
@@ -22,7 +22,8 @@ export interface State {
 }
 export default class MainViewComponent extends React.Component<Prop, State>{
 
-    localChangedListener:any;
+    ipChangedListener:any;//ip发生变化通知RN
+    nativeGetCallListener:any;//原生接口调用回传通知RN
 
     constructor(props: Prop) {
         super(props)
@@ -33,10 +34,16 @@ export default class MainViewComponent extends React.Component<Prop, State>{
     }
 
     UNSAFE_componentWillMount(){
-        this.localChangedListener = DeviceEventEmitter.addListener(SYSTEM_IP, (ip) => {
+        this.ipChangedListener = DeviceEventEmitter.addListener(SYSTEM_IP, (ip) => {
             console.log("[RN接收到ip变化]"+JSON.stringify(ip));
             this.state = {
                 hostIp:ip[`${SYSTEM_IP}`],
+            }
+        });
+        this.nativeGetCallListener = DeviceEventEmitter.addListener(NATIVE_GET_CALL,(result) =>{
+            console.log("[RN接收到原生接口请求数据]"+JSON.stringify(result));
+            if (result&&result.json) {
+                console.log("[RN接收到原生接口请求数据]"+result.json.code);
             }
         });
         this.init();
@@ -52,7 +59,7 @@ export default class MainViewComponent extends React.Component<Prop, State>{
     }
 
     UNSAFE_componentWillUnmount(){
-        this.localChangedListener && this.localChangedListener.remove();
+        this.ipChangedListener && this.ipChangedListener.remove();
     }
 
 
@@ -85,14 +92,18 @@ export default class MainViewComponent extends React.Component<Prop, State>{
         console.log("[获取的数据：]"+JSON.stringify(data));
     }
 
-
+    
+    async nativeGetCall() {
+        //get请求测试
+        let map = await NativeInitModule.get();
+    }
     render() {
         console.log("[MainViewComponent]");
         return (
             <View style={{ flex: 1 }}>
                 <CalendarView />
                 <Button
-                    title={"网络接口测试get"}
+                    title={"RN网络接口测试get"}
                     onPress={() => {
                         //进行网络接口调用
                         this.getCall();
@@ -100,10 +111,18 @@ export default class MainViewComponent extends React.Component<Prop, State>{
                 />
                 <View style ={{height:10}}/>
                 <Button
-                    title={"网络接口测试post"}
+                    title={"RN网络接口测试post"}
                     onPress={() => {
                         //进行网络接口调用
                         this.postCall();
+                    }}
+                />
+                 <View style ={{height:10}}/>
+                <Button
+                    title={"原生网络接口测试get"}
+                    onPress={() => {
+                        //进行网络接口调用
+                        this.nativeGetCall();
                     }}
                 />
             </View>
