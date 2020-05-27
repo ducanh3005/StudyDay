@@ -19,6 +19,7 @@ import com.darly.chinese.db.chinese.table.SongCiBean;
 import com.darly.chinese.db.crud.DataBaseController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.dlcommon.common.JsonConverter;
+import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.VersionController;
 import com.darly.dlcommon.common.bolts.tasks.Task;
 import com.darly.dlcommon.common.bolts.tasks.iface.Continuation;
@@ -217,7 +218,7 @@ public class ParseJsonController extends BaseController {
                         if (inputStream == null){
                             inputStream = ContextController.getInstance().getApplication().getAssets().open(jsonFile.get(i));
                         }
-                        String json = convertStreamToString(inputStream);
+                        String json = StringUtil.convertStreamToString(inputStream);
                         if (jsonFile.get(i).contains(SongCiBean.NAME)) {
                             SongCiBean[] ciBeans = JsonConverter.fromJsonString(json, SongCiBean[].class);
                             if (ciBeans != null) {
@@ -272,27 +273,4 @@ public class ParseJsonController extends BaseController {
         }, Task.UI_THREAD_EXECUTOR);
 
     }
-
-
-    /**
-     * input 流转换为字符串
-     *
-     * @param is
-     * @return
-     */
-    private static String convertStreamToString(InputStream is) {
-        String s = null;
-        try {
-            //格式转换
-            Scanner scanner = new Scanner(is, "UTF-8").useDelimiter("\\A");
-            if (scanner.hasNext()) {
-                s = scanner.next();
-            }
-            is.close();
-        } catch (IOException e) {
-            e.printStackTrace();
-        }
-        return s;
-    }
-
 }

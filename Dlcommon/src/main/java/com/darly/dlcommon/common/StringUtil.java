@@ -8,8 +8,11 @@
 
 package com.darly.dlcommon.common;
 
+import java.io.IOException;
+import java.io.InputStream;
 import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
+import java.util.Scanner;
 
 /**
  * Description TODO: 判断字符串工具类
@@ -35,6 +38,28 @@ public class StringUtil {
         }else{
             return false;
         }
+    }
+
+
+    /**
+     * input 流转换为字符串
+     *
+     * @param is 流入口
+     * @return
+     */
+    public static String convertStreamToString(InputStream is) {
+        String s = null;
+        try {
+            //格式转换
+            Scanner scanner = new Scanner(is, "UTF-8").useDelimiter("\\A");
+            if (scanner.hasNext()) {
+                s = scanner.next();
+            }
+            is.close();
+        } catch (IOException e) {
+            e.printStackTrace();
+        }
+        return s;
     }
 
 }

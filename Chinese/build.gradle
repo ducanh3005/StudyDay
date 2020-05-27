@@ -63,6 +63,9 @@ dependencies {
     api 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter:2.2.0'
     api 'me.tatarka.bindingcollectionadapter2:bindingcollectionadapter-recyclerview:2.2.0'
     api 'com.github.huangyanbin:SmartTable:2.2.0'
+
+    //布局占位功能。
+    api 'me.samlss:broccoli:1.0.0'
     //自定义控件集合
     api project(path: ':Widget')
     //图片处理，包含了SO，进行SO动态加载

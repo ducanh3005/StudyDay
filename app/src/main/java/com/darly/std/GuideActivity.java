@@ -30,6 +30,7 @@ import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.rnmodule.ui.RNNavigatorActivity;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.retrofit.HttpInterface;
+import com.darly.std.ui.ListViewActivity;
 import com.darly.std.vm.GuideViewModel;
 import com.darly.widget.titlebar.TitleBar;
 import com.google.gson.JsonObject;
@@ -120,8 +121,8 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                                 @Override
                                 public void onNext(String s) {
                                     DLog.json("onNext", s);
-//                                  startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
-                                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
+                                  startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
+//                                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
                                     finish();
                                 }
                             });
