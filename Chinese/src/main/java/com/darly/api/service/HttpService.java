@@ -1,7 +1,6 @@
-package com.darly.chinese.service;
+package com.darly.api.service;
 
-import android.util.Log;
-
+import com.darly.api.base.MethodName;
 import com.darly.dlcommon.common.dlog.DLog;
 
 import org.json.JSONException;
@@ -9,9 +8,7 @@ import org.json.JSONObject;
 
 import java.io.IOException;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
-import java.util.Set;
 
 import fi.iki.elonen.NanoHTTPD;
 
@@ -32,7 +29,6 @@ public class HttpService extends NanoHTTPD {
     }
 
 
-
     @Override
     public Response serve(IHTTPSession session) {
         //可以看到是什么请求方式
@@ -45,7 +41,7 @@ public class HttpService extends NanoHTTPD {
             Map params = session.getParms();
             String uri = session.getUri();
             //通过uri进行匹配现有的逻辑，看看走向哪里。返回的都是
-            String json = MethodName.getMethods(uri,params);
+            String json = MethodName.getMethods(uri, params);
             return newFixedLengthResponse(json);
         } catch (IOException e) {
             e.printStackTrace();
@@ -55,8 +51,8 @@ public class HttpService extends NanoHTTPD {
 
         JSONObject json = new JSONObject();
         try {
-            json.put("code",500);
-            json.put("msg","");
+            json.put("code", 500);
+            json.put("msg", "");
         } catch (JSONException e) {
             e.printStackTrace();
         }

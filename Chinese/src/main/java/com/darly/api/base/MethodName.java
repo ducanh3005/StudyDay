@@ -1,7 +1,7 @@
-package com.darly.chinese.service;
+package com.darly.api.base;
 
-import android.text.TextUtils;
-
+import com.darly.api.business.mobile.impl.MobileApi;
+import com.darly.api.business.mobile.service.UserApiInterface;
 import com.darly.dlcommon.common.StringUtil;
 
 import org.json.JSONException;
@@ -19,52 +19,51 @@ import java.util.Map;
  */
 public class MethodName {
 
-    private MethodName(){
+    private MethodName() {
 
     }
-    public static final String MOBILE = "/mobile";
-    public static final String MOBILE_KEY = "/mobile/key";
-    public static final String MOBILE_VALUE = "/mobile/value";
 
+    private static Map<String, UserApiInterface> MethodsMap = new HashMap<>();
 
-    private static Map<String,UserApiInterface> MethodsMap = new HashMap<>();
-
-
+    /**
+     * 设置接口合集。
+     */
     public static void setMethodsMap() {
-        MethodsMap.put(MOBILE,new MobileApi());
+        MethodsMap.put(ApiCons.MOBILE, new MobileApi());
     }
 
 
-    public static String getMethods(String uri,Map<String, String> data) {
-        if (StringUtil.isEmpty(uri)){
+    public static String getMethods(String uri, Map<String, String> data) {
+        if (StringUtil.isEmpty(uri)) {
             JSONObject json = new JSONObject();
             try {
-                json.put("code",404);
-                json.put("msg","拒绝访问");
+                json.put("code", 404);
+                json.put("msg", "拒绝访问");
             } catch (JSONException e) {
                 e.printStackTrace();
             }
             return json.toString();
         }
         UserApiInterface obj = null;
-        if (uri.startsWith(MOBILE)){
-            obj = MethodsMap.get(MOBILE);
-        }else {
+        if (uri.startsWith(ApiCons.MOBILE)) {
+            //是mobile请求
+            obj = MethodsMap.get(ApiCons.MOBILE);
+        } else {
             obj = MethodsMap.get(uri);
         }
         Class cls = obj.getClass();
-        Method[] methods =  cls.getDeclaredMethods();
-        for (Method method:methods) {
+        Method[] methods = cls.getDeclaredMethods();
+        for (Method method : methods) {
             method.setAccessible(true);
             try {
                 boolean isApi = method.isAnnotationPresent(ApiValue.class);//判断这个类中有没有注解
-                if (!isApi){
+                if (!isApi) {
                     continue;
                 }
                 ApiValue value = method.getAnnotation(ApiValue.class);
                 String valueName = value.value();
                 if (uri.equals(valueName)) {//传递过来的uri就是注解情况，执行该方法。
-                    return (String) method.invoke(obj,data);
+                    return (String) method.invoke(obj, data);
                 }
             } catch (IllegalAccessException e) {
                 e.printStackTrace();

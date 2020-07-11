@@ -1,4 +1,4 @@
-package com.darly.chinese.service;
+package com.darly.api.business.mobile.service;
 
 /**
  * author:zhangyuhui

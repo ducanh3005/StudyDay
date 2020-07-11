@@ -4,7 +4,7 @@
     <application>
         <activity android:name=".base.BaseActivity" />
 
-        <service android:name=".service.ApiService"
+        <service android:name="com.darly.api.service.ApiService"
             android:process=":api"/>
     </application>
 </manifest>

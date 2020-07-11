@@ -1,4 +1,4 @@
-package com.darly.chinese.service;
+package com.darly.api.base;
 
 import android.content.BroadcastReceiver;
 import android.content.Context;
