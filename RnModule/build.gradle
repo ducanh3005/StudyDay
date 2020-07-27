@@ -63,8 +63,8 @@ dependencies {
     //SVG图标配置，使用ICONFONT
     api project(path: ':react-native-svg')
     //高德地图
-    api 'com.amap.api:map2d:latest.integration'
-    api 'com.amap.api:location:latest.integration'
+    api 'com.amap.api:map2d:6.0.0'
+    api 'com.amap.api:location:5.1.0'
     //底层工具类
     api project(path: ':Dlcommon')
 }

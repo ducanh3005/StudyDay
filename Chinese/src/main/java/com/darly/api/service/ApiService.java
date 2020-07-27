@@ -7,6 +7,8 @@ import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 
+import com.darly.api.base.ApiCons;
+import com.darly.api.base.BaseServiceModel;
 import com.darly.api.base.ServiceStartEntry;
 import com.darly.dlcommon.common.dlog.DLog;
 
@@ -29,8 +31,8 @@ public class ApiService extends Service {
     public int onStartCommand(Intent intent, int flags, int startId) {
         // 创建对象，端口我这里设置为8080
         DLog.d("[ApiService 启动中...]");
-        boolean start = ServiceStartEntry.initService();
-        if (start) {
+        BaseServiceModel start = ServiceStartEntry.initService();
+        if (start.getCode() == ApiCons.SUCCESS) {
             //当服务初始化完成后，启动服务。
             HttpService myServer = new HttpService(8089);
             try {
