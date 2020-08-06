@@ -28,7 +28,7 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
             String localIp = NetUtil.getIPAddress(context);
             if (!StringUtil.isEmpty(localIp)) {
                 SpController.getInstance().putValue(NetUtil.SYSTEM_IP, localIp);
-                String url = "http://" + localIp + ":8089";
+                String url = "http://" + localIp + ":55550";
                 RxjavaRetrofitRequestUtil.setBaseUrl(url);
                 WritableMap ip = Arguments.createMap();
                 ip.putString(NetUtil.SYSTEM_IP, localIp);

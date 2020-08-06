@@ -115,7 +115,6 @@ public class DataReposController {
         List<SongCiAuthorBean> keys = new ArrayList<>();
         Log.d("DataReposController", "内存开始查询");
         for (SongCiAuthorBean bean : beans) {
-            DLog.d("查询的对象：" + bean.toString());
             if (bean.getName() != null && bean.getName().contains("李")) {
                 keys.add(bean);
             }

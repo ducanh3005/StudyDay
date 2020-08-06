@@ -9,14 +9,14 @@ class AdminLoadTest(TaskSet):
   登录实例方法
   :return: 
   """
-  self.client.post("http://localhost:8089/mobile/value",
+  self.client.post("http://localhost:55550/mobile/value",
        {"user_account": "admin", "password": "123456"})
  def logout(self):
   """
   登出实例方法
   :return:
   """
-  self.client.get("http://localhost:8089/mobile/key")
+  self.client.get("http://localhost:55550/mobile/key")
  def on_start(self):
   """
   当任何一个task调度执行之前,
@@ -39,7 +39,7 @@ class AdminLoadTest(TaskSet):
   对后台主页进行压测
   :return:
   """
-  self.client.get("http://localhost:8089/mobile/key")
+  self.client.get("http://localhost:55550/mobile/key")
 class RunLoadTests(HttpLocust):
  """
  创建运行压测类

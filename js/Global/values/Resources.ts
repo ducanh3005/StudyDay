@@ -12,7 +12,7 @@ const hairlineWidth = StyleSheet.hairlineWidth;
 
 const color ={
     titleBg:'#bcb1ec',
-    white:'#88ffff',
+    white:'#ffffff',
     focusedTab:'#458B74',
     unfocusedTab:'#D4F2E7',
 }
@@ -73,7 +73,7 @@ const styles = {
         textAlign: 'center',
     },
     text14: {
-        color: '#b326a1',
+        color: '#2b2b2b',
         fontSize: 14,
         textAlign: 'center',
     },

@@ -1,1 +1,1 @@
-### 打开命令：locust -f testscript/locusttest.py --host=https://www.cnblogs.com 
+### 打开命令：locust -f locus_test.py --host=localhost:8090

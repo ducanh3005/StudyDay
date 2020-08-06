@@ -78,7 +78,7 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         //初始化网络工具
         RxInterceptor.setVersionCode(getVersionCode());
         RxInterceptor.init(new RetrofitCfg());
-        String url = "http://" + SpController.getInstance().getValue(NetUtil.SYSTEM_IP) + ":8089";
+        String url = "http://" + SpController.getInstance().getValue(NetUtil.SYSTEM_IP) + ":55550";
         RxjavaRetrofitRequestUtil.setBaseUrl(url);
 
         RNModule.init().initRetrofit(NotificationToApp.class);

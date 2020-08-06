@@ -29,12 +29,12 @@ public class ApiService extends Service {
 
     @Override
     public int onStartCommand(Intent intent, int flags, int startId) {
-        // 创建对象，端口我这里设置为8080
+        // 创建对象，端口我这里设置为55550
         DLog.d("[ApiService 启动中...]");
         BaseServiceModel start = ServiceStartEntry.initService();
         if (start.getCode() == ApiCons.SUCCESS) {
             //当服务初始化完成后，启动服务。
-            HttpService myServer = new HttpService(8089);
+            HttpService myServer = new HttpService(55550);
             try {
                 // 开启HTTP服务
                 myServer.start();
