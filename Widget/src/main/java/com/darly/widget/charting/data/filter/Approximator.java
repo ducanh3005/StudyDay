@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.data.filter;
 
 import android.annotation.TargetApi;

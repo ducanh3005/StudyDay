@@ -8,8 +8,8 @@ import com.darly.widget.charting.components.YAxis;
 import com.darly.widget.charting.data.DataSet;
 import com.darly.widget.charting.data.Entry;
 import com.darly.widget.charting.formatter.ValueFormatter;
-import com.darly.widget.charting.utils.MPPointF;
 import com.darly.widget.charting.model.GradientColor;
+import com.darly.widget.charting.utils.MPPointF;
 
 import java.util.List;
 
@@ -78,13 +78,11 @@ public interface IDataSet<T extends Entry> {
      * INFORMATION: This method does calculations at runtime. Do
      * not over-use in performance critical situations.
      *
-     * @param xValue the x-value
+     * @param xValue     the x-value
      * @param closestToY If there are multiple y-values for the specified x-value,
-     * @param rounding determine whether to round up/down/closest
-     *                 if there is no Entry matching the provided x-value
+     * @param rounding   determine whether to round up/down/closest
+     *                   if there is no Entry matching the provided x-value
      * @return
-     *
-     *
      */
     T getEntryForXValue(float xValue, float closestToY, DataSet.Rounding rounding);
 
@@ -96,8 +94,7 @@ public interface IDataSet<T extends Entry> {
      * INFORMATION: This method does calculations at runtime. Do
      * not over-use in performance critical situations.
      *
-     *
-     * @param xValue the x-value
+     * @param xValue     the x-value
      * @param closestToY If there are multiple y-values for the specified x-value,
      * @return
      */
@@ -130,10 +127,10 @@ public interface IDataSet<T extends Entry> {
      * INFORMATION: This method does calculations at runtime. Do
      * not over-use in performance critical situations.
      *
-     * @param xValue the x-value
+     * @param xValue     the x-value
      * @param closestToY If there are multiple y-values for the specified x-value,
-     * @param rounding determine whether to round up/down/closest
-     *                 if there is no Entry matching the provided x-value
+     * @param rounding   determine whether to round up/down/closest
+     *                   if there is no Entry matching the provided x-value
      * @return
      */
     int getEntryIndex(float xValue, float closestToY, DataSet.Rounding rounding);
@@ -444,9 +441,10 @@ public interface IDataSet<T extends Entry> {
 
     /**
      * set this to true to draw y-values on the chart.
-     *
+     * <p>
      * NOTE (for bar and line charts): if `maxVisibleCount` is reached, no values will be drawn even
      * if this is enabled
+     *
      * @param enabled
      */
     void setDrawValues(boolean enabled);
@@ -460,7 +458,7 @@ public interface IDataSet<T extends Entry> {
 
     /**
      * Set this to true to draw y-icons on the chart.
-     *
+     * <p>
      * NOTE (for bar and line charts): if `maxVisibleCount` is reached, no icons will be drawn even
      * if this is enabled
      *
@@ -477,10 +475,11 @@ public interface IDataSet<T extends Entry> {
 
     /**
      * Offset of icons drawn on the chart.
-     *
+     * <p>
      * For all charts except Pie and Radar it will be ordinary (x offset,y offset).
-     *
+     * <p>
      * For Pie and Radar chart it will be (y offset, distance from center offset); so if you want icon to be rendered under value, you should increase X component of CGPoint, and if you want icon to be rendered closet to center, you should decrease height component of CGPoint.
+     *
      * @param offset
      */
     void setIconsOffset(MPPointF offset);

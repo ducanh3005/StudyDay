@@ -16,6 +16,7 @@ import android.view.animation.Transformation;
 /**
  * Description 该类功能为：动画类
  * Package com.darly.widget.sidemenu.animation
+ *
  * @author zhangyuhui
  * @date 2019/8/21
  * Company 山东新北洋信息技术股份有限公司西安分公司

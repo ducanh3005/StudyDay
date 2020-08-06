@@ -11,6 +11,7 @@ package com.darly.widget.sidemenu.interfaces;
 /**
  * Description 该类功能为：资源接口
  * Package com.darly.widget.sidemenu.interfaces
+ *
  * @author zhangyuhui
  * @date 2019/8/21
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -19,11 +20,14 @@ package com.darly.widget.sidemenu.interfaces;
 public interface Resourceble {
     /**
      * 获取图片资源
+     *
      * @return 图片
      */
     int getImageRes();
 
-    /**获取名称
+    /**
+     * 获取名称
+     *
      * @return 名称
      */
     String getName();
