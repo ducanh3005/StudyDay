@@ -13,7 +13,9 @@ import android.util.Log;
 import com.darly.dlcommon.common.dlog.DLog;
 
 
-/**基础日志类。
+/**
+ * 基础日志类。
+ *
  * @author Darly/张宇辉/2017/11/23 14:18
  * @version 1.0/com.darly.common
  */

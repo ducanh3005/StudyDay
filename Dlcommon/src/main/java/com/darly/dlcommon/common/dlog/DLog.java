@@ -19,6 +19,7 @@ import com.darly.dlcommon.common.dlog.klog.XmlLog;
 import java.io.File;
 import java.io.PrintWriter;
 import java.io.StringWriter;
+
 /**
  * This is a Log tool，with this you can the following
  * 15/11/17 扩展功能，添加对文件的支持
@@ -28,6 +29,7 @@ import java.io.StringWriter;
  * 16/6/13  扩展功能，添加对自定义全局Tag的支持,修复内部类不能点击跳转的BUG
  * 16/6/15  扩展功能，添加不能关闭的KLog.debug(),用于发布版本的Log打印,优化部分代码
  * 16/6/20  扩展功能，添加堆栈跟踪功能KLog.trace()
+ *
  * @author Darly/张宇辉/2017/11/23 14:18
  * @version 1.0/com.darly.common
  */
@@ -65,7 +67,7 @@ public final class DLog {
         IS_SHOW_LOG = isShowLog;
     }
 
-    public static void init(boolean isShowLog,  String tag) {
+    public static void init(boolean isShowLog, String tag) {
         IS_SHOW_LOG = isShowLog;
         mGlobalTag = tag;
         mIsGlobalTagEmpty = TextUtils.isEmpty(mGlobalTag);

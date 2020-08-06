@@ -79,7 +79,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mPaintView = (CustomPaintView)getActivity().findViewById(R.id.custom_paint_view);
+        mPaintView = (CustomPaintView) getActivity().findViewById(R.id.custom_paint_view);
         backToMenu = mainView.findViewById(R.id.back_to_main);
         mPaintModeView = (PaintModeView) mainView.findViewById(R.id.paint_thumb);
         mColorListView = (RecyclerView) mainView.findViewById(R.id.paint_color_list);
@@ -299,7 +299,7 @@ public class PaintFragment extends BaseEditFragment implements View.OnClickListe
         @Override
         public void onPostResult(Bitmap result) {
             mPaintView.reset();
-            activity.changeMainBitmap(result , true);
+            activity.changeMainBitmap(result, true);
             backToMain();
         }
     }//end inner class

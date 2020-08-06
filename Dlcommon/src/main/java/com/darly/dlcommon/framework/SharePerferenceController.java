@@ -40,16 +40,17 @@ public class SharePerferenceController {
         sp.putInt(key, postion);
         sp.commit();
     }
-    public int getValue(String key,int df) {
+
+    public int getValue(String key, int df) {
         SharedPreferences sp = context.getSharedPreferences(getSpName(),
                 Context.MODE_PRIVATE);
-        return sp.getInt(key,df);
+        return sp.getInt(key, df);
     }
 
     public boolean getBoolean(String key) {
         SharedPreferences sp = context.getSharedPreferences(getSpName(),
                 Context.MODE_PRIVATE);
-        return sp.getBoolean(key,false);
+        return sp.getBoolean(key, false);
     }
 
     public void putValue(String key, Boolean obj) {

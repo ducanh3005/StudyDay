@@ -10,15 +10,16 @@ package com.darly.dlcommon.common.dlog.klog;
 
 import android.util.Log;
 
-
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.dlog.DLogUtil;
 
 import org.json.JSONArray;
 import org.json.JSONException;
 import org.json.JSONObject;
+
 /**
  * 输出JSON工具类。
+ *
  * @author Darly/张宇辉/2017/11/23 14:18
  * @version 1.0/com.darly.common
  */

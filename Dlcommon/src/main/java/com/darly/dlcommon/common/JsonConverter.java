@@ -23,6 +23,7 @@ import java.util.Map;
 /**
  * Description TODO: 使用FastJson进行对象解析
  * Package com.darly.dlcommon.common
+ *
  * @author zhangyuhui
  * Date 2019/8/5 17:39
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -56,7 +57,7 @@ public class JsonConverter {
     }
 
     public static Object[] toArray(String var0) {
-        return toArray(var0, (Class)null);
+        return toArray(var0, (Class) null);
     }
 
     public static <T> Object[] toArray(String var0, Class<T> var1) {

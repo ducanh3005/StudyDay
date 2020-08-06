@@ -3,12 +3,12 @@ package com.darly.chinese.table;
 import android.os.Parcel;
 import android.os.Parcelable;
 
-public class BlackTable implements Parcelable{
+public class BlackTable implements Parcelable {
     private int id;
-    private String  key0;
-    private String  key15;
-    private String  key30;
-    private String  key45;
+    private String key0;
+    private String key15;
+    private String key30;
+    private String key45;
 
     public BlackTable() {
     }
@@ -58,14 +58,14 @@ public class BlackTable implements Parcelable{
     }
 
 
-
-
     @Override
     public int describeContents() {
         return 0;
     }
 
-    /**把javanbean中的数据写到Parcel
+    /**
+     * 把javanbean中的数据写到Parcel
+     *
      * @param dest
      * @param flags
      */

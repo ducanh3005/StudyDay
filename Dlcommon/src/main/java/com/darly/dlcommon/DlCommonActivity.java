@@ -9,15 +9,17 @@
 package com.darly.dlcommon;
 
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.fragment.app.FragmentActivity;
 import android.view.View;
 import android.widget.Button;
 import android.widget.LinearLayout;
 
+import androidx.annotation.Nullable;
+import androidx.fragment.app.FragmentActivity;
+
 /**
  * Description TODO:工具类测试界面
  * Package com.darly.dlcommon
+ *
  * @author zhangyuhui
  * Date 2019/7/31 16:32
  * Company 山东新北洋信息技术股份有限公司西安分公司

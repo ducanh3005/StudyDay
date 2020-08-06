@@ -13,6 +13,7 @@ import com.raizlabs.android.dbflow.annotation.Database;
 /**
  * Description TODO:数据库
  * Package com.darly.dlcommon.db.version.database
+ *
  * @author zhangyuhui
  * Date 2019/7/31 17:28
  * Company 山东新北洋信息技术股份有限公司西安分公司

@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.buffer;
 
 import com.darly.widget.charting.data.BarEntry;
@@ -20,7 +19,7 @@ public class HorizontalBarBuffer extends BarBuffer {
 
             BarEntry e = data.getEntryForIndex(i);
 
-            if(e == null)
+            if (e == null)
                 continue;
 
             float x = e.getX();

@@ -18,13 +18,14 @@ import java.util.List;
 /**
  * Description TODO:数据库操作类
  * Package com.darly.dlcommon.db.chinese
+ *
  * @author zhangyuhui
  * Date 2019/7/31 17:47
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
 public class DataBaseController {
-    private DataBaseController(){
+    private DataBaseController() {
     }
 
     ///////////////////////////////////////////////////////////////////////////
@@ -33,11 +34,10 @@ public class DataBaseController {
 
     /**
      * Description：该方法功能为：线程安全，直接使用DBFlow进行保存操作。
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
      *
      * @param t 传递进来的表对象
      * @return 返回成功失败
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> boolean save(T t) {
         return t.save();
@@ -50,11 +50,10 @@ public class DataBaseController {
 
     /**
      * Description：该方法功能为：线程安全，直接使用DBFlow进行删除该数据操作。
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
      *
      * @param t 传递进来的表对象
      * @return 返回成功失败
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> boolean delete(T t) {
         return t.delete();
@@ -65,11 +64,10 @@ public class DataBaseController {
      * <demo>
      * DataBaseCommon.deleteByOperater(PayTypeConfigBean.class,PayTypeConfigBean_Table.five_dime.eq(true), PayTypeConfigBean_Table.one_yuan_coin.eq(true));
      * <demo/>
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
      *
      * @param t 传递进来的表对象
      * @return 返回成功失败
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> void deleteByOperater(Class<T> t, SQLOperator... conditions) {
         SQLite.delete(t).where(conditions).execute();
@@ -77,10 +75,9 @@ public class DataBaseController {
 
     /**
      * Description：该方法功能为：线程安全，清空表。
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
      *
      * @param cls 传递进来的表对象
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> void clear(Class<T> cls) {
         SQLite.delete(cls).execute();
@@ -93,36 +90,36 @@ public class DataBaseController {
 
     /**
      * Description：该方法功能为：根据输入的对象参数。获取该表的所有数据。示例：List<PayTypeConfigBean> ben = DataBaseCommon.findAll(PayTypeConfigBean.class);
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
+     *
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> List<T> selectAll(Class<T> t) {
         return SQLite.select().from(t).queryList();
     }
 
 
-
     /**
      * Description：该方法功能为：线程安全，根据提供的类，根据提供的条件，获取适合该条件的数据
      * <demo>
      * OrderBy ob  =  OrderBy.fromProperty(PayTypeConfigBean_Table.auto_id).ascending();//升序
      * DataBaseCommon.selectByConditions(PayTypeConfigBean.class,ob,PayTypeConfigBean_Table.fifty_yuan_note.eq(true));
      * </demo>
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
+     *
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> List<T> selectByConditions(Class<T> t, OrderBy orderBy, SQLOperator... conditions) {
         return SQLite.select().from(t).where(conditions).orderBy(orderBy).queryList();
     }
+
     /**
      * Description：该方法功能为：线程安全，根据提供的类，进行分页查询
+     *
      * @param limit 每页多少条数据
-     * @param page 第几页
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
+     * @param page  第几页
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
-    public static synchronized <T extends BaseModel> List<T> selectByLimit(Class<T> t, int limit,int page) {
-       return SQLite.select().from(t).limit(limit).offset(page * limit).queryList();
+    public static synchronized <T extends BaseModel> List<T> selectByLimit(Class<T> t, int limit, int page) {
+        return SQLite.select().from(t).limit(limit).offset(page * limit).queryList();
     }
 
     /**
@@ -131,8 +128,8 @@ public class DataBaseController {
      * OrderBy ob  =  OrderBy.fromProperty(PayTypeConfigBean_Table.auto_id).ascending();//升序
      * DataBaseCommon.selectByConditions(PayTypeConfigBean.class,ob,PayTypeConfigBean_Table.fifty_yuan_note.eq(true));
      * </demo>
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
+     *
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> List<T> selectByConditionsList(Class<T> t, List<OrderBy> orderBy, SQLOperator... conditions) {
         if (orderBy != null) {
@@ -145,8 +142,8 @@ public class DataBaseController {
 
     /**
      * Description：该方法功能为：线程安全，根据提供的类，查询第一条数据
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
+     *
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> T selectSingle(Class<T> t) {
         return SQLite.select().from(t).querySingle();
@@ -158,8 +155,8 @@ public class DataBaseController {
      * OrderBy ob  =  OrderBy.fromProperty(PayTypeConfigBean_Table.auto_id).ascending();//升序
      * DataBaseCommon.selectByConditionsSingle(PayTypeConfigBean.class,ob,PayTypeConfigBean_Table.fifty_yuan_note.eq(true));
      * </demo>
-     * @author：zhangyuhui
-     * Data：2019/6/24 19:27
+     *
+     * @author：zhangyuhui Data：2019/6/24 19:27
      */
     public static synchronized <T extends BaseModel> T selectByConditionsSingle(Class<T> t, OrderBy orderBy, SQLOperator... conditions) {
         return SQLite.select().from(t).where(conditions).orderBy(orderBy).querySingle();
@@ -168,12 +165,13 @@ public class DataBaseController {
 
     /**
      * 查询数据条数
-     * @param t   表
+     *
+     * @param t 表
      * @return 查询条数
      */
     public static synchronized <T extends BaseModel> long selectCount(Class<T> t) {
         List model = SQLite.select().from(t).queryList();
-        return model !=null?model.size():0;
+        return model != null ? model.size() : 0;
     }
 
 

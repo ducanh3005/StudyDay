@@ -19,6 +19,7 @@ import com.raizlabs.android.dbflow.config.FlowManager;
 /**
  * Description TODO: 基础APPlication
  * Package com.darly.chinese
+ *
  * @author zhangyuhui
  * @date 2019/8/1 14:45
  * Company 山东新北洋信息技术股份有限公司西安分公司

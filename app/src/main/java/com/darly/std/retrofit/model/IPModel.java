@@ -12,7 +12,7 @@ public class IPModel extends BaseModel {
 
     private SubModel data;
 
-    public IPModel(){
+    public IPModel() {
 
     }
 

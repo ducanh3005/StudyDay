@@ -16,13 +16,13 @@ import android.net.ConnectivityManager;
 
 import androidx.multidex.MultiDex;
 
+import com.darly.api.base.NetStateChangeReceiver;
+import com.darly.api.service.ApiService;
 import com.darly.chinese.ChineseApplication;
 import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
-import com.darly.api.service.ApiService;
-import com.darly.api.base.NetStateChangeReceiver;
-import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.common.dlog.DLog;
+import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.retrofit.RxInterceptor;
 import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.rnmodule.RnModulePackage;
@@ -45,6 +45,7 @@ import java.util.List;
 /**
  * Description TODO:
  * Package com.darly.std
+ *
  * @author zhangyuhui
  * Date 2019/8/1 14:44
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -61,7 +62,7 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         // 方法数量大于65536
         MultiDex.install(this);
 
-        if (BuildConfig.DEBUG){
+        if (BuildConfig.DEBUG) {
             ExternalStorageUtil.delete();
         }
         SoLoader.init(this, false);
@@ -69,15 +70,15 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         SpController.getInstance().putValue(NetUtil.SYSTEM_IP, NetUtil.getIPAddress(this));
         //启动服务器
         DLog.d("[BaseApplication 服务启动中...]");
-        Intent service = new Intent(this,ApiService.class);
+        Intent service = new Intent(this, ApiService.class);
         startService(service);
         receiver = new NetStateChangeReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
-        registerReceiver(receiver,intentFilter);
+        registerReceiver(receiver, intentFilter);
         //初始化网络工具
         RxInterceptor.setVersionCode(getVersionCode());
         RxInterceptor.init(new RetrofitCfg());
-        String url = "http://"+ SpController.getInstance().getValue(NetUtil.SYSTEM_IP)+":8089";
+        String url = "http://" + SpController.getInstance().getValue(NetUtil.SYSTEM_IP) + ":8089";
         RxjavaRetrofitRequestUtil.setBaseUrl(url);
 
         RNModule.init().initRetrofit(NotificationToApp.class);
@@ -131,7 +132,7 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         super.onTerminate();
         //关闭服务器
         DLog.d("[BaseApplication 服务关闭中...]");
-        Intent service = new Intent(this,ApiService.class);
+        Intent service = new Intent(this, ApiService.class);
         stopService(service);
         unregisterReceiver(receiver);
     }

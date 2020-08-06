@@ -29,17 +29,17 @@ public class ListModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void showToast(){
+    public void showToast() {
         Log.d(ModuleEnum.LISTMODULE.getDesc(), "showToast() called");
     }
 
     @ReactMethod
-    public void showActin(String key){
+    public void showActin(String key) {
         Log.d(ModuleEnum.LISTMODULE.getDesc(), "showToast() called with: key = [" + key + "]");
     }
 
     @ReactMethod
-    public void showExit(String key, Promise promise){
+    public void showExit(String key, Promise promise) {
         Log.d(ModuleEnum.LISTMODULE.getDesc(), "showToast() called with: key = [" + key + "], promise = [" + promise + "]");
         promise.resolve(key);
 
@@ -53,9 +53,9 @@ public class ListModule extends ReactContextBaseJavaModule {
         try {
             getCurrentActivity().setResult(Activity.RESULT_OK);
             getCurrentActivity().finish();
-        }catch (Exception e){
+        } catch (Exception e) {
 
-        }catch (Error e){
+        } catch (Error e) {
 
         }
     }

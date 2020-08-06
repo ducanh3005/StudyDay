@@ -37,7 +37,7 @@ public class StickerView extends View {
 
     private LinkedHashMap<Integer, StickerItem> bank = new LinkedHashMap<Integer, StickerItem>();// 存贮每层贴图数据
 
-    private Point mPoint = new Point(0 , 0);
+    private Point mPoint = new Point(0, 0);
 
     public StickerView(Context context) {
         super(context);
@@ -119,7 +119,7 @@ public class StickerView extends View {
                         currentStatus = STATUS_ROTATE;
                         oldx = x;
                         oldy = y;
-                    } else if (detectInItemContent(item , x , y)) {// 移动模式
+                    } else if (detectInItemContent(item, x, y)) {// 移动模式
                         // 被选中一张贴图
                         ret = true;
                         if (currentItem != null) {
@@ -180,16 +180,17 @@ public class StickerView extends View {
 
     /**
      * 判定点击点是否在内容范围之内  需考虑旋转
+     *
      * @param item
      * @param x
      * @param y
      * @return
      */
-    private boolean detectInItemContent(StickerItem item , float x , float y){
+    private boolean detectInItemContent(StickerItem item, float x, float y) {
         //reset
-        mPoint.set((int)x , (int)y);
+        mPoint.set((int) x, (int) y);
         //旋转点击点
-        RectUtil.rotatePoint(mPoint , item.helpBox.centerX() , item.helpBox.centerY() , -item.roatetAngle);
+        RectUtil.rotatePoint(mPoint, item.helpBox.centerX(), item.helpBox.centerY(), -item.roatetAngle);
         return item.helpBox.contains(mPoint.x, mPoint.y);
     }
 

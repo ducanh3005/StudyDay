@@ -2,7 +2,6 @@ package com.darly.chinese.entitycontroller;
 
 import android.os.Bundle;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
@@ -27,7 +26,6 @@ public abstract class UpdateEntityActivity<B extends ViewDataBinding, V extends 
     protected V viewModel;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -47,7 +45,7 @@ public abstract class UpdateEntityActivity<B extends ViewDataBinding, V extends 
      */
     protected void initHeader() {
         TitleBar toolbar = getTitleBar();
-        if (toolbar!=null) {
+        if (toolbar != null) {
             toolbar.setCenterTitle(getTitleName());
             setSupportActionBar(toolbar);
             getSupportActionBar().setDisplayHomeAsUpEnabled(false);
@@ -59,12 +57,14 @@ public abstract class UpdateEntityActivity<B extends ViewDataBinding, V extends 
 
     /**
      * 从子界面中获取标题栏
+     *
      * @return 标题栏
      */
     protected abstract TitleBar getTitleBar();
 
     /**
      * 获取标题栏名称
+     *
      * @return 返回名称
      */
     protected String getTitleName() {
@@ -111,11 +111,11 @@ public abstract class UpdateEntityActivity<B extends ViewDataBinding, V extends 
 
     @Override
     public void onClick(View view) {
-        if (view.getId()== R.id.toolbar_leftButton){
+        if (view.getId() == R.id.toolbar_leftButton) {
             finish();
-        }else if (view.getId()== R.id.toolbar_rightButton){
+        } else if (view.getId() == R.id.toolbar_rightButton) {
             save();
-        }else if (view.getId()== R.id.toolbar_rightButton_img){
+        } else if (view.getId() == R.id.toolbar_rightButton_img) {
 
         }
 
@@ -124,8 +124,8 @@ public abstract class UpdateEntityActivity<B extends ViewDataBinding, V extends 
     /**
      * 保存操作
      */
-    public void save(){
-        ToastController.showShort(this,"save");
+    public void save() {
+        ToastController.showShort(this, "save");
 
     }
 

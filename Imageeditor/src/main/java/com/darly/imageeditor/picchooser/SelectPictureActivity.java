@@ -1,4 +1,3 @@
-
 package com.darly.imageeditor.picchooser;
 
 import android.content.Intent;

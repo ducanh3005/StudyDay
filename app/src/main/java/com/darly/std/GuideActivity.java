@@ -23,22 +23,10 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.dlcommon.common.dlog.DLog;
-import com.darly.dlcommon.common.net.NetUtil;
-import com.darly.dlcommon.framework.ContextController;
-import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
-import com.darly.rnmodule.ui.RNNavigatorActivity;
+import com.darly.chinese.db.chinese.bean.ParsableBean;
 import com.darly.std.databinding.ActivityGuideBinding;
-import com.darly.std.retrofit.HttpInterface;
-import com.darly.std.ui.ListViewActivity;
 import com.darly.std.vm.GuideViewModel;
 import com.darly.widget.titlebar.TitleBar;
-import com.google.gson.JsonObject;
-
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 import static com.darly.std.vm.GuideViewModel.Action.MAINPRO;
 import static com.darly.std.vm.GuideViewModel.Action.NEXTPAGE;
@@ -88,62 +76,19 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
 
     @Override
     public void initView(Bundle savedInstanceState) {
-        if (BuildConfig.DEBUG){
-            //DEBUG模式下，直接跳转界面
-
-            Toast.makeText(this, "DEBUG模式", Toast.LENGTH_SHORT).show();
-            handler.postDelayed(new Runnable() {
-                @Override
-                public void run() {
-                    //尝试网络请求
-
-                    RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getKey((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
-                            .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
-                            .observeOn(AndroidSchedulers.mainThread())
-                            .map(new Func1<JsonObject, String >() {
-                                @Override
-                                public String call(JsonObject s) {
-                                    DLog.json("Func1", s.toString());
-                                    return s.toString();
-                                }
-                            })
-                            .subscribe(new rx.Observer<String>() {
-                                @Override
-                                public void onCompleted() {
-
-                                }
-
-                                @Override
-                                public void onError(Throwable e) {
-
-                                }
-
-                                @Override
-                                public void onNext(String s) {
-                                    DLog.json("onNext", s);
-                                  startActivity(new Intent(GuideActivity.this, ListViewActivity.class));
-//                                    startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
-                                    finish();
-                                }
-                            });
-                }
-            }, 1000);
-        }else {
-            if (Build.VERSION.SDK_INT >= 23) {
-                //缺少权限，进行权限申请
-                if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
-                    ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION);
-                    return;
-                } else {
-                    //权限同意，不需要处理
-                    viewModel.resourceInit();
-                }
+        if (Build.VERSION.SDK_INT >= 23) {
+            //缺少权限，进行权限申请
+            if (ContextCompat.checkSelfPermission(this, Manifest.permission.WRITE_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED || ContextCompat.checkSelfPermission(this, Manifest.permission.READ_EXTERNAL_STORAGE) != PackageManager.PERMISSION_GRANTED) {
+                ActivityCompat.requestPermissions(this, new String[]{Manifest.permission.WRITE_EXTERNAL_STORAGE, Manifest.permission.READ_EXTERNAL_STORAGE}, PERMISSION);
+                return;
             } else {
-                //低于23 不需要特殊处理
+                //权限同意，不需要处理
                 viewModel.resourceInit();
             }
+        } else {
+            //低于23 不需要特殊处理
+            viewModel.resourceInit();
         }
-
     }
 
 
@@ -183,16 +128,12 @@ public class GuideActivity extends BaseActivity<ActivityGuideBinding, GuideViewM
                 handler.postDelayed(new Runnable() {
                     @Override
                     public void run() {
-//                        if (viewModel.getIsOpenReactNative().getValue()){
-                            startActivity(new Intent(GuideActivity.this, RNNavigatorActivity.class));
-//                        }else {
-//                            String json = "{\"action\":\"loginCallBack\"}";
-//                            Intent intent = new Intent(GuideActivity.this, MainActivity.class);
-//                            ParsableBean bean = new ParsableBean();
-//                                bean.skills.add(json);
-//                            intent.putExtra("ParsableBean",bean);
-//                            startActivity(intent);
-//                        }
+                        String json = "{\"action\":\"loginCallBack\"}";
+                        Intent intent = new Intent(GuideActivity.this, MainActivity.class);
+                        ParsableBean bean = new ParsableBean();
+                        bean.skills.add(json);
+                        intent.putExtra("ParsableBean", bean);
+                        startActivity(intent);
                         finish();
                     }
                 }, 1000);

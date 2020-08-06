@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.utils;
 
 import android.graphics.Matrix;
@@ -225,6 +224,7 @@ public class ViewPortHandler {
 
     /**
      * Zooms out to original size.
+     *
      * @param outputMatrix
      */
     public void resetZoom(Matrix outputMatrix) {

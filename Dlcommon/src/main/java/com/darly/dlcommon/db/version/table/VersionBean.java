@@ -21,6 +21,7 @@ import java.util.UUID;
 /**
  * Description TODO:版本信息
  * Package com.darly.dlcommon.db.chinese.table
+ *
  * @author zhangyuhui
  * Date 2019/7/31 17:30
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -85,6 +86,6 @@ public class VersionBean extends BaseModel {
     @NonNull
     @Override
     public String toString() {
-        return " autoId："+autoId+" packagename："+packagename+" versioncode："+versioncode+" versionname:"+versionname;
+        return " autoId：" + autoId + " packagename：" + packagename + " versioncode：" + versioncode + " versionname:" + versionname;
     }
 }

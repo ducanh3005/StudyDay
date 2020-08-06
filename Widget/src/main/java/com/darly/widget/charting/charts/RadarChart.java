@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.charts;
 
 import android.content.Context;

@@ -186,7 +186,7 @@ public class ImageViewTouch extends ImageViewTouchBase {
         if (mFlingListener != null) {
             mFlingListener.onFling(e1, e2, velocityX, velocityY);
         }
-        
+
         if (e1.getPointerCount() > 1 || e2.getPointerCount() > 1)
             return false;
         if (mScaleDetector.isInProgress())

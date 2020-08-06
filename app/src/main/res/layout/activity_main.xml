@@ -21,9 +21,8 @@
             android:layout_width="match_parent"
             android:layout_height="?attr/actionBarSize"
             android:background="@color/blue_sy"
-            app:titleTextAppearance="@style/TitleText"
-            app:showLeft = "false"
-            />
+            app:showLeft="false"
+            app:titleTextAppearance="@style/TitleText" />
 
         <androidx.recyclerview.widget.RecyclerView
             android:layout_width="match_parent"
@@ -72,6 +71,33 @@
                 android:onClick="@{mainViewModel::imageClick}"
                 android:text="图片控件" />
         </RelativeLayout>
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{mainViewModel::navigatorClick}"
+                android:text="navigator" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{mainViewModel::listViewClick}"
+                android:text="listView" />
+
+            <Button
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:onClick="@{mainViewModel::collectionClick}"
+                android:text="collection" />
+        </LinearLayout>
 
         <com.darly.widget.progress.BeautifulProgressBar
             android:id="@+id/id_progress"

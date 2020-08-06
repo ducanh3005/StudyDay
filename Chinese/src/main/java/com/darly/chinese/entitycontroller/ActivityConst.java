@@ -7,7 +7,7 @@ package com.darly.chinese.entitycontroller;
  */
 public class ActivityConst {
 
-    public static final String TITLE ="title";
+    public static final String TITLE = "title";
 
-    public static final String ENTITY ="entity";
+    public static final String ENTITY = "entity";
 }

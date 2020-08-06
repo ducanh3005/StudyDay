@@ -9,9 +9,6 @@
 package com.darly.std.vm;
 
 import android.app.Activity;
-import android.graphics.Color;
-import android.graphics.Paint;
-import android.util.Log;
 import android.view.View;
 import android.widget.ImageView;
 
@@ -23,21 +20,28 @@ import androidx.lifecycle.ViewModel;
 
 import com.bumptech.glide.Glide;
 import com.darly.chinese.common.LogController;
-import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.db.crud.DataReposController;
+import com.darly.dlcommon.common.dlog.DLog;
+import com.darly.dlcommon.common.net.NetUtil;
+import com.darly.dlcommon.framework.ContextController;
+import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.std.BR;
 import com.darly.std.R;
 import com.darly.std.guide.MainGuideComponent;
+import com.darly.std.retrofit.HttpInterface;
 import com.darly.widget.guideview.Guide;
 import com.darly.widget.guideview.GuideBuilder;
+import com.google.gson.JsonObject;
 
-import java.io.File;
 import java.util.Timer;
 import java.util.TimerTask;
 
 import me.tatarka.bindingcollectionadapter2.ItemBinding;
+import rx.android.schedulers.AndroidSchedulers;
+import rx.functions.Func1;
+import rx.schedulers.Schedulers;
 
 /**
  * Description TODO:ViewModel类
@@ -161,6 +165,66 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
         action.postValue(new Action(Action.IMAGEEIDT, null));
     }
 
+    /**
+     * 5. @{viewModel::navigatorClick}
+     * 跳转到图片编辑页面
+     *
+     * @param view 参数
+     */
+    public void navigatorClick(View view) {
+        action.postValue(new Action(Action.RN_NAVIGATOR, null));
+    }
+    /**
+     * 5. @{viewModel::collectionClick}
+     * 跳转到图片编辑页面
+     *
+     * @param view 参数
+     */
+    public void collectionClick(View view) {
+        action.postValue(new Action(Action.COLLECTION_CLICK, null));
+    }
+
+    /**
+     * 5. @{viewModel::listViewClick}
+     * 跳转到图片编辑页面
+     *
+     * @param view 参数
+     */
+    public void listViewClick(View view) {
+
+        //尝试网络请求
+
+        RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getKey((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
+                .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<JsonObject, String >() {
+                    @Override
+                    public String call(JsonObject s) {
+                        DLog.json("Func1", s.toString());
+                        return s.toString();
+                    }
+                })
+                .subscribe(new rx.Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        DLog.json("onNext", s);
+                        action.postValue(new Action(Action.LISTVIEW_CLICK, null));
+                    }
+                });
+
+
+    }
+
 
     public class Action {
         public static final int NEXTPAGE = 0;
@@ -169,6 +233,9 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
         public static final int TABLEEDIT = 3;
         public static final int RNPAGE = 4;
         public static final int RNVISIT = 5;
+        public static final int RN_NAVIGATOR = 6;
+        public static final int LISTVIEW_CLICK = 7;
+        public static final int COLLECTION_CLICK = 8;
 
         private final int mAction;
 

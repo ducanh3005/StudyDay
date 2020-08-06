@@ -11,6 +11,7 @@ package com.darly.std.math;
 /**
  * Description TODO: 计算题
  * Package com.darly.std.math
+ *
  * @author zhangyuhui
  * Date 2019/7/25 14:44
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -23,19 +24,20 @@ public class MathLib {
      * 出题人：——阿里巴巴出题专家：文景／阿里云 CDN 资深技术专家
      * 牛顿迭代法:  y = (x + c / x) / 2;
      * 实际上求的结果是曲线和X轴交接的地方
+     *
      * @param cons 输入参数
      * @return 返回结果（无限趋近的算法）
      */
-    public static double sqrt(double cons){
-        if (cons<0){
+    public static double sqrt(double cons) {
+        if (cons < 0) {
             return Double.NaN;
         }
         double per = cons;
-        double next = (per+per/cons)/2;
+        double next = (per + per / cons) / 2;
         double lead = 1e-15;
-        while (Math.abs(per-next)>lead){
+        while (Math.abs(per - next) > lead) {
             per = next;
-            next = (per+per/cons)/2;
+            next = (per + per / cons) / 2;
         }
         return per;
     }

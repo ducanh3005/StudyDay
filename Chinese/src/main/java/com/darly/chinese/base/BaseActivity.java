@@ -41,7 +41,6 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
     protected V viewModel;
 
 
-
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
@@ -52,7 +51,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
 
         initView(savedInstanceState);
         initObservableView();
-        
+
         initHeader();
     }
 
@@ -61,7 +60,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
      */
     protected void initHeader() {
         TitleBar bar = getTitleBar();
-        if (bar!=null) {
+        if (bar != null) {
             bar.setOnLeftButtonClickListener(this);
         }
     }
@@ -125,7 +124,7 @@ public abstract class BaseActivity<B extends ViewDataBinding, V extends ViewMode
     }
 
 
-    public boolean isEmpty(String arg){
+    public boolean isEmpty(String arg) {
         return StringUtil.isEmpty(arg);
     }
 

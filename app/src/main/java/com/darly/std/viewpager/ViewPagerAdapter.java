@@ -9,19 +9,21 @@
 package com.darly.std.viewpager;
 
 import android.content.Context;
-import androidx.databinding.DataBindingUtil;
-import androidx.databinding.ViewDataBinding;
-import androidx.annotation.NonNull;
-import androidx.viewpager.widget.PagerAdapter;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.ViewGroup;
+
+import androidx.annotation.NonNull;
+import androidx.databinding.DataBindingUtil;
+import androidx.databinding.ViewDataBinding;
+import androidx.viewpager.widget.PagerAdapter;
 
 import java.util.List;
 
 /**
  * Description TODO:ViewPager适配器
  * Package com.darly.std.viewpager
+ *
  * @author zhangyuhui
  * Date 2019/7/25 13:28
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -57,8 +59,8 @@ public class ViewPagerAdapter<T> extends PagerAdapter {
     @NonNull
     @Override
     public Object instantiateItem(@NonNull ViewGroup container, int position) {
-        ViewDataBinding binding = DataBindingUtil.inflate(layoutInflater,layoutId,container,true);
-        binding.setVariable(variableId,list.get(position));
+        ViewDataBinding binding = DataBindingUtil.inflate(layoutInflater, layoutId, container, true);
+        binding.setVariable(variableId, list.get(position));
         return binding;
     }
 

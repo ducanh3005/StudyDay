@@ -72,7 +72,7 @@ public class AddTextFragment extends BaseEditFragment implements TextWatcher {
     public void onActivityCreated(Bundle savedInstanceState) {
         super.onActivityCreated(savedInstanceState);
 
-        mTextStickerView = (TextStickerView)getActivity().findViewById(R.id.text_sticker_panel);
+        mTextStickerView = (TextStickerView) getActivity().findViewById(R.id.text_sticker_panel);
 
         backToMenu = mainView.findViewById(R.id.back_to_main);
         mInputText = (EditText) mainView.findViewById(R.id.text_input);
@@ -226,7 +226,7 @@ public class AddTextFragment extends BaseEditFragment implements TextWatcher {
             mTextStickerView.clearTextContent();
             mTextStickerView.resetView();
 
-            activity.changeMainBitmap(result , true);
+            activity.changeMainBitmap(result, true);
             backToMain();
         }
     }//end inner class

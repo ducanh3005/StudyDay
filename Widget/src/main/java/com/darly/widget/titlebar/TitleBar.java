@@ -12,7 +12,6 @@ import android.content.Context;
 import android.content.res.TypedArray;
 import android.graphics.drawable.Drawable;
 import android.util.AttributeSet;
-import android.view.Gravity;
 import android.view.View;
 import android.widget.ImageView;
 import android.widget.TextView;
@@ -86,7 +85,7 @@ public class TitleBar extends Toolbar {
         toolbar_leftButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onLeftButtonClickListener!=null) {
+                if (onLeftButtonClickListener != null) {
                     onLeftButtonClickListener.onClick(view);
                 }
             }
@@ -95,7 +94,7 @@ public class TitleBar extends Toolbar {
         toolbar_rightButton.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightButtonClickListener!=null) {
+                if (onRightButtonClickListener != null) {
                     onRightButtonClickListener.onClick(view);
                 }
             }
@@ -103,7 +102,7 @@ public class TitleBar extends Toolbar {
         toolbar_rightButton_img.setOnClickListener(new OnClickListener() {
             @Override
             public void onClick(View view) {
-                if (onRightButtonClickListener!=null) {
+                if (onRightButtonClickListener != null) {
                     onRightButtonClickListener.onClick(view);
                 }
             }
@@ -121,23 +120,23 @@ public class TitleBar extends Toolbar {
             if (left_button_icon != null) {
                 toolbar_leftButton.setImageDrawable(left_button_icon);
             }
-            if (right_button_icon !=null){
+            if (right_button_icon != null) {
                 toolbar_rightButton_img.setImageDrawable(right_button_icon);
             }
             toolbar_leftButton.setVisibility(VISIBLE);
             toolbar_rightButton.setVisibility(VISIBLE);
             toolbar_rightButton_img.setVisibility(GONE);
-            if(toolbar_title != null) {
+            if (toolbar_title != null) {
                 toolbar_title.setText(title);
             }
         }
     }
 
-    public void setCenterTitle(String title){
+    public void setCenterTitle(String title) {
         toolbar_title.setText(title);
     }
 
-    public void setCenterTitle(int resId){
+    public void setCenterTitle(int resId) {
         toolbar_title.setText(resId);
     }
 
@@ -159,9 +158,9 @@ public class TitleBar extends Toolbar {
     }
 
     public void setLeftVisiable(boolean show) {
-        if (show){
+        if (show) {
             toolbar_leftButton.setVisibility(VISIBLE);
-        }else {
+        } else {
             toolbar_leftButton.setVisibility(INVISIBLE);
         }
 
@@ -169,17 +168,17 @@ public class TitleBar extends Toolbar {
 
     public void setRightVisiable(boolean show) {
 
-        if (show){
+        if (show) {
             toolbar_rightButton.setVisibility(VISIBLE);
-        }else {
+        } else {
             toolbar_rightButton.setVisibility(INVISIBLE);
         }
     }
 
     public void setRightImgVisiable(boolean show) {
-        if (show){
+        if (show) {
             toolbar_rightButton_img.setVisibility(VISIBLE);
-        }else {
+        } else {
             toolbar_rightButton_img.setVisibility(GONE);
         }
     }

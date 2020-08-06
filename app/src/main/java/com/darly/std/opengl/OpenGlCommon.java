@@ -19,12 +19,14 @@ import java.nio.ShortBuffer;
  */
 public class OpenGlCommon {
 
-    /**执行着色器
+    /**
+     * 执行着色器
+     *
      * @param type
      * @param shaderCode
      * @return
      */
-    public static int loadShader(int type, String shaderCode){
+    public static int loadShader(int type, String shaderCode) {
         // 创造顶点着色器类型(GLES20.GL_VERTEX_SHADER)
         // 或者是片段着色器类型 (GLES20.GL_FRAGMENT_SHADER)
         int shader = GLES20.glCreateShader(type);
@@ -72,11 +74,13 @@ public class OpenGlCommon {
         return mBuffer;
     }
 
-    /**将short[]转ShortBuffer
+    /**
+     * 将short[]转ShortBuffer
+     *
      * @param arr
      * @return
      */
-    private ShortBuffer shortBufferUtil(short[] arr){
+    private ShortBuffer shortBufferUtil(short[] arr) {
         ShortBuffer mBuffer;
         // 初始化ByteBuffer，长度为arr数组的长度*2，因为一个short占2个字节
         ByteBuffer dlb = ByteBuffer.allocateDirect(

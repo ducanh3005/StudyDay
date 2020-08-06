@@ -46,7 +46,7 @@ public class ParsableBean implements Parcelable {
         public ParsableBean createFromParcel(Parcel source) {//从Parcel中读取数据，返回person对象
             ParsableBean info = new ParsableBean();
             info.selfIntro = source.readString();
-            info. expertise = source.readString();
+            info.expertise = source.readString();
             info.isEmailBound = source.readString();
             info.isMobileBound = source.readString();
             source.readList(info.skills, JSONObject.class.getClassLoader());

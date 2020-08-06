@@ -72,7 +72,7 @@ public class StickerFragment extends BaseEditFragment {
     @Override
     public View onCreateView(LayoutInflater inflater, ViewGroup container,
                              Bundle savedInstanceState) {
-        super.onCreateView(inflater,container,savedInstanceState);
+        super.onCreateView(inflater, container, savedInstanceState);
         mainView = inflater.inflate(R.layout.fragment_edit_image_sticker_type,
                 null);
         //loadStickersData();
@@ -279,7 +279,7 @@ public class StickerFragment extends BaseEditFragment {
         @Override
         public void onPostResult(Bitmap result) {
             mStickerView.clear();
-            activity.changeMainBitmap(result,true);
+            activity.changeMainBitmap(result, true);
             backToMain();
         }
     }// end inner class

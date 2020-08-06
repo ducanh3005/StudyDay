@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.jobs;
 
 import android.view.View;
@@ -15,11 +14,11 @@ public class MoveViewJob extends ViewPortJob {
     private static ObjectPool<MoveViewJob> pool;
 
     static {
-        pool = ObjectPool.create(2, new MoveViewJob(null,0,0,null,null));
+        pool = ObjectPool.create(2, new MoveViewJob(null, 0, 0, null, null));
         pool.setReplenishPercentage(0.5f);
     }
 
-    public static MoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v){
+    public static MoveViewJob getInstance(ViewPortHandler viewPortHandler, float xValue, float yValue, Transformer trans, View v) {
         MoveViewJob result = pool.get();
         result.mViewPortHandler = viewPortHandler;
         result.xValue = xValue;
@@ -29,7 +28,7 @@ public class MoveViewJob extends ViewPortJob {
         return result;
     }
 
-    public static void recycleInstance(MoveViewJob instance){
+    public static void recycleInstance(MoveViewJob instance) {
         pool.recycle(instance);
     }
 

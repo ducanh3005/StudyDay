@@ -5,7 +5,7 @@ package com.darly.dlcommon.common.net;
  * date:2020-05-2211:15
  * description: 网络状态
  */
-public enum  NetworkType {
+public enum NetworkType {
 
     NETWORK_WIFI("WiFi"),
     NETWORK_4G("4G"),
@@ -15,6 +15,7 @@ public enum  NetworkType {
     NETWORK_NO("No network");
 
     private String desc;
+
     NetworkType(String desc) {
         this.desc = desc;
     }

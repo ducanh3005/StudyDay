@@ -10,10 +10,7 @@ package com.darly.std;
 
 import android.content.Intent;
 import android.os.Bundle;
-import android.view.Menu;
-import android.view.MenuItem;
 import android.view.View;
-import android.widget.Toast;
 
 import androidx.annotation.Nullable;
 import androidx.lifecycle.Observer;
@@ -28,11 +25,13 @@ import com.darly.chinese.event.EventController;
 import com.darly.chinese.table.BlackTable;
 import com.darly.imageeditor.editimage.EditImageActivity;
 import com.darly.rnmodule.ui.ListEntityActivity;
+import com.darly.rnmodule.ui.RNNavigatorActivity;
 import com.darly.rnmodule.ui.RNStudyActivity;
 import com.darly.std.crm.SongCiCreateActivity;
 import com.darly.std.databinding.ActivityMainBinding;
 import com.darly.std.ui.BlackTableActivity;
 import com.darly.std.ui.CollectionActivity;
+import com.darly.std.ui.ListViewActivity;
 import com.darly.std.ui.RecyclerViewActivity;
 import com.darly.std.vm.MainViewModel;
 import com.darly.widget.titlebar.TitleBar;
@@ -43,10 +42,13 @@ import java.util.ArrayList;
 import java.util.Random;
 import java.util.UUID;
 
+import static com.darly.std.vm.MainViewModel.Action.COLLECTION_CLICK;
 import static com.darly.std.vm.MainViewModel.Action.IMAGEEIDT;
+import static com.darly.std.vm.MainViewModel.Action.LISTVIEW_CLICK;
 import static com.darly.std.vm.MainViewModel.Action.NEXTPAGE;
 import static com.darly.std.vm.MainViewModel.Action.RNPAGE;
 import static com.darly.std.vm.MainViewModel.Action.RNVISIT;
+import static com.darly.std.vm.MainViewModel.Action.RN_NAVIGATOR;
 import static com.darly.std.vm.MainViewModel.Action.TABLEEDIT;
 import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
 
@@ -59,7 +61,7 @@ import static com.darly.std.vm.MainViewModel.Action.TIMERCOUNT;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements OnRightButtonClickListener{
+public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewModel> implements OnRightButtonClickListener {
 
     @Override
     protected TitleBar getTitleBar() {
@@ -143,6 +145,15 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
             case RNVISIT:
                 startActivity(new Intent(this, ListEntityActivity.class));
                 break;
+            case RN_NAVIGATOR:
+                startActivity(new Intent(this, RNNavigatorActivity.class));
+                break;
+            case LISTVIEW_CLICK:
+                startActivity(new Intent(this, ListViewActivity.class));
+                break;
+            case COLLECTION_CLICK:
+                startActivity(new Intent(this, CollectionActivity.class));
+                break;
         }
     }
 
@@ -193,9 +204,9 @@ public class MainActivity extends BaseActivity<ActivityMainBinding, MainViewMode
         //测试新建功能
         if (new Random().nextBoolean()) {
             SongCiCreateActivity.goCreate(this);
-        }else {
-            SongCiModel data = new SongCiModel(UUID.randomUUID(),"key","KKKKK","hans");
-            SongCiCreateActivity.goEdit(this,"编辑",data);
+        } else {
+            SongCiModel data = new SongCiModel(UUID.randomUUID(), "key", "KKKKK", "hans");
+            SongCiCreateActivity.goEdit(this, "编辑", data);
         }
 
         //统计界面

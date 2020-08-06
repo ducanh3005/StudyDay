@@ -29,13 +29,13 @@ import me.tatarka.bindingcollectionadapter2.ItemBinding;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class TestRecycleViewModel extends ViewModel implements OnItemClickListener<String >{
+public class TestRecycleViewModel extends ViewModel implements OnItemClickListener<String> {
 
     MutableLiveData<Action> action = new MutableLiveData<>();
 
     public TestRecycleViewModel() {
-        for (int i = 0;i<10;i++){
-            items.add(new ItemTestRecycleViewModel(i+"", this));
+        for (int i = 0; i < 10; i++) {
+            items.add(new ItemTestRecycleViewModel(i + "", this));
         }
     }
 

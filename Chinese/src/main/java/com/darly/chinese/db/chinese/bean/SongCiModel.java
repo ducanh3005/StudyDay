@@ -79,6 +79,7 @@ public class SongCiModel extends BaseBean implements Serializable {
                 "paragraphs = " + getParagraphs() +
                 "rhythmic = " + getRhythmic();
     }
+
     public static String getClassName() {
         return "宋词";
     }

@@ -23,14 +23,15 @@ public class EventBusController {
     public EventBusController() {
     }
 
-    public void regist(Object ob){
-       EventBus.getDefault().register(ob);
+    public void regist(Object ob) {
+        EventBus.getDefault().register(ob);
     }
-    public void unregist(Object ob){
+
+    public void unregist(Object ob) {
         EventBus.getDefault().unregister(ob);
     }
 
-    public void postMessage(Object event){
+    public void postMessage(Object event) {
         EventBus.getDefault().post(event);
     }
 }

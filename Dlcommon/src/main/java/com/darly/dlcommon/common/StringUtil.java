@@ -10,8 +10,6 @@ package com.darly.dlcommon.common;
 
 import java.io.IOException;
 import java.io.InputStream;
-import java.lang.reflect.InvocationTargetException;
-import java.lang.reflect.Method;
 import java.util.Scanner;
 
 /**
@@ -28,14 +26,16 @@ public class StringUtil {
     private StringUtil() {
     }
 
-    /**判断字符串是否为空
+    /**
+     * 判断字符串是否为空
+     *
      * @param arg 字符串
      * @return 是否为空
      */
-    public static boolean isEmpty(String arg){
-        if (arg == null||"".equals(arg)){
+    public static boolean isEmpty(String arg) {
+        if (arg == null || "".equals(arg)) {
             return true;
-        }else{
+        } else {
             return false;
         }
     }

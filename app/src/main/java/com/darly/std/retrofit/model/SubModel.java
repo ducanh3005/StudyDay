@@ -9,7 +9,7 @@ public class SubModel {
 
     private String key;
 
-    public SubModel(){
+    public SubModel() {
 
     }
 

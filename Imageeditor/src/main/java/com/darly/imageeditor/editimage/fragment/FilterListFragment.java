@@ -108,7 +108,7 @@ public class FilterListFragment extends BaseEditFragment {
             return;
         } else {// 经滤镜处理后的图片
             // System.out.println("滤镜图片");
-            activity.changeMainBitmap(fliterBit,true);
+            activity.changeMainBitmap(fliterBit, true);
             backToMain();
         }// end if
     }

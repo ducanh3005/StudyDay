@@ -19,11 +19,11 @@ import com.darly.dlcommon.common.bolts.tasks.Task;
  * service provider.
  */
 public interface AppLinkResolver {
-  /**
-   * Asynchronously resolves App Link data for a given URL.
-   *
-   * @param url the URL to resolve into an App Link.
-   * @return the {@link AppLink} for the given URL.
-   */
-  public Task<AppLink> getAppLinkFromUrlInBackground(Uri url);
+    /**
+     * Asynchronously resolves App Link data for a given URL.
+     *
+     * @param url the URL to resolve into an App Link.
+     * @return the {@link AppLink} for the given URL.
+     */
+    public Task<AppLink> getAppLinkFromUrlInBackground(Uri url);
 }

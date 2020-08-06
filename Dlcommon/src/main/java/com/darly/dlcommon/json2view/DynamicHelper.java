@@ -166,7 +166,7 @@ public class DynamicHelper {
                     applyFunction(view, dynProp);
                 }
                 break;
-                case VISIBILITY:{
+                case VISIBILITY: {
                     applyVisibility(view, dynProp);
                 }
                 break;
@@ -380,7 +380,7 @@ public class DynamicHelper {
 
     public static ViewGroup.LayoutParams createLayoutParams(ViewGroup viewGroup) {
         ViewGroup.LayoutParams params = null;
-        if (viewGroup!=null) {
+        if (viewGroup != null) {
             try {
                 /* find parent viewGroup and create LayoutParams of that class */
                 Class layoutClass = viewGroup.getClass();
@@ -460,11 +460,11 @@ public class DynamicHelper {
         if (view != null) {
             switch (property.type) {
                 case DIMEN: {
-                    int[] padding = new int[] {
-                      view.getPaddingLeft(),
-                      view.getPaddingTop(),
-                      view.getPaddingRight(),
-                      view.getPaddingBottom()
+                    int[] padding = new int[]{
+                            view.getPaddingLeft(),
+                            view.getPaddingTop(),
+                            view.getPaddingRight(),
+                            view.getPaddingBottom()
                     };
                     padding[position] = property.getValueInt();
                     view.setPadding(padding[0], padding[1], padding[2], padding[3]);
@@ -523,6 +523,7 @@ public class DynamicHelper {
             }
         }
     }
+
     /**
      * apply clickable in view
      */
@@ -566,22 +567,22 @@ public class DynamicHelper {
     }
 
     /**
-     *  apply visibility in view
+     * apply visibility in view
      */
     private static void applyVisibility(View view, DynamicProperty property) {
         if (view != null) {
             switch (property.type) {
                 case STRING: {
-                    switch (property.getValueString()){
-                        case "gone":{
+                    switch (property.getValueString()) {
+                        case "gone": {
                             view.setVisibility(View.GONE);
                         }
                         break;
-                        case "visible":{
+                        case "visible": {
                             view.setVisibility(View.VISIBLE);
                         }
                         break;
-                        case "invisible":{
+                        case "invisible": {
                             view.setVisibility(View.INVISIBLE);
                         }
                         break;
@@ -641,6 +642,7 @@ public class DynamicHelper {
             }
         }
     }
+
     /**
      * apply the textStyle in textView
      */
@@ -707,7 +709,8 @@ public class DynamicHelper {
                 case REF: {
                     try {
                         d[position] = view.getContext().getResources().getDrawable(getDrawableId(view.getContext(), property.getValueString()));
-                    } catch (Exception e) {}
+                    } catch (Exception e) {
+                    }
                 }
                 break;
                 case BASE64: {
@@ -827,33 +830,33 @@ public class DynamicHelper {
 
                 Class[] argsClass;
                 Object[] argsValue;
-                if (args==null) {
+                if (args == null) {
                     argsClass = new Class[0];
                     argsValue = new Object[0];
                 } else {
                     try {
                         List<Class> classList = new ArrayList<>();
-                        List<Object> valueList= new ArrayList<>();
+                        List<Object> valueList = new ArrayList<>();
 
-                        int i=0;
+                        int i = 0;
                         int count = args.length();
-                        for (; i<count ; i++) {
+                        for (; i < count; i++) {
                             JSONObject argJsonObj = args.getJSONObject(i);
                             boolean isPrimitive = argJsonObj.has("primitive");
-                            String className = argJsonObj.getString( isPrimitive ? "primitive" : "class");
+                            String className = argJsonObj.getString(isPrimitive ? "primitive" : "class");
                             String classFullName = className;
                             if (!classFullName.contains("."))
                                 classFullName = "java.lang." + className;
                             Class clazz = Class.forName(classFullName);
                             if (isPrimitive) {
-                                Class primitiveType = (Class)clazz.getField("TYPE").get(null);
-                                classList.add( primitiveType );
+                                Class primitiveType = (Class) clazz.getField("TYPE").get(null);
+                                classList.add(primitiveType);
                             } else {
-                                classList.add( clazz );
+                                classList.add(clazz);
                             }
 
                             try {
-                                valueList.add( getFromJSON(argJsonObj, "value", clazz) );
+                                valueList.add(getFromJSON(argJsonObj, "value", clazz));
                             } catch (Exception e) {
                                 e.printStackTrace();
                             }
@@ -879,7 +882,6 @@ public class DynamicHelper {
         }
 
     }
-
 
 
     /**
@@ -930,7 +932,7 @@ public class DynamicHelper {
      * convert densityPixel to scaledDensityPixel
      */
     public static float dpToSp(float dp) {
-        return (int) ( dpToPx(dp) / Resources.getSystem().getDisplayMetrics().scaledDensity);
+        return (int) (dpToPx(dp) / Resources.getSystem().getDisplayMetrics().scaledDensity);
     }
 
     /**
@@ -976,15 +978,15 @@ public class DynamicHelper {
     }
 
     private static Object getFromJSON(JSONObject json, String name, Class clazz) throws JSONException {
-        if ((clazz == Integer.class)||(clazz == Integer.TYPE)) {
+        if ((clazz == Integer.class) || (clazz == Integer.TYPE)) {
             return json.getInt(name);
-        } else if ((clazz == Boolean.class)||(clazz == Boolean.TYPE)) {
+        } else if ((clazz == Boolean.class) || (clazz == Boolean.TYPE)) {
             return json.getBoolean(name);
-        } else if ((clazz == Double.class)||(clazz == Double.TYPE)) {
+        } else if ((clazz == Double.class) || (clazz == Double.TYPE)) {
             return json.getDouble(name);
-        } else if ((clazz == Float.class)||(clazz == Float.TYPE)) {
-            return (float)json.getDouble(name);
-        } else if ((clazz == Long.class)||(clazz == Long.TYPE)) {
+        } else if ((clazz == Float.class) || (clazz == Float.TYPE)) {
+            return (float) json.getDouble(name);
+        } else if ((clazz == Long.class) || (clazz == Long.TYPE)) {
             return json.getLong(name);
         } else if (clazz == String.class) {
             return json.getString(name);
@@ -1000,7 +1002,7 @@ public class DynamicHelper {
         try {
             Class.forName(className);
             return true;
-        } catch(ClassNotFoundException ex) {
+        } catch (ClassNotFoundException ex) {
             return false;
         }
     }

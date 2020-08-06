@@ -16,6 +16,7 @@ import com.darly.dlcommon.framework.ContextController;
 /**
  * Description TODO: 版本信息工具类
  * Package com.darly.dlcommon.common
+ *
  * @author zhangyuhui
  * Date 2019/8/1 13:52
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -25,16 +26,19 @@ public class VersionController {
 
     private VersionController() {
     }
+
     /**
      * 获取包名
+     *
      * @return 包名
      */
-    public static String packageName(){
+    public static String packageName() {
         return ContextController.getInstance().getApplication().getPackageName();
     }
 
     /**
      * 获取版本号
+     *
      * @return 版本号
      */
     public static int versionCode() {
@@ -51,6 +55,7 @@ public class VersionController {
 
     /**
      * 获取版本名称
+     *
      * @return 版本名称
      */
     public static String versionName() {
@@ -67,19 +72,21 @@ public class VersionController {
 
     /**
      * 手机系统版本
+     *
      * @return 系统版本
      */
     public static String getSdkVersion() {
         return android.os.Build.VERSION.RELEASE;
     }
+
     /**
      * 手机系统API level
+     *
      * @return 系统API
      */
     public static int getSdkAPILevel() {
         return android.os.Build.VERSION.SDK_INT;
     }
-
 
 
 }

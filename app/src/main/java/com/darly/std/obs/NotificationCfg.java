@@ -1,12 +1,9 @@
 package com.darly.std.obs;
 
 
-import android.content.Intent;
 import android.text.TextUtils;
 
 import com.alibaba.fastjson.JSON;
-import com.alibaba.fastjson.JSONObject;
-import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.framework.ContextController;
@@ -14,18 +11,14 @@ import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.dlcommon.retrofit.reobs.ObserverListener;
 import com.darly.dlcommon.retrofit.reobs.RxNotification;
 import com.darly.rnmodule.module.NoticeReactNativeModule;
-import com.darly.rnmodule.ui.RNNavigatorActivity;
-import com.darly.std.GuideActivity;
 import com.darly.std.retrofit.HttpInterface;
 import com.darly.std.retrofit.model.BaseModel;
 import com.darly.std.retrofit.model.IPModel;
-import com.darly.std.retrofit.model.SubModel;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.WritableMap;
 import com.google.gson.JsonObject;
 
 import java.lang.reflect.Field;
-import java.lang.reflect.InvocationTargetException;
 import java.lang.reflect.Method;
 import java.util.ArrayList;
 import java.util.List;
@@ -36,6 +29,7 @@ import rx.schedulers.Schedulers;
 
 /**
  * 對封裝后的工具使用Image進行初始化。
+ *
  * @author Darly/张宇辉/2017/11/23 14:18
  * @version 1.0/com.darly.common
  */
@@ -48,7 +42,7 @@ public class NotificationCfg implements ObserverListener {
     }
 
     public static NotificationCfg getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new NotificationCfg();
         }
         return instance;
@@ -65,12 +59,12 @@ public class NotificationCfg implements ObserverListener {
         RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getKey((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
                 .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<JsonObject, IPModel >() {
+                .map(new Func1<JsonObject, IPModel>() {
                     @Override
                     public IPModel call(JsonObject s) {
                         DLog.json("Func1", s.toString());
 
-                        IPModel model =  JSON.parseObject(s.toString(), IPModel.class);
+                        IPModel model = JSON.parseObject(s.toString(), IPModel.class);
                         return model;
                     }
                 })
@@ -90,38 +84,37 @@ public class NotificationCfg implements ObserverListener {
                         WritableMap result = Arguments.createMap();
                         //父类子类属性集合
                         List<String> names = new ArrayList<>();
-                        findAllFiedls(names,s.getClass());
-                        for (String name:names) {
-                            Object value = getFieldValueByName(name,s);
-                            result.putString(name,value ==null?"":value.toString());
+                        findAllFiedls(names, s.getClass());
+                        for (String name : names) {
+                            Object value = getFieldValueByName(name, s);
+                            result.putString(name, value == null ? "" : value.toString());
                         }
                         NoticeReactNativeModule.sendEvent(NoticeReactNativeModule.NATIVE_GET_CALL, result);
                     }
                 });
     }
 
-    public void findAllFiedls(List<String> names,Class cls){
-        if (TextUtils.equals(cls.getSuperclass().getSimpleName(),"Object")){
+    public void findAllFiedls(List<String> names, Class cls) {
+        if (TextUtils.equals(cls.getSuperclass().getSimpleName(), "Object")) {
             //还有父类
             Field[] fields = cls.getDeclaredFields();
-            for (Field field:fields) {
+            for (Field field : fields) {
                 names.add(field.getName());
             }
-        }else {
-            findAllFiedls(names,cls.getSuperclass());
+        } else {
+            findAllFiedls(names, cls.getSuperclass());
             Field[] fields = cls.getDeclaredFields();
-            for (Field field:fields) {
+            for (Field field : fields) {
                 names.add(field.getName());
             }
         }
     }
 
     /**
-     *
-     * @Description 根据属性名 获取值（value）
      * @param name 参数名称
      * @return
      * @throws IllegalAccessException
+     * @Description 根据属性名 获取值（value）
      */
     public Object getFieldValueByName(String name, BaseModel model) {
         String first_letter = name.substring(0, 1).toUpperCase();

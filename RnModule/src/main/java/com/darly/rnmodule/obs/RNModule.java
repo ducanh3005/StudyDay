@@ -15,9 +15,10 @@ public class RNModule {
 
     /**
      * 对工具类进行初始化方法，在主项目的Application中进行初始化调用。
+     *
      * @return DesignListener
      */
-    public static DesignListener init(){
+    public static DesignListener init() {
         //在這裡對DView中的組件進行初始化變量操作
         design = new AbstractDesigner();
         design.addObserver(InitCfg.getInstance());

@@ -63,6 +63,6 @@ public class Theme_Table extends BaseModel {
     @NonNull
     @Override
     public String toString() {
-        return " autoId："+autoId+" key："+key+" value："+value;
+        return " autoId：" + autoId + " key：" + key + " value：" + value;
     }
 }

@@ -14,7 +14,7 @@ public class PhotoProcessing {
     private static final String TAG = "PhotoProcessing";
 
 
-    public static void initABIS(File[] files){
+    public static void initABIS(File[] files) {
         for (int i = 0; i < files.length; i++) {
             if (files[i].getName().equals("libphotoprocessing.so")) {
                 System.load(files[i].getAbsolutePath());
@@ -24,7 +24,7 @@ public class PhotoProcessing {
 
 
     public static Bitmap filterPhoto(Bitmap bitmap, int position) {
-        if(position == 12){//马赛克滤镜
+        if (position == 12) {//马赛克滤镜
             return handleMosaicFliter(bitmap);
         }
 
@@ -132,13 +132,13 @@ public class PhotoProcessing {
 
     public static native void freeBeautifyMatrix();
 
-    public static native void nativeMosaic(Bitmap src, Bitmap out , int radius);
+    public static native void nativeMosaic(Bitmap src, Bitmap out, int radius);
 
-    private  static Bitmap handleMosaicFliter(Bitmap src){
+    private static Bitmap handleMosaicFliter(Bitmap src) {
         Bitmap out = null;
-        if(src!=null){
-            out = Bitmap.createBitmap(src.getWidth() ,src.getHeight() , Config.ARGB_8888);
-            nativeMosaic(src,out,32);
+        if (src != null) {
+            out = Bitmap.createBitmap(src.getWidth(), src.getHeight(), Config.ARGB_8888);
+            nativeMosaic(src, out, 32);
         }
         return out;
     }

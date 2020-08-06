@@ -6,7 +6,6 @@ import android.widget.ImageView;
 
 /**
  * 正方形的ImageView  强制 宽度 = 高度
- *
  */
 public class SquareImageView extends ImageView {
 

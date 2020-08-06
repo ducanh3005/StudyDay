@@ -31,14 +31,14 @@ public class Triangle {
      * 三角形顶点/左下点/右下点
      */
     static float triangleCoords[] = {
-            0.0f,  0.5f, 0.0f,
+            0.0f, 0.5f, 0.0f,
             -0.5f, -0.5f, 0.0f,
             0.5f, -0.5f, 0.0f
     };
     /**
      * 内嵌颜色
      */
-    float color[] = { 255, 0, 0, 1.0f };
+    float color[] = {255, 0, 0, 1.0f};
 
 
     private final int mProgram;
@@ -63,6 +63,7 @@ public class Triangle {
                     "}";
 
     private int mVPMatrixHandle;
+
     /**
      * 构造方法
      */
@@ -101,10 +102,11 @@ public class Triangle {
     private int mColorHandle;
     private final int vertexCount = triangleCoords.length / COORDS_PER_VERTEX;
     private final int vertexStride = COORDS_PER_VERTEX * 4;
+
     /**
      * 开始绘制
      */
-    public void onDraw(float[] mvpMatrix){
+    public void onDraw(float[] mvpMatrix) {
         // 将程序添加到OpenGL ES环境
         GLES20.glUseProgram(mProgram);
         // 获取顶点着色器的位置的句柄

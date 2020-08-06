@@ -25,7 +25,7 @@ public class ToastManager extends SimpleViewManager<View> {
     @NonNull
     @Override
     protected View createViewInstance(@NonNull ThemedReactContext reactContext) {
-       TextView textView =  new TextView(reactContext);
+        TextView textView = new TextView(reactContext);
         textView.setText("ToastManager");
         textView.setTextColor(Color.DKGRAY);
         return textView;

@@ -8,16 +8,18 @@
 
 package com.darly.std.viewpager;
 
+import android.widget.ImageView;
+
 import androidx.databinding.BaseObservable;
 import androidx.databinding.Bindable;
 import androidx.databinding.BindingAdapter;
-import android.widget.ImageView;
 
 import com.bumptech.glide.Glide;
 
 /**
  * Description TODO: 单个页面的ViewModel
  * Package com.darly.std.viewpager
+ *
  * @author zhangyuhui
  * Date 2019/7/25 11:47
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -41,7 +43,7 @@ public class ItemViewPagerViewModel extends BaseObservable {
     }
 
     @BindingAdapter("img")
-    public static void setImg(ImageView view,String img){
+    public static void setImg(ImageView view, String img) {
         Glide.with(view.getContext()).load(img).into(view);
     }
 }

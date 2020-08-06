@@ -23,6 +23,7 @@ import com.raizlabs.android.dbflow.config.GeneratedDatabaseHolder;
 /**
  * Description TODO: 工具类初始化方案。
  * Package com.darly.dlcommon
+ *
  * @author zhangyuhui
  * Date 2019/8/3 17:00
  * Company 山东新北洋信息技术股份有限公司西安分公司

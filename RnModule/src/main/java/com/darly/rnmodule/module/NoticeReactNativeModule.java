@@ -34,21 +34,21 @@ public class NoticeReactNativeModule extends ReactContextBaseJavaModule {
     }
 
 
-    public static void sendEvent(String eventName,@Nullable WritableMap params) {
-        try{
-            if (mReactContext == null){
-                DLog.e("react-native-module", eventName+"---null");
-            }else{
-                DLog.e("react-native-module", eventName + "————"+ params.toString());
+    public static void sendEvent(String eventName, @Nullable WritableMap params) {
+        try {
+            if (mReactContext == null) {
+                DLog.e("react-native-module", eventName + "---null");
+            } else {
+                DLog.e("react-native-module", eventName + "————" + params.toString());
                 mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
             }
-        }catch(Exception e){
+        } catch (Exception e) {
 
         }
 
     }
 
-    public static void sendEvent(String eventName,String params) {
+    public static void sendEvent(String eventName, String params) {
         try {
             if (mReactContext == null) {
                 DLog.e("react-native-module", eventName + "---null");
@@ -56,14 +56,14 @@ public class NoticeReactNativeModule extends ReactContextBaseJavaModule {
                 DLog.e("react-native-module", eventName + "————" + params);
                 mReactContext.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
         }
 
     }
 
 
-    public static void sendEvent(String eventName,@Nullable  WritableMap params, ReactContext contekxt) {
+    public static void sendEvent(String eventName, @Nullable WritableMap params, ReactContext contekxt) {
         try {
             if (contekxt == null) {
                 DLog.e("react-native-module", eventName + "---null");
@@ -71,7 +71,7 @@ public class NoticeReactNativeModule extends ReactContextBaseJavaModule {
                 DLog.e("react-native-module", eventName + "————" + params.toString());
                 contekxt.getJSModule(DeviceEventManagerModule.RCTDeviceEventEmitter.class).emit(eventName, params);
             }
-        }catch (Exception e){
+        } catch (Exception e) {
 
 
         }

@@ -57,6 +57,12 @@ Tap：执行选中元素的点击事件Send Keys：为文本框等对象传值�
 
 最后，记一个我在这些过程中遇到的问题（现已解决）
 
-在Appium-desktop中运行Start Session时，出现
-
-解决方法:在开发者模式下，打开usb调试功能和use模拟点击，两个都要打开，此时再重新运行，即可解决
+###配置信息
+Start Inspector Session中增加配置信息。然后点击打开。
+        {
+            "platformName": "Android",
+            "deviceName": "MuMu",
+            "platformVersion": "6.0.1",  # 安卓版本
+            'appActivity':'.MainActivity',
+            'appPackage':'com.rkhd.ingage.app'
+        }

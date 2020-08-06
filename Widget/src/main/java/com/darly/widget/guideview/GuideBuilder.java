@@ -10,7 +10,6 @@ import java.util.ArrayList;
 import java.util.List;
 
 /**
- *
  * <h1>遮罩系统构建器
  * <p>
  * 本系统能够快速的为一个Activity里的任何一个View控件创建一个遮罩式的引导页。
@@ -39,14 +38,14 @@ import java.util.List;
  * {@link #setExitAnimationId(int)}
  * </p>
  * </p>
- *
+ * <p>
  * Created by binIoter
  **/
 
 public class GuideBuilder {
 
     public enum SlideState {
-        UP,DOWN;
+        UP, DOWN;
     }
 
     private Configuration mConfiguration;
@@ -73,7 +72,7 @@ public class GuideBuilder {
      * @param alpha [0-255] 0 表示完全透明，255表示不透明
      * @return GuideBuilder
      */
-    public GuideBuilder setAlpha(@IntRange(from = 0, to = 255)  int alpha) {
+    public GuideBuilder setAlpha(@IntRange(from = 0, to = 255) int alpha) {
         if (mBuilt) {
             throw new BuildException("Already created. rebuild a new one.");
         } else if (alpha < 0 || alpha > 255) {

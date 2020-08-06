@@ -74,7 +74,6 @@ public class SongCiAuthorModel extends BaseBean implements Serializable {
     }
 
 
-
     @Override
     public String getString() {
         return "autoId = " + getAutoId() +

@@ -203,7 +203,7 @@ public class RotateFragment extends BaseEditFragment {
                 return;
 
             // 切换新底图
-            activity.changeMainBitmap(result,true);
+            activity.changeMainBitmap(result, true);
             backToMain();
         }
     }// end inner class

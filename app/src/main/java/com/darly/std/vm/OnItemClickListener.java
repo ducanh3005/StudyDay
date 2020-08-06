@@ -23,6 +23,7 @@ public interface OnItemClickListener<T> {
 
     /**
      * 条目点击回调
+     *
      * @param t 对象
      */
     void onItemClick(View view, T t);

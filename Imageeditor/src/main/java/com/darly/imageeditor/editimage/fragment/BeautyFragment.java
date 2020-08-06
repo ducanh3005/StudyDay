@@ -147,7 +147,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
 
     public void applyBeauty() {
         if (mResultBitmapRef.get() != null && (mSmooth != 0 || mWhiteSkin != 0)) {
-            activity.changeMainBitmap(mResultBitmapRef.get(),true);
+            activity.changeMainBitmap(mResultBitmapRef.get(), true);
         }
 
         backToMain();
@@ -183,7 +183,7 @@ public class BeautyFragment extends BaseEditFragment implements SeekBar.OnSeekBa
             //System.out.println("smoothVal = "+smoothVal+"     whiteVal = "+whiteVal);
             try {
                 PhotoProcessing.handleSmoothAndWhiteSkin(srcBitmap, smoothVal, whiteVal);
-            }catch (Exception e){
+            } catch (Exception e) {
                 e.printStackTrace();
             }
             return srcBitmap;

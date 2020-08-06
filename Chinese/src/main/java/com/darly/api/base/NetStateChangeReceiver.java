@@ -23,12 +23,12 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
 
     @Override
     public void onReceive(Context context, Intent intent) {
-        if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())){
+        if (ConnectivityManager.CONNECTIVITY_ACTION.equals(intent.getAction())) {
             DLog.d("[NetStateChangeReceiver IP发生变化]");
             String localIp = NetUtil.getIPAddress(context);
             if (!StringUtil.isEmpty(localIp)) {
                 SpController.getInstance().putValue(NetUtil.SYSTEM_IP, localIp);
-                String url = "http://"+ localIp+":8089";
+                String url = "http://" + localIp + ":8089";
                 RxjavaRetrofitRequestUtil.setBaseUrl(url);
                 WritableMap ip = Arguments.createMap();
                 ip.putString(NetUtil.SYSTEM_IP, localIp);

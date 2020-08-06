@@ -36,13 +36,13 @@ public class OperController {
     private OperController() {
     }
 
-    public static void init(){
+    public static void init() {
         link();
         initQueue();
         threader();
     }
 
-    private static void link(){
+    private static void link() {
         LinkList linkList = new LinkList();
         int[] x = new int[new Random().nextInt(20)];
         for (int i = 0; i < x.length; i++) {
@@ -71,7 +71,7 @@ public class OperController {
     }
 
     private static void threader() {
-       final LruCache lruCache = new LruCache(5);
+        final LruCache lruCache = new LruCache(5);
         final String[] value = new String[]{"A", "B", "C", "D", "E", "F", "G", "H", "I", "J", "K"};
 
         ScheduledExecutorService service = new ScheduledThreadPoolExecutor(1);

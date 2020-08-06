@@ -138,30 +138,30 @@ public class LbsMapView extends FrameLayout implements LifecycleEventListener {
                     double latitude = Double.parseDouble(map.getString(LATITUDE));
                     String title = map.getString(TITLE);
                     ImageView imageView = new ImageView(getReactContext());
-                    if (mMapView.getTag()!=null&&mMapView.getTag() instanceof Integer&&Integer.parseInt(mMapView.getTag().toString()) == 100){
+                    if (mMapView.getTag() != null && mMapView.getTag() instanceof Integer && Integer.parseInt(mMapView.getTag().toString()) == 100) {
                         //轨迹过来使用的位置信息。
-                        if (i==0){
+                        if (i == 0) {
                             //开始位置
                             int width = dip2px(getReactContext(), 24);
                             int height = dip2px(getReactContext(), 24);
                             LayoutParams params = new LayoutParams(width, height);
                             imageView.setLayoutParams(params);
                             imageView.setImageResource(R.mipmap.ic_maproute_start);
-                        }else if (i == length-1){
+                        } else if (i == length - 1) {
                             //结束位置
                             int width = dip2px(getReactContext(), 24);
                             int height = dip2px(getReactContext(), 24);
                             LayoutParams params = new LayoutParams(width, height);
                             imageView.setLayoutParams(params);
                             imageView.setImageResource(R.mipmap.ic_maproute_end);
-                        }else {
+                        } else {
                             int width = dip2px(getReactContext(), 14);
                             int height = dip2px(getReactContext(), 14);
                             LayoutParams params = new LayoutParams(width, height);
                             imageView.setLayoutParams(params);
                             imageView.setImageResource(R.mipmap.ic_maproute_point);
                         }
-                    }else {
+                    } else {
                         //其他地图信息
                         int width = dip2px(getReactContext(), 34);
                         int height = dip2px(getReactContext(), 39);
@@ -179,10 +179,12 @@ public class LbsMapView extends FrameLayout implements LifecycleEventListener {
             }
         }
     }
+
     // 设置地图来源，100为轨迹，空或者其他值来源其他
     public void addTag(int tag) {
         mMapView.setTag(tag);
     }
+
     /**
      * 绘制点以及路径轨迹
      *
@@ -206,11 +208,11 @@ public class LbsMapView extends FrameLayout implements LifecycleEventListener {
                 }
             }
             //根据所有点位进行轨迹绘制
-            Polyline line =  aMap.addPolyline((new PolylineOptions())
+            Polyline line = aMap.addPolyline((new PolylineOptions())
                     .addAll(list)//线的宽度
                     .width(10).setDottedLine(false)
                     //颜色
-                    .color(Color.argb(255,78,128,245)));
+                    .color(Color.argb(255, 78, 128, 245)));
             mPolyLine.add(line);
         }
     }
@@ -259,7 +261,7 @@ public class LbsMapView extends FrameLayout implements LifecycleEventListener {
 
     // 设置为true表示显示定位层并可触发定位，false表示隐藏定位层并不可触发定位，默认是false
     public void followEnabled(boolean enable) {
-        if (aMap != null ) {
+        if (aMap != null) {
             if (enable) {
                 MyLocationStyle myLocationStyle = new MyLocationStyle();
                 myLocationStyle.interval(5000);
@@ -276,7 +278,7 @@ public class LbsMapView extends FrameLayout implements LifecycleEventListener {
                 aMap.setMyLocationStyle(myLocationStyle);
                 aMap.setMyLocationEnabled(true);
                 aMap.setOnMyLocationChangeListener(onMyLocationChangeListener);
-            }else {
+            } else {
                 aMap.setOnMyLocationChangeListener(null);
             }
         }

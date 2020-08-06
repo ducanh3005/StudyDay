@@ -2,7 +2,6 @@ package com.darly.widget.charting.renderer;
 
 import android.graphics.Canvas;
 import android.graphics.Path;
-import android.graphics.PointF;
 
 import com.darly.widget.charting.charts.RadarChart;
 import com.darly.widget.charting.components.LimitLine;
@@ -138,7 +137,7 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
         }
 
         mAxis.mAxisMinimum = mAxis.mEntries[0];
-        mAxis.mAxisMaximum = mAxis.mEntries[n-1];
+        mAxis.mAxisMaximum = mAxis.mEntries[n - 1];
         mAxis.mAxisRange = Math.abs(mAxis.mAxisMaximum - mAxis.mAxisMinimum);
     }
 
@@ -153,7 +152,7 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
         mAxisLabelPaint.setColor(mYAxis.getTextColor());
 
         MPPointF center = mChart.getCenterOffsets();
-        MPPointF pOut = MPPointF.getInstance(0,0);
+        MPPointF pOut = MPPointF.getInstance(0, 0);
         float factor = mChart.getFactor();
 
         final int from = mYAxis.isDrawBottomYLabelEntryEnabled() ? 0 : 1;
@@ -176,6 +175,7 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
     }
 
     private Path mRenderLimitLinesPathBuffer = new Path();
+
     @Override
     public void renderLimitLines(Canvas c) {
 
@@ -191,7 +191,7 @@ public class YAxisRendererRadarChart extends YAxisRenderer {
         float factor = mChart.getFactor();
 
         MPPointF center = mChart.getCenterOffsets();
-        MPPointF pOut = MPPointF.getInstance(0,0);
+        MPPointF pOut = MPPointF.getInstance(0, 0);
         for (int i = 0; i < limitLines.size(); i++) {
 
             LimitLine l = limitLines.get(i);

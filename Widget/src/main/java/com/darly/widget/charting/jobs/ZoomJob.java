@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.jobs;
 
 import android.graphics.Matrix;

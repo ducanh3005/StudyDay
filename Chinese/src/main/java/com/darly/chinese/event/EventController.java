@@ -22,15 +22,17 @@ import com.darly.dlcommon.framework.ContextController;
 public class EventController {
     private EventController() {
     }
-    public static void register(Object ob){
+
+    public static void register(Object ob) {
         ContextController.getInstance().getEventBusController().regist(ob);
     }
-    public static void unregister(Object ob){
+
+    public static void unregister(Object ob) {
         ContextController.getInstance().getEventBusController().unregist(ob);
     }
 
 
-    public static void postMessage(BaseEvent event){
+    public static void postMessage(BaseEvent event) {
         ContextController.getInstance().getEventBusController().postMessage(event);
     }
 }

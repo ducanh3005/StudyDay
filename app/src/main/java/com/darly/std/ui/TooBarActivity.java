@@ -11,7 +11,6 @@ package com.darly.std.ui;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.MotionEvent;
-import android.view.View;
 
 import androidx.lifecycle.ViewModelProviders;
 

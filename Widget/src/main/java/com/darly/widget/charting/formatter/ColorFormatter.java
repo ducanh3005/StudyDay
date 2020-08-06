@@ -1,6 +1,5 @@
 package com.darly.widget.charting.formatter;
 
-import com.darly.widget.charting.data.DataSet;
 import com.darly.widget.charting.data.Entry;
 import com.darly.widget.charting.interfaces.datasets.IDataSet;
 

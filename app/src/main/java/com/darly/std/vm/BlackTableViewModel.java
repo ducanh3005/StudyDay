@@ -20,7 +20,7 @@ import androidx.lifecycle.ViewModel;
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
-public class BlackTableViewModel extends ViewModel{
+public class BlackTableViewModel extends ViewModel {
 
     MutableLiveData<Action> action = new MutableLiveData<>();
 

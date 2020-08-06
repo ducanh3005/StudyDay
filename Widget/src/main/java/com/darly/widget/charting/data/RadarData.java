@@ -1,10 +1,8 @@
-
 package com.darly.widget.charting.data;
 
 import com.darly.widget.charting.highlight.Highlight;
 import com.darly.widget.charting.interfaces.datasets.IRadarDataSet;
 
-import java.util.ArrayList;
 import java.util.Arrays;
 import java.util.List;
 

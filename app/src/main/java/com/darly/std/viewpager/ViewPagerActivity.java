@@ -9,13 +9,14 @@
 package com.darly.std.viewpager;
 
 import android.content.Intent;
-import androidx.databinding.DataBindingUtil;
 import android.os.Bundle;
-import androidx.annotation.Nullable;
-import androidx.viewpager.widget.ViewPager;
-import androidx.appcompat.app.AppCompatActivity;
 import android.view.View;
 import android.widget.Button;
+
+import androidx.annotation.Nullable;
+import androidx.appcompat.app.AppCompatActivity;
+import androidx.databinding.DataBindingUtil;
+import androidx.viewpager.widget.ViewPager;
 
 import com.darly.std.BR;
 import com.darly.std.MainActivity;
@@ -28,6 +29,7 @@ import java.util.List;
 /**
  * Description TODO:MVVM进行ViewPager测试
  * Package com.darly.std.viewpager
+ *
  * @author zhangyuhui
  * Date 2019/7/25 11:39
  * Company 山东新北洋信息技术股份有限公司西安分公司

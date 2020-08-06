@@ -17,10 +17,11 @@ public class NotificationToApp implements RxNotification {
 
     /**
      * 对工具类进行初始化方法，在主项目的Application中进行初始化调用。
+     *
      * @return DesignListener
      */
     @Override
-    public DesignListener init(){
+    public DesignListener init() {
         //在這裡對DView中的組件進行初始化變量操作
         design = new AbstractDesigner();
         design.addObserver(NotificationCfg.getInstance());

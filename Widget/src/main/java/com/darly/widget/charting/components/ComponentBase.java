@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.components;
 
 import android.graphics.Color;

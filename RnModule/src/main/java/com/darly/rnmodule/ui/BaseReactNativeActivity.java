@@ -20,14 +20,14 @@ public class BaseReactNativeActivity extends ReactActivity {
 
     @Override
     protected ReactActivityDelegate createReactActivityDelegate() {
-        return new ReactActivityDelegate(this,getMainComponentName()){
+        return new ReactActivityDelegate(this, getMainComponentName()) {
             @Nullable
             @Override
             protected Bundle getLaunchOptions() {
                 return getOwnLaunchOptions();
             }
 
-//            react-navigation 3.x版本的安装以及react-native-gesture-handler配置
+            //            react-navigation 3.x版本的安装以及react-native-gesture-handler配置
             @Override
             protected ReactRootView createRootView() {
                 return new RNGestureHandlerEnabledRootView(BaseReactNativeActivity.this);
@@ -36,7 +36,7 @@ public class BaseReactNativeActivity extends ReactActivity {
     }
 
 
-    public  Bundle getOwnLaunchOptions(){
+    public Bundle getOwnLaunchOptions() {
         Log.d("BaseReactNativeActivity", "getOwnLaunchOptions() called");
         return null;
     }
@@ -44,9 +44,9 @@ public class BaseReactNativeActivity extends ReactActivity {
 
     @Override
     public void onBackPressed() {
-        if (getReactInstanceManager()!=null){
+        if (getReactInstanceManager() != null) {
             getReactInstanceManager().onBackPressed();
-        }else {
+        } else {
             super.onBackPressed();
         }
     }

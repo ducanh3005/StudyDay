@@ -19,6 +19,7 @@ public interface HttpInterface {
     //@FormUrlEncoded//添加这行注解，否则参数报错。Post请求
     @GET("mobile/key")
     Observable<JsonObject> getKey(@Query("ip") String ip);
+
     @POST("mobile/value")
     Observable<JsonObject> postValue(@Body RequestBody route);
 

@@ -22,7 +22,7 @@ import java.util.Enumeration;
  */
 public class NetUtil {
 
-    public static String  SYSTEM_IP = "system_ip";//用户手机当前的ip地址。
+    public static String SYSTEM_IP = "system_ip";//用户手机当前的ip地址。
 
 
     private NetUtil() {
@@ -74,9 +74,6 @@ public class NetUtil {
                 ((ip >> 16) & 0xFF) + "." +
                 (ip >> 24 & 0xFF);
     }
-
-
-
 
 
     @RequiresPermission("android.permission.ACCESS_NETWORK_STATE")

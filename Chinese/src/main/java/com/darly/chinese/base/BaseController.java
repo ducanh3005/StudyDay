@@ -9,6 +9,7 @@ public abstract class BaseController {
 
     /**
      * 获取控制类的类型
+     *
      * @return
      */
     public abstract ControllerEnum getType();

@@ -48,9 +48,9 @@ import com.darly.imageeditor.editimage.widget.RedoUndoController;
  * 图片编辑 主页面
  *
  * @author panyi
- *         <p>
- *         包含 1.贴图 2.滤镜 3.剪裁 4.底图旋转 功能
- *         add new modules
+ * <p>
+ * 包含 1.贴图 2.滤镜 3.剪裁 4.底图旋转 功能
+ * add new modules
  */
 public class EditImageActivity extends BaseActivity {
     public static final String EXTRA_OUTPUT = "extra_output";
@@ -111,7 +111,7 @@ public class EditImageActivity extends BaseActivity {
      * @param requestCode
      */
     public static void start(Activity context, final String outputPath, final int requestCode) {
-       Intent it = new Intent(context, EditImageActivity.class);
+        Intent it = new Intent(context, EditImageActivity.class);
         it.putExtra(EditImageActivity.EXTRA_OUTPUT, outputPath);
         context.startActivityForResult(it, requestCode);
     }
@@ -236,7 +236,6 @@ public class EditImageActivity extends BaseActivity {
             return 8;
         }
     }// end inner class
-
 
 
     /**
@@ -375,7 +374,7 @@ public class EditImageActivity extends BaseActivity {
 
         if (mainBitmap == null || mainBitmap != newBit) {
             if (needPushUndoStack) {
-                mRedoUndoController.switchMainBit(mainBitmap,newBit);
+                mRedoUndoController.switchMainBit(mainBitmap, newBit);
                 increaseOpTimes();
             }
             mainBitmap = newBit;

@@ -91,7 +91,7 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
             onAddTextClick();
         } else if (v == mPaintBtn) {
             onPaintClick();
-        }else if(v == mBeautyBtn){
+        } else if (v == mBeautyBtn) {
             onBeautyClick();
         }
     }
@@ -154,7 +154,7 @@ public class MainMenuFragment extends BaseEditFragment implements View.OnClickLi
         activity.mPaintFragment.onShow();
     }
 
-    private void onBeautyClick(){
+    private void onBeautyClick() {
         activity.bottomGallery.setCurrentItem(BeautyFragment.INDEX);
         activity.mBeautyFragment.onShow();
     }

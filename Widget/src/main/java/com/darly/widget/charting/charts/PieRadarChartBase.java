@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.charts;
 
 import android.animation.ObjectAnimator;
@@ -11,7 +10,6 @@ import android.util.AttributeSet;
 import android.util.Log;
 import android.view.MotionEvent;
 
-import com.darly.widget.charting.animation.Easing;
 import com.darly.widget.charting.animation.Easing.EasingFunction;
 import com.darly.widget.charting.components.Legend;
 import com.darly.widget.charting.components.XAxis;

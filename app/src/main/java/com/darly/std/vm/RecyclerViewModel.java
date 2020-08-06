@@ -68,7 +68,7 @@ public class RecyclerViewModel extends ViewModel implements OnItemClickListener<
 
 
     @Override
-    public void onItemClick(View view,BaseBean bean) {
+    public void onItemClick(View view, BaseBean bean) {
         Log.d("onItemClick", "onItemClick() called with: BaseBean = [" + bean + "]");
         action.postValue(new Action(Action.NEXTPAGE, bean));
     }

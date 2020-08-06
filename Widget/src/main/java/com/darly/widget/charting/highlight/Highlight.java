@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.highlight;
 
 import com.darly.widget.charting.components.YAxis;

@@ -20,15 +20,15 @@ public class Square {
     private ShortBuffer drawList;
     static final int COORDS_PER_VERTEX = 3;
     static float squareCoords[] = {
-            -0.5f,  0.5f, 0.0f,
+            -0.5f, 0.5f, 0.0f,
             -0.5f, -0.5f, 0.0f,
             0.5f, -0.5f, 0.0f,
-            0.5f,  0.5f, 0.0f };
-    private short order[] = {0,1,2,0,2,3};
+            0.5f, 0.5f, 0.0f};
+    private short order[] = {0, 1, 2, 0, 2, 3};
 
     public Square() {
         // 初始化ByteBuffer，长度为arr数组的长度*4，因为一个float占4个字节
-        ByteBuffer bb = ByteBuffer.allocateDirect(squareCoords.length*4);
+        ByteBuffer bb = ByteBuffer.allocateDirect(squareCoords.length * 4);
         bb.order(ByteOrder.nativeOrder());
         vertex = bb.asFloatBuffer();
         vertex.put(squareCoords);

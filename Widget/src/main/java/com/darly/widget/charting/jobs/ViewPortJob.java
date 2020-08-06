@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.jobs;
 
 import android.view.View;
@@ -13,7 +12,7 @@ import com.darly.widget.charting.utils.ViewPortHandler;
  * modifications until the onSizeChanged(...) method of the chart-view is called.
  * This is especially important if viewport modifying methods are called on the chart
  * directly after initialization.
- * 
+ *
  * @author Philipp Jahoda
  */
 public abstract class ViewPortJob extends ObjectPool.Poolable implements Runnable {

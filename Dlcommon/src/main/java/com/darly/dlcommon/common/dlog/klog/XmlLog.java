@@ -10,7 +10,6 @@ package com.darly.dlcommon.common.dlog.klog;
 
 import android.util.Log;
 
-
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.dlog.DLogUtil;
 
@@ -23,8 +22,10 @@ import javax.xml.transform.Transformer;
 import javax.xml.transform.TransformerFactory;
 import javax.xml.transform.stream.StreamResult;
 import javax.xml.transform.stream.StreamSource;
+
 /**
  * 输出XML格式日志工具类。
+ *
  * @author Darly/张宇辉/2017/11/23 14:18
  * @version 1.0/com.darly.common
  */

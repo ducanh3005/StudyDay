@@ -1,32 +1,19 @@
 package com.darly.std.ui;
 
-import android.content.Intent;
-import android.graphics.Color;
 import android.os.Bundle;
 import android.view.View;
-import android.view.ViewGroup;
 import android.view.WindowManager;
-import android.view.animation.Animation;
-import android.view.animation.LinearInterpolator;
-import android.view.animation.OvershootInterpolator;
-import android.view.animation.ScaleAnimation;
 import android.widget.ListView;
-import android.widget.TextView;
 
 import androidx.annotation.Nullable;
 import androidx.appcompat.app.AppCompatActivity;
 
-import com.darly.chinese.common.DrawableUtils;
-import com.darly.chinese.controller.parse.ParseJsonController;
 import com.darly.dlcommon.common.StringUtil;
-import com.darly.dlcommon.common.bolts.tasks.Task;
-import com.darly.dlcommon.common.bolts.tasks.iface.Continuation;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.framework.ContextController;
 import com.darly.dlcommon.json2view.DynamicView;
 import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
-import com.darly.std.GuideActivity;
 import com.darly.std.R;
 import com.darly.std.retrofit.HttpInterface;
 import com.google.gson.JsonObject;
@@ -37,11 +24,8 @@ import org.json.JSONObject;
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
-import java.util.concurrent.Callable;
 
 import me.samlss.broccoli.Broccoli;
-import me.samlss.broccoli.BroccoliGradientDrawable;
-import me.samlss.broccoli.PlaceholderParameter;
 import rx.android.schedulers.AndroidSchedulers;
 import rx.functions.Func1;
 import rx.schedulers.Schedulers;
@@ -60,13 +44,14 @@ public class ListViewActivity extends AppCompatActivity {
     private ListView id_test_list;
     private ListViewAdapter adapter;
     private Broccoli broccoli = new Broccoli();
+
     @Override
     protected void onCreate(@Nullable Bundle savedInstanceState) {
         super.onCreate(savedInstanceState);
         RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getKey((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
                 .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())
-                .map(new Func1<JsonObject, String >() {
+                .map(new Func1<JsonObject, String>() {
                     @Override
                     public String call(JsonObject s) {
                         try {
@@ -102,26 +87,25 @@ public class ListViewActivity extends AppCompatActivity {
                         }
                         View sampleView = DynamicView.createView(ListViewActivity.this, jsonObject);
                         DLog.d(sampleView);
-                        if (sampleView!=null) {
+                        if (sampleView != null) {
                             sampleView.setLayoutParams(
                                     new WindowManager.LayoutParams(
                                             WindowManager.LayoutParams.MATCH_PARENT,
                                             WindowManager.LayoutParams.MATCH_PARENT));
                             setContentView(sampleView);
 
-                        }else {
+                        } else {
                             setContentView(R.layout.activity_listview);
                             id_test_list = findViewById(R.id.id_test_list);
-                            ArrayList<String > data = new ArrayList<>();
-                            for (int i= 0;i<6;i++){
-                                data.add(i+"");
+                            ArrayList<String> data = new ArrayList<>();
+                            for (int i = 0; i < 6; i++) {
+                                data.add(i + "");
                             }
-                            adapter = new ListViewAdapter(ListViewActivity.this,data);
+                            adapter = new ListViewAdapter(ListViewActivity.this, data);
                             id_test_list.setAdapter(adapter);
                         }
                     }
                 });
-
 
 
     }

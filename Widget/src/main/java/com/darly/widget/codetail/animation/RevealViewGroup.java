@@ -11,6 +11,7 @@ package com.darly.widget.codetail.animation;
 /**
  * Description 该类功能为：
  * Package com.darly.widget.codetail.widget
+ *
  * @author zhangyuhui
  * @date 2019/8/21
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -18,14 +19,13 @@ package com.darly.widget.codetail.animation;
  */
 public interface RevealViewGroup {
 
-  /**
-   * @return Bridge between view and circular reveal animation
-   */
-  ViewRevealManager getViewRevealManager();
+    /**
+     * @return Bridge between view and circular reveal animation
+     */
+    ViewRevealManager getViewRevealManager();
 
-  /**
-   *
-   * @param manager
-   */
-  void setViewRevealManager(ViewRevealManager manager);
+    /**
+     * @param manager
+     */
+    void setViewRevealManager(ViewRevealManager manager);
 }

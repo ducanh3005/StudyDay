@@ -32,25 +32,25 @@ public class ExternalStorageUtil {
 
     /**
      * 创建文件夹
-     *
      */
     public static void creatFile(String path) {
-        File dir = new File(getExternalStoragePath()+ File.separator + path);
+        File dir = new File(getExternalStoragePath() + File.separator + path);
         if (!dir.exists()) {
-            if (!dir.getParentFile().exists()){
+            if (!dir.getParentFile().exists()) {
                 String parentPath = dir.getParentFile().getName();
                 creatFile(parentPath);
             }
             dir.mkdirs();
         }
     }
+
     /**
      * 获取下载文件路径
      *
      * @return 路径
      */
     public static String getDownLoadPath() {
-        return getExternalStoragePath()+GOODS_DETAIL_PATH;
+        return getExternalStoragePath() + GOODS_DETAIL_PATH;
     }
 
 
@@ -286,7 +286,7 @@ public class ExternalStorageUtil {
     private static void deleteFile(File file) {
         if (file.isDirectory()) {
             File[] files = file.listFiles();
-            if (files!=null&&files.length>0) {
+            if (files != null && files.length > 0) {
                 for (int i = 0; i < files.length; i++) {
                     File f = files[i];
                     deleteFile(f);

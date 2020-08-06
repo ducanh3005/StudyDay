@@ -1,13 +1,14 @@
 package com.darly.imageeditor.editimage.adapter;
 
-import androidx.recyclerview.widget.RecyclerView;
-import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 import android.view.LayoutInflater;
 import android.view.View;
 import android.view.View.OnClickListener;
 import android.view.ViewGroup;
 import android.widget.ImageView;
 import android.widget.TextView;
+
+import androidx.recyclerview.widget.RecyclerView;
+import androidx.recyclerview.widget.RecyclerView.ViewHolder;
 
 import com.darly.imageeditor.R;
 import com.darly.imageeditor.editimage.fragment.StickerFragment;
@@ -63,6 +64,7 @@ public class StickerTypeAdapter extends RecyclerView.Adapter<ViewHolder> {
     }
 
     /**
+     *
      */
     @Override
     public void onBindViewHolder(ViewHolder holder, int position) {

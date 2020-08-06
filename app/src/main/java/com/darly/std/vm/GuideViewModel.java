@@ -43,7 +43,7 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
 
     private MutableLiveData<Boolean> isOpenReactNative = new MutableLiveData<>();
 
-    public GuideViewModel(){
+    public GuideViewModel() {
         isOpenReactNative.setValue(false);
     }
 
@@ -51,45 +51,45 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
     public void resourceInit() {
         if (SpController.getInstance().getValue(SpEnum.SO_VERSION.getDesc(), 0) == 0) {
             //初次加载
-            LogController.d("resourceInit","初次加载");
+            LogController.d("resourceInit", "初次加载");
             FileController.getInstance().copyFile("DownLoad", this);
         } else {
             //非初次加载
-            if (SpController.getInstance().getValue(SpEnum.SO_VERSION.getDesc(), 0) != 2){
+            if (SpController.getInstance().getValue(SpEnum.SO_VERSION.getDesc(), 0) != 2) {
                 //有新版本需要更新
-                LogController.d("resourceInit","有新版本需要更新");
+                LogController.d("resourceInit", "有新版本需要更新");
                 FileController.getInstance().copyFile("DownLoad", this);
-            }else {
-                LogController.d("resourceInit","不需要更新");
+            } else {
+                LogController.d("resourceInit", "不需要更新");
                 //需要导入SO，否则崩溃
                 SoLoadController.getInstance().installSoDir();
-                action.postValue(new Action(Action.NEXTPAGE,null));
+                action.postValue(new Action(Action.NEXTPAGE, null));
             }
         }
     }
 
     @Override
     public void onStart(String title) {
-        action.postValue(new Action(Action.PROGRESSINIT,null));
-        action.postValue(new Action(Action.TITLE,title));
+        action.postValue(new Action(Action.PROGRESSINIT, null));
+        action.postValue(new Action(Action.TITLE, title));
     }
 
     @Override
     public void onProgress(int percent) {
-        action.postValue(new Action(Action.MAINPRO,percent));
+        action.postValue(new Action(Action.MAINPRO, percent));
     }
 
     @Override
     public void onSecProgress(int percent) {
-        action.postValue(new Action(Action.SECPRO,percent));
+        action.postValue(new Action(Action.SECPRO, percent));
     }
 
     @Override
     public void onComplete(String title, ControllerEnum type, Object ob) {
-        action.postValue(new Action(Action.TITLE,title));
+        action.postValue(new Action(Action.TITLE, title));
         try {
             Thread.sleep(1000);
-        }catch (Exception e){
+        } catch (Exception e) {
             e.printStackTrace();
         }
         LogController.d("onComplete", "onComplete() called with: title = [" + title + "], type = [" + type + "], ob = [" + ob + "]");
@@ -115,7 +115,7 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
 
         if (ParseJsonController.getInstance().getType().equals(type)) {
             SpController.getInstance().putValue(SpEnum.SO_VERSION.getDesc(), new Random().nextInt(4));
-            action.postValue(new Action(Action.NEXTPAGE,null));
+            action.postValue(new Action(Action.NEXTPAGE, null));
         }
 
 
@@ -123,10 +123,9 @@ public class GuideViewModel extends ViewModel implements OnControllerBackListene
 
     @Override
     public void onFailed(String title, ControllerEnum type, String msg) {
-        action.postValue(new Action(Action.TITLE,title));
+        action.postValue(new Action(Action.TITLE, title));
         LogController.d("onFailed", "onFailed() called with: title = [" + title + "], type = [" + type + "], msg = [" + msg + "]");
     }
-
 
 
     /**

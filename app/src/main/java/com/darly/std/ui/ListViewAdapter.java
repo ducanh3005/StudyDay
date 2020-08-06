@@ -4,7 +4,6 @@ import android.content.Context;
 import android.os.Build;
 import android.view.View;
 import android.view.ViewGroup;
-import android.widget.AbsListView;
 import android.widget.BaseAdapter;
 import android.widget.LinearLayout;
 import android.widget.TextView;
@@ -20,12 +19,12 @@ import java.util.List;
  * date:2020-04-2917:36
  * description:
  */
-public class ListViewAdapter extends BaseAdapter{
+public class ListViewAdapter extends BaseAdapter {
 
     private Context context;
     private List<String> data;
 
-    public ListViewAdapter(Context context,List<String> data){
+    public ListViewAdapter(Context context, List<String> data) {
         this.context = context;
         this.data = data;
     }
@@ -66,14 +65,14 @@ public class ListViewAdapter extends BaseAdapter{
         holder.des.setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (finalHolder.id_test_item_action.getChildCount()>0){
+                if (finalHolder.id_test_item_action.getChildCount() > 0) {
                     finalHolder.id_test_item_action.setVisibility(View.GONE);
                     finalHolder.id_test_item_action.removeAllViews();
-                }else {
+                } else {
                     //点击展开。
                     if ("2".equals(data.get(position))) {
                         for (int k = 100; k < 102; k++) {
-                            finalHolder.id_test_item_action.addView(getSubList(k+""));
+                            finalHolder.id_test_item_action.addView(getSubList(k + ""));
                         }
                     } else {
                         TextView tv = new TextView(context);
@@ -88,14 +87,13 @@ public class ListViewAdapter extends BaseAdapter{
     }
 
 
-
-
-    public class ViewHolder{
+    public class ViewHolder {
 
         TextView tv;
         TextView des;
         LinearLayout id_test_item_action;
-        public ViewHolder(View view){
+
+        public ViewHolder(View view) {
             tv = view.findViewById(R.id.id_test_item_tv);
             des = view.findViewById(R.id.id_test_item_des);
             id_test_item_action = view.findViewById(R.id.id_test_item_action);
@@ -106,25 +104,26 @@ public class ListViewAdapter extends BaseAdapter{
 
     /**
      * ListView中嵌套列表。现有ListView进行嵌套。无法实现子列表动态高度变化。只能以动态增加控件形式进行变更。
+     *
      * @param data
      * @return
      */
-    public View getSubList(String data){
-       final View view = View.inflate(context, R.layout.item_list, null);
+    public View getSubList(String data) {
+        final View view = View.inflate(context, R.layout.item_list, null);
 //       view.setPadding(50,0,0,0);
-        ((TextView)view.findViewById(R.id.id_test_item_tv)).setPadding(50,0,0,0);
-        ((TextView)view.findViewById(R.id.id_test_item_tv)).setText(data);
-        ((TextView)view.findViewById(R.id.id_test_item_des)).setText(data);
-        final LinearLayout id_test_item_action = ((LinearLayout)view.findViewById(R.id.id_test_item_action));
-        id_test_item_action.setPadding(50,0,0,0);
-        ((TextView)view.findViewById(R.id.id_test_item_des)).setOnClickListener(new View.OnClickListener() {
+        ((TextView) view.findViewById(R.id.id_test_item_tv)).setPadding(50, 0, 0, 0);
+        ((TextView) view.findViewById(R.id.id_test_item_tv)).setText(data);
+        ((TextView) view.findViewById(R.id.id_test_item_des)).setText(data);
+        final LinearLayout id_test_item_action = ((LinearLayout) view.findViewById(R.id.id_test_item_action));
+        id_test_item_action.setPadding(50, 0, 0, 0);
+        ((TextView) view.findViewById(R.id.id_test_item_des)).setOnClickListener(new View.OnClickListener() {
             @Override
             public void onClick(View v) {
-                if (id_test_item_action.getChildCount()>0){
+                if (id_test_item_action.getChildCount() > 0) {
                     id_test_item_action.setVisibility(View.GONE);
                     id_test_item_action.removeAllViews();
 
-                }else {
+                } else {
                     //点击展开。
                     TextView tv = new TextView(context);
                     tv.setText(v.getId() + "");

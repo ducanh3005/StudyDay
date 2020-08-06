@@ -53,6 +53,7 @@ public class RectUtil {
 
     /**
      * 旋转Point点
+     *
      * @param p
      * @param center_x
      * @param center_y
@@ -65,7 +66,7 @@ public class RectUtil {
         // calc new point
         float newX = center_x + (p.x - center_x) * cosA - (p.y - center_y) * sinA;
         float newY = center_y + (p.y - center_y) * cosA + (p.x - center_x) * sinA;
-        p.set((int)newX , (int)newY);
+        p.set((int) newX, (int) newY);
     }
 
 
@@ -101,7 +102,7 @@ public class RectUtil {
      * @param addRect
      * @param padding
      */
-    public static void rectAddV(final Rect srcRect, final Rect addRect, int padding , int charMinHeight) {
+    public static void rectAddV(final Rect srcRect, final Rect addRect, int padding, int charMinHeight) {
         if (srcRect == null || addRect == null)
             return;
 

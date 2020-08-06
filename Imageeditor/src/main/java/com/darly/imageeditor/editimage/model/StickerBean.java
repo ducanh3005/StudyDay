@@ -10,7 +10,7 @@ public class StickerBean {
     private String coverPath;//封面路径
     private List<String> pathList;
 
-    public StickerBean(){
+    public StickerBean() {
         pathList = new ArrayList<String>();
     }
 

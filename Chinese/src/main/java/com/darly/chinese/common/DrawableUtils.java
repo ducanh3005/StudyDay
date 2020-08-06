@@ -10,7 +10,7 @@ import android.os.Build;
  * description: 预加载效果对象类
  */
 public class DrawableUtils {
-    private DrawableUtils(){
+    private DrawableUtils() {
         throw new UnsupportedOperationException("Can not be instantiated.");
     }
 
@@ -32,7 +32,7 @@ public class DrawableUtils {
     }
 
     public static GradientDrawable createOvalDrawable(int color) {
-        GradientDrawable gradientDrawable =  new GradientDrawable();
+        GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColor(color);
         return gradientDrawable;
@@ -40,7 +40,7 @@ public class DrawableUtils {
 
     @TargetApi(Build.VERSION_CODES.JELLY_BEAN)
     public static GradientDrawable createOvalDrawable(int[] colors) {
-        GradientDrawable gradientDrawable =  new GradientDrawable();
+        GradientDrawable gradientDrawable = new GradientDrawable();
         gradientDrawable.setShape(GradientDrawable.OVAL);
         gradientDrawable.setColors(colors);
         return gradientDrawable;

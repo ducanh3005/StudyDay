@@ -6,8 +6,6 @@ import android.view.animation.Animation;
 import android.view.animation.ScaleAnimation;
 import android.widget.TextView;
 
-import com.darly.chinese.R;
-
 import me.samlss.broccoli.PlaceholderParameter;
 
 /**
@@ -27,7 +25,7 @@ public class PlaceholderHelper {
         }
         int placeHolderColor = Color.parseColor("#dddddd");
 
-        if (view.getClass().getSimpleName().equals(TextView.class.getSimpleName())){
+        if (view.getClass().getSimpleName().equals(TextView.class.getSimpleName())) {
             //TextView 控件 进行伸缩展示
             Animation timeAnimation = new ScaleAnimation(0.3f, 1, 1, 1);
             timeAnimation.setDuration(600);

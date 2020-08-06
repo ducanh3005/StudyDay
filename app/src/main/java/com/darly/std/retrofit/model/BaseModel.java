@@ -8,12 +8,12 @@ import android.os.Parcelable;
  * date:2020-05-2617:00
  * description: 接口返回的基础数据对象。
  */
-public class BaseModel implements Parcelable,Comparable<BaseModel> {
+public class BaseModel implements Parcelable, Comparable<BaseModel> {
 
     private int code;
     private String msg;
 
-    public BaseModel(){
+    public BaseModel() {
     }
 
     public void setCode(int code) {

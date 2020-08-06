@@ -16,19 +16,19 @@ import com.raizlabs.android.dbflow.annotation.PrimaryKey;
 import com.raizlabs.android.dbflow.annotation.Table;
 import com.raizlabs.android.dbflow.structure.BaseModel;
 
-import java.io.Serializable;
 import java.util.UUID;
 
 /**
  * Description TODO:诗人
  * Package com.darly.dlcommon.db.chinese.table
+ *
  * @author zhangyuhui
  * Date 2019/7/31 17:35
  * Company 山东新北洋信息技术股份有限公司西安分公司
  * EMail zhangyuhui@newbeiyang.com
  */
 @Table(database = ChineseDataBase.class)
-public class SongCiAuthorBean extends BaseModel{
+public class SongCiAuthorBean extends BaseModel {
     public static String NAME = "author.song";
     /**
      * 自增ID
@@ -87,6 +87,6 @@ public class SongCiAuthorBean extends BaseModel{
     @NonNull
     @Override
     public String toString() {
-        return " autoId："+autoId+" name："+name+" description："+description+" short_description:"+short_description;
+        return " autoId：" + autoId + " name：" + name + " description：" + description + " short_description:" + short_description;
     }
 }

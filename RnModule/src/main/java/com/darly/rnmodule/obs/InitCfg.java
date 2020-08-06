@@ -5,6 +5,7 @@ import com.darly.dlcommon.retrofit.reobs.RxNotification;
 
 /**
  * 對封裝后的工具使用Image進行初始化。
+ *
  * @author Darly/张宇辉/2017/11/23 14:18
  * @version 1.0/com.darly.common
  */
@@ -18,7 +19,7 @@ public class InitCfg implements ObserverListener {
     }
 
     public static InitCfg getInstance() {
-        if(instance == null) {
+        if (instance == null) {
             instance = new InitCfg();
         }
         return instance;

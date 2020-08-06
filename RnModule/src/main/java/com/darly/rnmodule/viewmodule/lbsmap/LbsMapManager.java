@@ -1,7 +1,5 @@
 package com.darly.rnmodule.viewmodule.lbsmap;
 
-import android.view.View;
-
 import androidx.annotation.NonNull;
 import androidx.annotation.Nullable;
 
@@ -30,7 +28,7 @@ public class LbsMapManager extends SimpleViewManager<LbsMapView> {
     @NonNull
     @Override
     protected LbsMapView createViewInstance(@NonNull ThemedReactContext reactContext) {
-        LbsMapView mapView = new LbsMapView(reactContext.getCurrentActivity(),reactContext);
+        LbsMapView mapView = new LbsMapView(reactContext.getCurrentActivity(), reactContext);
         return mapView;
     }
 

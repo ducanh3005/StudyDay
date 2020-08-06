@@ -49,16 +49,16 @@ public class DecompressionController extends BaseController {
         Task.call(new Callable<List<File>>() {
             @Override
             public List<File> call() throws Exception {
-                try{
+                try {
                     List<File> files = new ArrayList<>();
-                    for (int i = 1;i<=zipFile.size();i++) {
-                        List<File> file = ZipDecompressionCommon.unzipFile(zipFile.get(i-1), tagDec);
-                        listener.onSecProgress(i*100/zipFile.size());
+                    for (int i = 1; i <= zipFile.size(); i++) {
+                        List<File> file = ZipDecompressionCommon.unzipFile(zipFile.get(i - 1), tagDec);
+                        listener.onSecProgress(i * 100 / zipFile.size());
                         files.addAll(file);
                     }
                     listener.onProgress(100);
                     return files;
-                }catch (IOException e){
+                } catch (IOException e) {
                     e.printStackTrace();
                     return null;
                 }
@@ -68,9 +68,9 @@ public class DecompressionController extends BaseController {
             @Override
             public Void then(Task<List<File>> task) throws Exception {
                 if (task.getResult() != null) {
-                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress_suc),ControllerEnum.DECOMPRESS, task.getResult());
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress_suc), ControllerEnum.DECOMPRESS, task.getResult());
                 } else {
-                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress_fail),ControllerEnum.DECOMPRESS, task.getError().getMessage());
+                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_decompress_fail), ControllerEnum.DECOMPRESS, task.getError().getMessage());
                 }
                 return null;
             }

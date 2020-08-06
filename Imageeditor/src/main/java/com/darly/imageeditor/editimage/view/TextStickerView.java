@@ -79,7 +79,7 @@ public class TextStickerView extends View {
     private List<String> mTextContents = new ArrayList<String>(2);//存放所写的文字内容
     private String mText;
 
-    private Point mPoint = new Point(0,0);
+    private Point mPoint = new Point(0, 0);
 
     public TextStickerView(Context context) {
         super(context);
@@ -270,7 +270,7 @@ public class TextStickerView extends View {
                     last_x = mRotateDstRect.centerX();
                     last_y = mRotateDstRect.centerY();
                     ret = true;
-                } else if (detectInHelpBox(x , y)) {// 移动模式
+                } else if (detectInHelpBox(x, y)) {// 移动模式
                     isShowHelpBox = true;
                     mCurrentMode = MOVE_MODE;
                     last_x = x;
@@ -330,11 +330,11 @@ public class TextStickerView extends View {
      * @param y
      * @return
      */
-    private boolean detectInHelpBox(float x , float y){
+    private boolean detectInHelpBox(float x, float y) {
         //mRotateAngle
-        mPoint.set((int)x , (int)y);
+        mPoint.set((int) x, (int) y);
         //旋转点击点
-        RectUtil.rotatePoint(mPoint , mHelpBoxRect.centerX() , mHelpBoxRect.centerY() , -mRotateAngle);
+        RectUtil.rotatePoint(mPoint, mHelpBoxRect.centerX(), mHelpBoxRect.centerY(), -mRotateAngle);
         return mHelpBoxRect.contains(mPoint.x, mPoint.y);
     }
 

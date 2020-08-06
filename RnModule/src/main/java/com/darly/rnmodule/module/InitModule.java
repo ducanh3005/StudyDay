@@ -1,29 +1,20 @@
 package com.darly.rnmodule.module;
 
 import android.app.Activity;
-import android.content.Intent;
-import android.util.Log;
 
 import androidx.annotation.NonNull;
 
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.framework.ContextController;
-import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.rnmodule.ModuleEnum;
 import com.darly.rnmodule.obs.InitCfg;
-import com.darly.rnmodule.ui.RNNavigatorActivity;
 import com.facebook.react.bridge.Arguments;
 import com.facebook.react.bridge.Promise;
 import com.facebook.react.bridge.ReactApplicationContext;
 import com.facebook.react.bridge.ReactContextBaseJavaModule;
 import com.facebook.react.bridge.ReactMethod;
 import com.facebook.react.bridge.WritableMap;
-import com.google.gson.JsonObject;
-
-import rx.android.schedulers.AndroidSchedulers;
-import rx.functions.Func1;
-import rx.schedulers.Schedulers;
 
 /**
  * author:zhangyuhui
@@ -43,17 +34,17 @@ public class InitModule extends ReactContextBaseJavaModule {
     }
 
     @ReactMethod
-    public void init(Promise promise){
+    public void init(Promise promise) {
         DLog.d("init() called");
         WritableMap init = Arguments.createMap();
-        init.putString(NetUtil.SYSTEM_IP,ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP).toString());
+        init.putString(NetUtil.SYSTEM_IP, ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP).toString());
 
         promise.resolve(init);
     }
 
 
     @ReactMethod
-    public void get(Promise promise){
+    public void get(Promise promise) {
         DLog.d("get() called");
         WritableMap init = Arguments.createMap();
         try {
@@ -68,10 +59,10 @@ public class InitModule extends ReactContextBaseJavaModule {
 
 
     @ReactMethod
-    public void post(Promise promise){
+    public void post(Promise promise) {
         DLog.d("init() called");
         WritableMap init = Arguments.createMap();
-        init.putString(NetUtil.SYSTEM_IP,ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP).toString());
+        init.putString(NetUtil.SYSTEM_IP, ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP).toString());
 
         promise.resolve(init);
     }
@@ -84,9 +75,9 @@ public class InitModule extends ReactContextBaseJavaModule {
         try {
             getCurrentActivity().setResult(Activity.RESULT_OK);
             getCurrentActivity().finish();
-        }catch (Exception e){
+        } catch (Exception e) {
 
-        }catch (Error e){
+        } catch (Error e) {
 
         }
     }

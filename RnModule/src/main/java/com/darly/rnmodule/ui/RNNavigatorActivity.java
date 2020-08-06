@@ -18,7 +18,7 @@ public class RNNavigatorActivity extends BaseReactNativeActivity {
     @Nullable
     @Override
     protected String getMainComponentName() {
-        Log.e("RNNavigatorActivity", "getMainComponentName: "+ModuleEnum.RNNAVIGATORACTIVITY.getDesc());
+        Log.e("RNNavigatorActivity", "getMainComponentName: " + ModuleEnum.RNNAVIGATORACTIVITY.getDesc());
         return ModuleEnum.RNNAVIGATORACTIVITY.getDesc();
     }
 

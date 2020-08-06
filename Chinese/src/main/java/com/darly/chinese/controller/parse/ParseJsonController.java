@@ -14,10 +14,10 @@ import com.darly.chinese.R;
 import com.darly.chinese.base.BaseController;
 import com.darly.chinese.base.ControllerEnum;
 import com.darly.chinese.controller.OnControllerBackListener;
+import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.chinese.db.chinese.table.SongCiAuthorBean;
 import com.darly.chinese.db.chinese.table.SongCiBean;
 import com.darly.chinese.db.crud.DataBaseController;
-import com.darly.chinese.controller.fileload.ExternalStorageUtil;
 import com.darly.dlcommon.common.JsonConverter;
 import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.VersionController;
@@ -33,7 +33,6 @@ import java.io.IOException;
 import java.io.InputStream;
 import java.util.ArrayList;
 import java.util.List;
-import java.util.Scanner;
 import java.util.UUID;
 import java.util.concurrent.Callable;
 
@@ -104,7 +103,7 @@ public class ParseJsonController extends BaseController {
                     //无需重新加载
                     listener.onProgress(100);
 
-                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc),ControllerEnum.PARSE, null);
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc), ControllerEnum.PARSE, null);
                     DLog.d("数据库信息一致，无需修改");
                 } else {
                     insertChineseMessage(listener, "");
@@ -212,10 +211,10 @@ public class ParseJsonController extends BaseController {
                         DLog.d("开始读取文件" + jsonFile.get(i));
                         InputStream inputStream = null;
                         File file = new File(jsonFile.get(i));
-                        if (file.exists()){
+                        if (file.exists()) {
                             inputStream = new FileInputStream(file);
                         }
-                        if (inputStream == null){
+                        if (inputStream == null) {
                             inputStream = ContextController.getInstance().getApplication().getAssets().open(jsonFile.get(i));
                         }
                         String json = StringUtil.convertStreamToString(inputStream);
@@ -262,10 +261,10 @@ public class ParseJsonController extends BaseController {
                     versionBean.setVersioncode(VersionController.versionCode());
                     versionBean.setVersionname(VersionController.versionName());
                     DataBaseController.save(versionBean);
-                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc),ControllerEnum.PARSE, null);
+                    listener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_suc), ControllerEnum.PARSE, null);
                     DLog.d("数据重新初始化完成");
                 } else {
-                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_fail),ControllerEnum.PARSE, task.getError().getMessage());
+                    listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_parse_fail), ControllerEnum.PARSE, task.getError().getMessage());
                     DLog.d("数据重新初始化失败" + task.getError().getMessage());
                 }
                 return null;

@@ -1,11 +1,10 @@
-
 package com.darly.widget.charting.renderer;
 
 import com.darly.widget.charting.utils.ViewPortHandler;
 
 /**
  * Abstract baseclass of all Renderers.
- * 
+ *
  * @author Philipp Jahoda
  */
 public abstract class Renderer {

@@ -64,9 +64,9 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
             return;
         }
 
-        int max = (int)(Math.min(
-                Math.ceil((float)dataSet.getEntryCount() * mAnimator.getPhaseX()),
-                (float)dataSet.getEntryCount()));
+        int max = (int) (Math.min(
+                Math.ceil((float) dataSet.getEntryCount() * mAnimator.getPhaseX()),
+                (float) dataSet.getEntryCount()));
 
         for (int i = 0; i < max; i++) {
 
@@ -147,8 +147,8 @@ public class ScatterChartRenderer extends LineScatterCandleRadarRenderer {
                         Utils.drawImage(
                                 c,
                                 icon,
-                                (int)(positions[j] + iconsOffset.x),
-                                (int)(positions[j + 1] + iconsOffset.y),
+                                (int) (positions[j] + iconsOffset.x),
+                                (int) (positions[j + 1] + iconsOffset.y),
                                 icon.getIntrinsicWidth(),
                                 icon.getIntrinsicHeight());
                     }

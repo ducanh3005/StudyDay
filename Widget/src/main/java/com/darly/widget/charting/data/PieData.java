@@ -1,11 +1,7 @@
-
 package com.darly.widget.charting.data;
 
 import com.darly.widget.charting.highlight.Highlight;
 import com.darly.widget.charting.interfaces.datasets.IPieDataSet;
-
-import java.util.ArrayList;
-import java.util.List;
 
 /**
  * A PieData object can only represent one DataSet. Unlike all other charts, the

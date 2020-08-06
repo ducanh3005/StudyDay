@@ -15,6 +15,7 @@ import android.util.Log;
  * 出题人：阿里巴巴出题专家：昀龙／阿里云弹性人工智能负责人
  * Description TODO:创建一个链表
  * Package com.darly.std.link
+ *
  * @author zhangyuhui
  * Date 2019/7/24 16:05
  * Company 山东新北洋信息技术股份有限公司西安分公司
@@ -50,29 +51,29 @@ public class LinkList {
             Log.d("displayLinkList", "node.getMsg()----->" + node.getMsg());
             node = node.getPoint();
         }
-        Log.d("displayLinkList","null");
+        Log.d("displayLinkList", "null");
     }
 
     /**
      * 逆序输出链表内容
      */
-    public void reverseLinkList(){
-        if (head == null||head.getPoint() == null){
-            Log.d("reverseLinkList","链表只有一个头节点或者只有一个节点");
+    public void reverseLinkList() {
+        if (head == null || head.getPoint() == null) {
+            Log.d("reverseLinkList", "链表只有一个头节点或者只有一个节点");
             return;
-        }else {
+        } else {
             NextNode prewNode = head.getPoint();
             NextNode nextNode = head.getPoint().getPoint();
             //将第一个结点的next置为空，否则会出现一个环
             prewNode.setPoint(null);
             NextNode temp = null;
-            while (nextNode!=null){
+            while (nextNode != null) {
                 temp = nextNode.getPoint();
                 nextNode.setPoint(prewNode);
                 prewNode = nextNode;
                 nextNode = temp;
             }
-            if (nextNode == null){
+            if (nextNode == null) {
                 head.setPoint(prewNode);
                 nextNode = null;
             }

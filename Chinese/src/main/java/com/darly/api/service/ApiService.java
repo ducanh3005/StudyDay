@@ -41,8 +41,8 @@ public class ApiService extends Service {
             } catch (IOException e) {
                 e.printStackTrace();
             }
-        }else {
-            Toast.makeText(this,"服务初始化失败！",Toast.LENGTH_SHORT);
+        } else {
+            Toast.makeText(this, "服务初始化失败！", Toast.LENGTH_SHORT);
         }
         return super.onStartCommand(intent, flags, startId);
     }

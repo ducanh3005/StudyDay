@@ -1,4 +1,3 @@
-
 package com.darly.widget.charting.components;
 
 import com.darly.widget.charting.utils.Utils;

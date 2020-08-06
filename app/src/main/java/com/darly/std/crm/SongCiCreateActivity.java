@@ -6,7 +6,6 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.darly.chinese.common.InfoString;
 import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.entitycontroller.ActivityConst;
 import com.darly.chinese.entitycontroller.CreateEntityActivity;
@@ -25,21 +24,23 @@ public class SongCiCreateActivity extends CreateEntityActivity<ActivityCreateSon
 
     /**
      * 新建实体对象
+     *
      * @param context 上下文
      */
-    public static void goCreate(Context context){
-        Intent intent = new Intent(context,SongCiCreateActivity.class);
+    public static void goCreate(Context context) {
+        Intent intent = new Intent(context, SongCiCreateActivity.class);
         context.startActivity(intent);
     }
 
     /**
      * 编辑实体对象
+     *
      * @param context 上下文
      */
-    public static void goEdit(Context context, String title, SongCiModel data){
-        Intent intent = new Intent(context,SongCiCreateActivity.class);
-        intent.putExtra(ActivityConst.TITLE,title);
-        intent.putExtra(ActivityConst.ENTITY,data);
+    public static void goEdit(Context context, String title, SongCiModel data) {
+        Intent intent = new Intent(context, SongCiCreateActivity.class);
+        intent.putExtra(ActivityConst.TITLE, title);
+        intent.putExtra(ActivityConst.ENTITY, data);
         context.startActivity(intent);
     }
 

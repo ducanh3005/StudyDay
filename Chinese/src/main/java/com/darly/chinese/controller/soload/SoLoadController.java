@@ -3,7 +3,6 @@ package com.darly.chinese.controller.soload;
 import android.content.Context;
 import android.os.Build;
 
-
 import com.darly.chinese.R;
 import com.darly.chinese.base.BaseController;
 import com.darly.chinese.base.ControllerEnum;
@@ -71,7 +70,7 @@ public class SoLoadController extends BaseController {
         currentFiles = dir.listFiles();
         //这个是data/data路径，直接反射到内部路径。直接使用System.loadLibrary()方法导入SO包
         installSoDir();
-        loadListener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so_suc),ControllerEnum.SOLOAD, currentFiles);
+        loadListener.onComplete(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so_suc), ControllerEnum.SOLOAD, currentFiles);
     }
 
 
@@ -89,7 +88,7 @@ public class SoLoadController extends BaseController {
             loadSo(listener);
         } catch (Exception e) {
             e.printStackTrace();
-            listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so_fail),ControllerEnum.SOLOAD, "SO库复制失败");
+            listener.onFailed(ContextController.getInstance().getApplication().getResources().getString(R.string.type_so_fail), ControllerEnum.SOLOAD, "SO库复制失败");
         }
     }
 
@@ -162,7 +161,6 @@ public class SoLoadController extends BaseController {
      * 将so所在的目录放入PathClassLoader里的nativeLibraryDirectories中
      * 反射将so放到加载对应路径中。
      * 主要任务是将SO库加载的内部路径更新
-     *
      */
     public void installSoDir() {
         File soDirFile = ContextController.getInstance().getApplication().getDir(TARGET_LIBS_NAME, Context.MODE_PRIVATE);

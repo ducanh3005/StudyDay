@@ -56,8 +56,8 @@ public class DataReposController {
      *
      * @return 数据
      */
-    public static List<SongCiAuthorModel> findSongCiAuthors(int limit,int page) {
-        List<SongCiAuthorBean> songCiAuthorBeans = DataBaseController.selectByLimit(SongCiAuthorBean.class,limit,page);
+    public static List<SongCiAuthorModel> findSongCiAuthors(int limit, int page) {
+        List<SongCiAuthorBean> songCiAuthorBeans = DataBaseController.selectByLimit(SongCiAuthorBean.class, limit, page);
         List<SongCiAuthorModel> models = new ArrayList<>();
         if (songCiAuthorBeans != null && songCiAuthorBeans.size() > 0) {
             for (SongCiAuthorBean bean : songCiAuthorBeans) {
@@ -84,13 +84,14 @@ public class DataReposController {
         DLog.d("findSongCis 获取对象长度" + models.size());
         return models;
     }
+
     /**
      * 获取宋词对象类
      *
      * @return 数据
      */
-    public static List<SongCiModel> findSongCis(int limit,int page) {
-        List<SongCiBean> songCiBeans = DataBaseController.selectByLimit(SongCiBean.class,limit,page);
+    public static List<SongCiModel> findSongCis(int limit, int page) {
+        List<SongCiBean> songCiBeans = DataBaseController.selectByLimit(SongCiBean.class, limit, page);
         List<SongCiModel> models = new ArrayList<>();
         if (songCiBeans != null && songCiBeans.size() > 0) {
             for (SongCiBean bean : songCiBeans) {
@@ -102,24 +103,24 @@ public class DataReposController {
     }
 
 
-    public static void test(){
+    public static void test() {
         Log.d("DataReposController", "测试开始执行");
         List<SongCiAuthorBean> beans = DataBaseController.selectAll(SongCiAuthorBean.class);
-        Log.d("DataReposController", "测试缓存数据"+beans.size());
+        Log.d("DataReposController", "测试缓存数据" + beans.size());
 
         Log.d("DataReposController", "数据库开始查询");
-        List<SongCiAuthorBean> aut = DataBaseController.selectByConditions(SongCiAuthorBean.class,null, SongCiAuthorBean_Table.name.like("李%"));
-        Log.d("DataReposController", "数据库完成查询"+aut.size());
+        List<SongCiAuthorBean> aut = DataBaseController.selectByConditions(SongCiAuthorBean.class, null, SongCiAuthorBean_Table.name.like("李%"));
+        Log.d("DataReposController", "数据库完成查询" + aut.size());
 
         List<SongCiAuthorBean> keys = new ArrayList<>();
         Log.d("DataReposController", "内存开始查询");
-        for (SongCiAuthorBean bean:beans) {
-            DLog.d("查询的对象："+bean.toString());
-            if (bean.getName()!=null&&bean.getName().contains("李")){
+        for (SongCiAuthorBean bean : beans) {
+            DLog.d("查询的对象：" + bean.toString());
+            if (bean.getName() != null && bean.getName().contains("李")) {
                 keys.add(bean);
             }
         }
-        Log.d("DataReposController", "内存完成查询"+keys.size());
+        Log.d("DataReposController", "内存完成查询" + keys.size());
     }
 
 }

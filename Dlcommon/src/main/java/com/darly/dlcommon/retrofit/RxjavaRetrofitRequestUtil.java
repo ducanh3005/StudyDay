@@ -2,7 +2,6 @@ package com.darly.dlcommon.retrofit;
 
 import android.text.TextUtils;
 
-
 import com.darly.dlcommon.common.dlog.DLog;
 
 import java.io.UnsupportedEncodingException;
@@ -25,8 +24,9 @@ import retrofit2.converter.gson.GsonConverterFactory;
 /**
  * 網絡請求封裝類
  * Copyright (c) 2017 Organization D.L. zhangyuhui All rights reserved.
- * @author  Darly/张宇辉/2017/12/4 14:44
- * @version  1.0/com.darly.common.retrofit
+ *
+ * @author Darly/张宇辉/2017/12/4 14:44
+ * @version 1.0/com.darly.common.retrofit
  */
 
 public class RxjavaRetrofitRequestUtil {
@@ -64,8 +64,8 @@ public class RxjavaRetrofitRequestUtil {
                 }
             };
             final SSLSocketFactoryCompat compat = new SSLSocketFactoryCompat(trustManager);
-            builder.sslSocketFactory(compat,trustManager);
-        }catch (Exception e){
+            builder.sslSocketFactory(compat, trustManager);
+        } catch (Exception e) {
             throw new RuntimeException(e);
         }
         //设置请求超时时间
@@ -95,7 +95,7 @@ public class RxjavaRetrofitRequestUtil {
         return instance;
     }
 
-    public <T> T  get(Class<T> t) {
+    public <T> T get(Class<T> t) {
         //清理多余的头文件。
         while (builder.interceptors().size() > 0 && builder.interceptors().size() != interSize) {
             builder.interceptors().remove(builder.interceptors().size() - 1);
