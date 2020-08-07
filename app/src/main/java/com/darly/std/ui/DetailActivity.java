@@ -15,13 +15,13 @@ import android.view.MotionEvent;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.db.chinese.bean.BaseBean;
-import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
-import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.event.BaseEvent;
 import com.darly.chinese.event.EventController;
 import com.darly.std.BR;
 import com.darly.std.R;
+import com.darly.std.bean.BaseBean;
+import com.darly.std.bean.SongCiAuthorModel;
+import com.darly.std.bean.SongCiModel;
 import com.darly.std.bean.TooBarEvent;
 import com.darly.std.databinding.ActivityDetailBinding;
 import com.darly.std.vm.DetailViewModel;

@@ -23,7 +23,7 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.db.chinese.bean.ParsableBean;
+import com.darly.std.bean.ParsableBean;
 import com.darly.std.databinding.ActivityGuideBinding;
 import com.darly.std.vm.GuideViewModel;
 import com.darly.widget.titlebar.TitleBar;

@@ -8,13 +8,17 @@
 
 package com.darly.chinese;
 
+import android.content.Intent;
+
 import androidx.multidex.MultiDexApplication;
 
 import com.darly.dlcommon.CommonController;
-import com.raizlabs.android.dbflow.config.ChineseGeneratedDatabaseHolder;
+import com.darly.dlcommon.common.dlog.DLog;
+import com.darly.nanoapiservice.service.ApiService;
 import com.raizlabs.android.dbflow.config.FlowConfig;
 import com.raizlabs.android.dbflow.config.FlowLog;
 import com.raizlabs.android.dbflow.config.FlowManager;
+import com.raizlabs.android.dbflow.config.GeneratedDatabaseHolder;
 
 /**
  * Description TODO: 基础APPlication
@@ -27,16 +31,31 @@ import com.raizlabs.android.dbflow.config.FlowManager;
  */
 public class ChineseApplication extends MultiDexApplication {
 
+
+
     @Override
     public void onCreate() {
         super.onCreate();
 //        FlowManager.init(this);
 //        FlowManager.init(new FlowConfig.Builder(context).build());
         //添加日志
-        FlowManager.init(FlowConfig.builder(this).addDatabaseHolder(ChineseGeneratedDatabaseHolder.class).build());
+        FlowManager.init(FlowConfig.builder(this).addDatabaseHolder(GeneratedDatabaseHolder.class).build());
         FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
         CommonController.init(this);
+
+        //启动服务器
+        DLog.d("[BaseApplication 服务启动中...]");
+        Intent service = new Intent(this, ApiService.class);
+        startService(service);
     }
 
 
+    @Override
+    public void onTerminate() {
+        super.onTerminate();
+        //关闭服务器
+        DLog.d("[BaseApplication 服务关闭中...]");
+        Intent service = new Intent(this, ApiService.class);
+        stopService(service);
+    }
 }

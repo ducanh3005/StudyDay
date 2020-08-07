@@ -1,0 +1,9 @@
+<manifest xmlns:android="http://schemas.android.com/apk/res/android"
+    package="com.darly.nanoapiservice">
+
+    <application>
+        <service
+            android:name="com.darly.nanoapiservice.service.ApiService"
+            android:process=":api" />
+    </application>
+</manifest>

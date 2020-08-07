@@ -14,10 +14,6 @@ import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.framework.ContextController;
 import com.darly.dlcommon.framework.EventBusController;
 import com.darly.dlcommon.framework.SharePerferenceController;
-import com.raizlabs.android.dbflow.config.FlowConfig;
-import com.raizlabs.android.dbflow.config.FlowLog;
-import com.raizlabs.android.dbflow.config.FlowManager;
-import com.raizlabs.android.dbflow.config.GeneratedDatabaseHolder;
 
 
 /**
@@ -38,11 +34,6 @@ public class CommonController {
         ContextController.getInstance().setApplication(context);
         ContextController.getInstance().setEventBusController(new EventBusController());
         ContextController.getInstance().setSharePerferenceController(new SharePerferenceController(context));
-//        FlowManager.init(context);
-//        FlowManager.init(new FlowConfig.Builder(context).build());
-        //添加日志
-        FlowManager.init(FlowConfig.builder(context).addDatabaseHolder(GeneratedDatabaseHolder.class).build());
-        FlowLog.setMinimumLoggingLevel(FlowLog.Level.V);
         DLog.d("CommonController", "init() called with: context = [" + context + "]");
     }
 

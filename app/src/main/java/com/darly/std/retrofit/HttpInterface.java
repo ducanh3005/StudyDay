@@ -23,4 +23,7 @@ public interface HttpInterface {
     @POST("mobile/value")
     Observable<JsonObject> postValue(@Body RequestBody route);
 
+    @GET("mobile/list")
+    Observable<JsonObject> getList(@Query("ip") String ip);
+
 }

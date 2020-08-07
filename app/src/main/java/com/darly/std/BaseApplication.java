@@ -8,7 +8,6 @@
 
 package com.darly.std;
 
-import android.content.Intent;
 import android.content.IntentFilter;
 import android.content.pm.PackageInfo;
 import android.content.pm.PackageManager;
@@ -16,11 +15,11 @@ import android.net.ConnectivityManager;
 
 import androidx.multidex.MultiDex;
 
-import com.darly.api.base.NetStateChangeReceiver;
-import com.darly.api.service.ApiService;
 import com.darly.chinese.ChineseApplication;
+import com.darly.chinese.base.NetStateChangeReceiver;
 import com.darly.chinese.common.SpController;
 import com.darly.chinese.controller.fileload.ExternalStorageUtil;
+import com.darly.dlcommon.common.StringUtil;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.retrofit.RxInterceptor;
@@ -68,17 +67,15 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         SoLoader.init(this, false);
         SpController.getInstance().setName("study");
         SpController.getInstance().putValue(NetUtil.SYSTEM_IP, NetUtil.getIPAddress(this));
-        //启动服务器
-        DLog.d("[BaseApplication 服务启动中...]");
-        Intent service = new Intent(this, ApiService.class);
-        startService(service);
         receiver = new NetStateChangeReceiver();
         IntentFilter intentFilter = new IntentFilter(ConnectivityManager.CONNECTIVITY_ACTION);
         registerReceiver(receiver, intentFilter);
         //初始化网络工具
         RxInterceptor.setVersionCode(getVersionCode());
         RxInterceptor.init(new RetrofitCfg());
-        String url = "http://" + SpController.getInstance().getValue(NetUtil.SYSTEM_IP) + ":55550";
+        String url = StringUtil.getHost(SpController.getInstance().getValue(NetUtil.SYSTEM_IP).toString());
+        DLog.d("[获取到的服务器地址：]"+url);
+        RxjavaRetrofitRequestUtil.setIsDebug(true);
         RxjavaRetrofitRequestUtil.setBaseUrl(url);
 
         RNModule.init().initRetrofit(NotificationToApp.class);
@@ -131,9 +128,6 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
     public void onTerminate() {
         super.onTerminate();
         //关闭服务器
-        DLog.d("[BaseApplication 服务关闭中...]");
-        Intent service = new Intent(this, ApiService.class);
-        stopService(service);
         unregisterReceiver(receiver);
     }
 }

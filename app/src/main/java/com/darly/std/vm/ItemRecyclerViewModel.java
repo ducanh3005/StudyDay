@@ -11,10 +11,10 @@ package com.darly.std.vm;
 import android.view.View;
 
 import androidx.lifecycle.ViewModel;
-
-import com.darly.chinese.db.chinese.bean.BaseBean;
-import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
-import com.darly.chinese.db.chinese.bean.SongCiModel;
+;
+import com.darly.std.bean.BaseBean;
+import com.darly.std.bean.SongCiAuthorModel;
+import com.darly.std.bean.SongCiModel;
 
 /**
  * Description TODO:ViewModel类

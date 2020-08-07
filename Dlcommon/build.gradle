@@ -5,8 +5,6 @@ if (isDevelop) {
     apply plugin: 'com.android.library'
 }
 
-def dbflow_version = "4.2.4"
-
 android {
     compileSdkVersion 28
 
@@ -27,6 +25,8 @@ android {
                 }
             }
         }
+        //增加的参数 基础封装的服务地址字符串
+        buildConfigField("String", "HOST", '"http://{0}:8090"')
     }
 
     buildTypes {
@@ -45,10 +45,7 @@ dependencies {
     testImplementation 'junit:junit:4.13-beta-3'
     androidTestImplementation 'androidx.test:runner:1.1.0'
     androidTestImplementation 'androidx.test.espresso:espresso-core:3.1.0'
-    annotationProcessor "com.github.Raizlabs.DBFlow:dbflow-processor:$dbflow_version"
-    // gradle 3.0.0 可以使用 implementation，否则用 compile
-    api "com.github.Raizlabs.DBFlow:dbflow-core:$dbflow_version"
-    api "com.github.Raizlabs.DBFlow:dbflow:$dbflow_version"
+
     api 'com.alibaba:fastjson:1.2.59'
     api 'org.greenrobot:eventbus:3.1.1'
 

@@ -6,11 +6,11 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
-import com.darly.chinese.db.chinese.bean.SongCiModel;
 import com.darly.chinese.entitycontroller.ActivityConst;
 import com.darly.chinese.entitycontroller.CreateEntityActivity;
 import com.darly.std.BR;
 import com.darly.std.R;
+import com.darly.std.bean.SongCiModel;
 import com.darly.std.databinding.ActivityCreateSongciBinding;
 import com.darly.std.vm.SongciCreateViewModel;
 import com.darly.widget.titlebar.TitleBar;

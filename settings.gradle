@@ -1,4 +1,4 @@
-include ':app', ':Chinese', ':Dlcommon', ':Widget', ':Imageeditor', ':RnModule'
+include ':app', ':Chinese', ':Dlcommon', ':Widget', ':Imageeditor', ':RnModule', ':NanoApiService'
 
 //react-navigation 3.x版本的安装以及react-native-gesture-handler配置
 include ':react-native-gesture-handler'

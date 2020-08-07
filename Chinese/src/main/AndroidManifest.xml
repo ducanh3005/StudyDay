@@ -1,10 +1,7 @@
 <manifest xmlns:android="http://schemas.android.com/apk/res/android"
-    package="com.darly.chinese" >
+    package="com.darly.chinese">
 
     <application>
         <activity android:name=".base.BaseActivity" />
-
-        <service android:name="com.darly.api.service.ApiService"
-            android:process=":api"/>
     </application>
 </manifest>

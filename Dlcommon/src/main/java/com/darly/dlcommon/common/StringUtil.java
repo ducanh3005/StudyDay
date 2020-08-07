@@ -8,6 +8,8 @@
 
 package com.darly.dlcommon.common;
 
+import com.darly.dlcommon.BuildConfig;
+
 import java.io.IOException;
 import java.io.InputStream;
 import java.util.Scanner;
@@ -60,6 +62,23 @@ public class StringUtil {
             e.printStackTrace();
         }
         return s;
+    }
+
+    /**
+     * 根据提供的字符串封装成http请求。
+     * @param url 服务器地址
+     * @return 返回http请求
+     */
+    public static String getHost(String url){
+        return BuildConfig.HOST.replace("{0}",url);
+    }
+
+    /**
+     * 获取配置的端口。
+     * @return 返回端口
+     */
+    public static int getPort(){
+        return Integer.parseInt(BuildConfig.HOST.substring(BuildConfig.HOST.lastIndexOf(":")+1,BuildConfig.HOST.length()));
     }
 
 }

@@ -20,15 +20,14 @@ import androidx.lifecycle.ViewModel;
 
 import com.bumptech.glide.Glide;
 import com.darly.chinese.common.LogController;
-import com.darly.chinese.db.chinese.bean.SongCiAuthorModel;
-import com.darly.chinese.db.chinese.bean.SongCiModel;
-import com.darly.chinese.db.crud.DataReposController;
 import com.darly.dlcommon.common.dlog.DLog;
 import com.darly.dlcommon.common.net.NetUtil;
 import com.darly.dlcommon.framework.ContextController;
 import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.std.BR;
 import com.darly.std.R;
+import com.darly.std.bean.SongCiAuthorModel;
+import com.darly.std.bean.SongCiModel;
 import com.darly.std.guide.MainGuideComponent;
 import com.darly.std.retrofit.HttpInterface;
 import com.darly.widget.guideview.Guide;
@@ -78,7 +77,6 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
                 }
             }, 0, 100);
         }
-        DataReposController.test();
 //        image.setValue(ExternalStorageUtil.getDownLoadPath()+ File.separator +"pic.jpg");
     }
 
@@ -191,9 +189,7 @@ public class MainViewModel extends ViewModel implements OnItemClickListener<Stri
      * @param view 参数
      */
     public void listViewClick(View view) {
-
         //尝试网络请求
-
         RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getKey((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
                 .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
                 .observeOn(AndroidSchedulers.mainThread())

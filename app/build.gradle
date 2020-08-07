@@ -29,6 +29,7 @@ android {
         }
     }
     compileSdkVersion rootProject.ext.compileSdkVersion
+
     defaultConfig {
         applicationId "com.darly.std"
         minSdkVersion rootProject.ext.minSdkVersion

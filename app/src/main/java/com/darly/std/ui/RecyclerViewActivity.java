@@ -15,9 +15,9 @@ import androidx.lifecycle.Observer;
 import androidx.lifecycle.ViewModelProviders;
 
 import com.darly.chinese.base.BaseActivity;
-import com.darly.chinese.db.chinese.bean.BaseBean;
 import com.darly.std.BR;
 import com.darly.std.R;
+import com.darly.std.bean.BaseBean;
 import com.darly.std.databinding.ActivityRecyclerBinding;
 import com.darly.std.vm.RecyclerViewModel;
 import com.darly.widget.titlebar.TitleBar;

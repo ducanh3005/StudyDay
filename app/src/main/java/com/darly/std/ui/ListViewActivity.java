@@ -104,9 +104,44 @@ public class ListViewActivity extends AppCompatActivity {
                             adapter = new ListViewAdapter(ListViewActivity.this, data);
                             id_test_list.setAdapter(adapter);
                         }
+                        startList();
                     }
                 });
+    }
 
+    private void startList() {
+
+        RxjavaRetrofitRequestUtil.getInstance().get(HttpInterface.class).getList((String) ContextController.getInstance().getSharePerferenceController().getValue(NetUtil.SYSTEM_IP))
+                .subscribeOn(Schedulers.io()).unsubscribeOn(Schedulers.io())
+                .observeOn(AndroidSchedulers.mainThread())
+                .map(new Func1<JsonObject, String>() {
+                    @Override
+                    public String call(JsonObject s) {
+                        try {
+                            Thread.sleep(5000);
+                        } catch (InterruptedException e) {
+                            e.printStackTrace();
+                        }
+                        DLog.json("Func1", s.toString());
+                        return s.toString();
+                    }
+                })
+                .subscribe(new rx.Observer<String>() {
+                    @Override
+                    public void onCompleted() {
+                        startList();
+                    }
+
+                    @Override
+                    public void onError(Throwable e) {
+
+                    }
+
+                    @Override
+                    public void onNext(String s) {
+                        DLog.d(s);
+                    }
+                });
 
     }
 
