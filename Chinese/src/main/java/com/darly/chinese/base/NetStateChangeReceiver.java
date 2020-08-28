@@ -30,7 +30,7 @@ public class NetStateChangeReceiver extends BroadcastReceiver {
             String localIp = NetUtil.getIPAddress(context);
             if (!StringUtil.isEmpty(localIp)) {
                 SpController.getInstance().putValue(NetUtil.SYSTEM_IP, localIp);
-                String url = StringUtil.getHost(localIp);
+                String url = StringUtil.getHost(localIp,null);
                 DLog.d("[获取到的服务器地址：]"+url);
                 RxjavaRetrofitRequestUtil.setBaseUrl(url);
                 WritableMap ip = Arguments.createMap();

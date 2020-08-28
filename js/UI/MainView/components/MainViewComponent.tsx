@@ -8,6 +8,7 @@ import {SYSTEM_IP,NATIVE_GET_CALL} from '../../../Global/common/Const';
 
 
 const NativeInitModule = require('../../../Global/modules/NativeInitModule');
+const _ = require('lodash');
 /**
  * 上个界面传递过来的props
  */
@@ -29,7 +30,7 @@ export default class MainViewComponent extends React.Component<Prop, State>{
         super(props)
         //初始化ip
         this.state = {
-            hostIp:'',
+            hostIp:'10.0.0.2',
         }
     }
 
@@ -37,7 +38,8 @@ export default class MainViewComponent extends React.Component<Prop, State>{
         this.ipChangedListener = DeviceEventEmitter.addListener(SYSTEM_IP, (ip) => {
             console.log("[RN接收到ip变化]"+JSON.stringify(ip));
             this.state = {
-                hostIp:ip[`${SYSTEM_IP}`],
+                // hostIp:ip[`${SYSTEM_IP}`],
+                hostIp:'10.0.0.2',
             }
         });
         this.nativeGetCallListener = DeviceEventEmitter.addListener(NATIVE_GET_CALL,(result) =>{
@@ -52,7 +54,8 @@ export default class MainViewComponent extends React.Component<Prop, State>{
         let map = await NativeInitModule.init();
         if (map) {
             this.state = {
-                hostIp:map[`${SYSTEM_IP}`],
+                // hostIp:map[`${SYSTEM_IP}`],
+                hostIp:'10.0.0.2',
             }
         }
         console.log("[获取到的IP]"+JSON.stringify(map)+this.state);
@@ -65,7 +68,7 @@ export default class MainViewComponent extends React.Component<Prop, State>{
 
     async getCall() {
         //get请求测试
-        let url = `http://${this.state.hostIp}:8089/mobile/key?ip=${this.state.hostIp}&key=${this.state.hostIp}`;
+        let url = `http://${this.state.hostIp}:8091/mobile/key?ip=${this.state.hostIp}&key=${this.state.hostIp}`;
         console.log("[获取的Url：]"+JSON.stringify(url));
         let data = await fetch(url); //获取后台数据
         data = await data.json();
@@ -74,7 +77,7 @@ export default class MainViewComponent extends React.Component<Prop, State>{
 
     async postCall() {
        //post请求测试
-       let url = `http://${this.state.hostIp}:8089/mobile/value`;
+       let url = `http://${this.state.hostIp}:8091/mobile/value`;
        console.log("[获取的Url：]"+JSON.stringify(url));
         let obj = { over: 1};
         let options = {
@@ -98,12 +101,14 @@ export default class MainViewComponent extends React.Component<Prop, State>{
         let map = await NativeInitModule.get();
     }
     render() {
+        let arry = ['a', 'b', 'c', 'd'];
+       ;
         console.log("[MainViewComponent]");
         return (
             <View style={{ flex: 1 }}>
                 <CalendarView />
                 <Button
-                    title={"RN网络接口测试get"}
+                    title={"RN网络接口测试get"+JSON.stringify(_.chunk(arry, 3))}
                     onPress={() => {
                         //进行网络接口调用
                         this.getCall();
@@ -111,7 +116,7 @@ export default class MainViewComponent extends React.Component<Prop, State>{
                 />
                 <View style ={{height:10}}/>
                 <Button
-                    title={"RN网络接口测试post"}
+                    title={"RN网络接口测试post"+JSON.stringify(_.chunk(arry, 2))}
                     onPress={() => {
                         //进行网络接口调用
                         this.postCall();

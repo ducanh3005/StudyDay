@@ -73,7 +73,7 @@ public class BaseApplication extends ChineseApplication implements ReactApplicat
         //初始化网络工具
         RxInterceptor.setVersionCode(getVersionCode());
         RxInterceptor.init(new RetrofitCfg());
-        String url = StringUtil.getHost(SpController.getInstance().getValue(NetUtil.SYSTEM_IP).toString());
+        String url = StringUtil.getHost(SpController.getInstance().getValue(NetUtil.SYSTEM_IP).toString(),null);
         DLog.d("[获取到的服务器地址：]"+url);
         RxjavaRetrofitRequestUtil.setIsDebug(true);
         RxjavaRetrofitRequestUtil.setBaseUrl(url);

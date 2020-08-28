@@ -6,8 +6,12 @@ import android.os.Bundle;
 
 import androidx.lifecycle.ViewModelProviders;
 
+import com.darly.chinese.common.SpController;
 import com.darly.chinese.entitycontroller.ActivityConst;
 import com.darly.chinese.entitycontroller.CreateEntityActivity;
+import com.darly.dlcommon.common.StringUtil;
+import com.darly.dlcommon.common.net.NetUtil;
+import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.std.BR;
 import com.darly.std.R;
 import com.darly.std.bean.SongCiModel;
@@ -73,5 +77,14 @@ public class SongCiCreateActivity extends CreateEntityActivity<ActivityCreateSon
     @Override
     public void initObservableView() {
 
+    }
+
+    @Override
+    public void save() {
+        //这里获取输入的端口号。直接设置到请求中。
+        String port = binding.idCreatePort.getText().toString().trim();
+        String url = StringUtil.getHost(SpController.getInstance().getValue(NetUtil.SYSTEM_IP).toString(),port);
+        RxjavaRetrofitRequestUtil.setBaseUrl(url);
+        super.save();
     }
 }

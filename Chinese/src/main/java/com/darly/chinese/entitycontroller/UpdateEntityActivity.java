@@ -11,6 +11,7 @@ import androidx.lifecycle.ViewModel;
 
 import com.darly.chinese.R;
 import com.darly.chinese.common.InfoString;
+import com.darly.dlcommon.retrofit.RxjavaRetrofitRequestUtil;
 import com.darly.widget.titlebar.TitleBar;
 import com.darly.widget.toast.ToastController;
 
@@ -125,8 +126,7 @@ public abstract class UpdateEntityActivity<B extends ViewDataBinding, V extends 
      * 保存操作
      */
     public void save() {
-        ToastController.showShort(this, "save");
-
+        ToastController.showShort(this, "设置成功");
     }
 
 }

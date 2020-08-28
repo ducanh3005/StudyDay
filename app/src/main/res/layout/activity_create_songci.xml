@@ -22,6 +22,29 @@
             android:background="@color/blue_sy"
             app:titleTextAppearance="@style/TitleText" />
 
+
+        <LinearLayout
+            android:layout_width="match_parent"
+            android:layout_height="wrap_content"
+            android:orientation="horizontal">
+            <TextView
+                android:layout_width="0dp"
+                android:layout_height="wrap_content"
+                android:layout_weight="1"
+                android:gravity="right"
+                android:text="端口："
+                />
+            <EditText
+                android:id="@+id/id_create_port"
+                android:layout_width="0dp"
+                android:paddingLeft="@dimen/dp20"
+                android:layout_height="wrap_content"
+                android:layout_weight="3"
+                android:hint="@string/link_description"
+                />
+
+        </LinearLayout>
+
     </LinearLayout>
 </layout>
 

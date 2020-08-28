@@ -8,6 +8,8 @@
 
 package com.darly.dlcommon.common;
 
+import androidx.annotation.NonNull;
+
 import com.darly.dlcommon.BuildConfig;
 
 import java.io.IOException;
@@ -67,18 +69,16 @@ public class StringUtil {
     /**
      * 根据提供的字符串封装成http请求。
      * @param url 服务器地址
+     * @param port 服务器端口号
      * @return 返回http请求
      */
-    public static String getHost(String url){
-        return BuildConfig.HOST.replace("{0}",url);
+    public static String getHost(@NonNull String url, String port){
+        if (isEmpty(port)) {
+            return BuildConfig.HOST.replace("{0}", url);
+        }else {
+            return BuildConfig.HOST.replace("{0}", url).replace("8090",port);
+        }
     }
 
-    /**
-     * 获取配置的端口。
-     * @return 返回端口
-     */
-    public static int getPort(){
-        return Integer.parseInt(BuildConfig.HOST.substring(BuildConfig.HOST.lastIndexOf(":")+1,BuildConfig.HOST.length()));
-    }
 
 }
