@@ -1,4 +1,5 @@
 const proxy = require("http-proxy-middleware");
-module.exports = function (app) {
+module.exports = function (app: any) {
   app.use(proxy("/api", { target: "http://localhost:3000/" }));
 };
+export {};

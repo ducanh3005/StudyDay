@@ -3,7 +3,7 @@
  */
 import React from "react";
 import MainPageContainer from "./styled";
-import { Button } from "antd-mobile";
+import TestView from "components/TestView";
 
 interface State {
   title: string;
@@ -11,15 +11,10 @@ interface State {
 
 const MainPage: React.FC<State> = (state: State) => {
   console.log("[渲染MainPage]" + state);
+  const dataSource = ["a", "b", "c", "d", "e", "f", "g"];
   return (
     <MainPageContainer>
-      <Button type="primary">primary</Button>
-      <Button type="primary" inline style={{ marginRight: "4px" }}>
-        inline primary
-      </Button>
-      <Button type="ghost" inline size="small" style={{ marginRight: "4px" }}>
-        ghost
-      </Button>
+      <TestView dataSource={dataSource} name={"TextView"} />
       <div style={{ flex: 1, overflow: "auto" }}>{state.title}</div>
     </MainPageContainer>
   );
