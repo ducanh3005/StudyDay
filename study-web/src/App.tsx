@@ -10,25 +10,37 @@ import routerConfig from "./routes/index";
 // import { LocaleProvider } from "antd-mobile";
 import BlankComp from "./components/BlankComp";
 
+import { BrowserRouter } from "react-router-dom";
+import MainPage from "pages/MainPage"; //测试首页
+const isDebug = true;
+
 const App: React.FC = () => {
-  return (
-    <Suspense fallback={<BlankComp />}>
-      {/* <LocaleProvider locale={{}}> */}
-      <React.Fragment>
-        <Router>
-          <Switch>
-            {routerConfig
-              .filter((rc) => rc.open)
-              .map(({ path, component }) => (
-                <Route path={path} component={component} exact key={path} />
-              ))}
-            {/* <Redirect to={MAIN_PAGE} /> */}
-          </Switch>
-        </Router>
-      </React.Fragment>
-      {/* </LocaleProvider> */}
-    </Suspense>
-  );
+  if (isDebug) {
+    return (
+      <BrowserRouter basename="/">
+        <MainPage title={"测试"} />
+      </BrowserRouter>
+    );
+  } else {
+    return (
+      <Suspense fallback={<BlankComp />}>
+        {/* <LocaleProvider locale={{}}> */}
+        <React.Fragment>
+          <Router>
+            <Switch>
+              {routerConfig
+                .filter((rc) => rc.open)
+                .map(({ path, component }) => (
+                  <Route path={path} component={component} exact key={path} />
+                ))}
+              {/* <Redirect to={MAIN_PAGE} /> */}
+            </Switch>
+          </Router>
+        </React.Fragment>
+        {/* </LocaleProvider> */}
+      </Suspense>
+    );
+  }
 };
 
 export default App;

@@ -14,6 +14,7 @@ import {
 import { Toast } from "antd-mobile";
 import { RouteComponentProps } from "react-router";
 import _ from "lodash";
+import { LabelView } from "../../components/Element/elements";
 
 interface IProps extends RouteComponentProps {
   name: string;
@@ -67,6 +68,11 @@ class TestView extends React.PureComponent<IProps, State> {
         <Input readOnly={true} value="@geelen" type="text" />
         <Button primary={false}>Normal</Button>
         <Button primary={true}>Primary</Button>
+        <LabelView
+          style={{ LabelView: { container: {}, label: {} } }}
+          name={this.props.name}
+          objectKey={this.props.name}
+        />
       </Wrapper>
     );
   }
