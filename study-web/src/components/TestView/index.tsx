@@ -69,10 +69,26 @@ class TestView extends React.PureComponent<IProps, State> {
         <Button primary={false}>Normal</Button>
         <Button primary={true}>Primary</Button>
         <LabelView
-          style={{ LabelView: { container: {}, label: {} } }}
-          name={this.props.name}
+          style={{
+            LabelView: {
+              container: {
+                margin: "5px",
+                padding: "5px",
+                // border: "1px solid #54caa1",
+                backgroundColor: "#cccccc",
+                borderRadius: "3px",
+              },
+              label: {
+                color: "#182437",
+                fontSize: 16,
+                fontFamily: "PingFangSC-Medium",
+              },
+            },
+          }}
+          name={"传递style"}
           objectKey={this.props.name}
         />
+        <LabelView />
       </Wrapper>
     );
   }

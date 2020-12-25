@@ -1,6 +1,6 @@
 //对外暴露的props基础选项
-import { StyleType } from "./componentProps";
+import { StyleType } from "./baseStyleType";
 export default interface componentPropsType {
-  style: StyleType;
-  objectKey: string;
+  style?: StyleType;
+  objectKey?: string;
 }
