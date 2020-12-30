@@ -14,8 +14,8 @@ const MainPage: React.FC<State> = (state: State) => {
   const dataSource = ["a", "b", "c", "d", "e", "f", "g"];
   return (
     <MainPageContainer>
-      <TestView dataSource={dataSource} name={"TextView"} />
       <div style={{ flex: 1, overflow: "auto" }}>{state.title}</div>
+      <TestView dataSource={dataSource} name={"TextView"} />
     </MainPageContainer>
   );
 };

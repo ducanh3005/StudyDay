@@ -5,16 +5,16 @@ import React from "react";
 import { withRouter } from "react-router-dom";
 import {
   Wrapper,
-  Title,
-  TextViewContainer,
-  Container,
-  Input,
-  Button,
+  // Title,
+  // TextViewContainer,
+  // Container,
+  // Input,
+  // Button,
 } from "./styled";
 import { Toast } from "antd-mobile";
 import { RouteComponentProps } from "react-router";
-import _ from "lodash";
-import { LabelView } from "../../components/Element/elements";
+// import _ from "lodash";
+import { LabelView, ItemSection } from "../../components/Element/elements";
 
 interface IProps extends RouteComponentProps {
   name: string;
@@ -42,7 +42,7 @@ class TestView extends React.PureComponent<IProps, State> {
   render() {
     return (
       <Wrapper>
-        <Title>{this.props.name}</Title>
+        {/* <Title>{this.props.name}</Title>
         <Container>
           {_.forEach(this.props.dataSource, (item: string) => {
             console.log(item);
@@ -67,31 +67,48 @@ class TestView extends React.PureComponent<IProps, State> {
         <Input readOnly={true} placeholder="@mxstbr" type="text" />
         <Input readOnly={true} value="@geelen" type="text" />
         <Button primary={false}>Normal</Button>
-        <Button primary={true}>Primary</Button>
-        <LabelView
-          style={{
-            LabelView: {
-              container: {
-                margin: "5px",
-                padding: "5px",
-                // border: "1px solid #54caa1",
-                backgroundColor: "#cccccc",
-                borderRadius: "3px",
-              },
-              label: {
-                color: "#182437",
-                fontSize: 16,
-                fontFamily: "PingFangSC-Medium",
-              },
-            },
-          }}
-          name={"传递style"}
-          objectKey={this.props.name}
+        <Button primary={true}>Primary</Button> */}
+        <ItemSection
+          headerLabel={"国家经济"}
+          collapsed={false}
+          dataSource={this.getChildView()}
         />
-        <LabelView />
       </Wrapper>
     );
   }
+
+  getChildView = () => {
+    const views = [];
+    for (let i = 0; i < 10; i++) {
+      views.push(
+        <div>
+          <LabelView
+            style={{
+              LabelView: {
+                container: {
+                  margin: "5px",
+                  padding: "5px",
+                  // border: "1px solid #54caa1",
+                  backgroundColor: "#cccccc",
+                  borderRadius: "3px",
+                },
+                label: {
+                  color: "#182437",
+                  fontSize: 16,
+                  fontFamily: "PingFangSC-Medium",
+                },
+              },
+            }}
+            name={"第" + i + "行"}
+            value={"第" + i + "值"}
+            objectKey={this.props.name + i}
+          />
+          <LabelView />
+        </div>
+      );
+    }
+    return views;
+  };
 }
 
 export default withRouter(TestView);

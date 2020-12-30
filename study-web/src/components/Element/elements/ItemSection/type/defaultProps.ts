@@ -7,22 +7,15 @@ export const defaultProps = {
     container: {
       margin: "5px",
       padding: "5px",
-      border: "1px solid #54caa1",
-      borderRadius: "3px",
+      height: "40px",
+      backgroundColor: "#ffe3e3",
     },
-    label: {
+    headLabel: {
       color: "#929292",
       fontSize: 14,
       fontFamily: "PingFangSC-Medium",
     },
-    border: {
-      width: "1px",
-      border: "1px #54caa1 solid",
-      marginLeft: "4px",
-      marginRight: "4px",
-    },
   },
-  name: "无",
-  defaultValue: "未填写",
+  headerLabel: "",
   objectKey: name,
 };

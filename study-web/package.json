@@ -57,6 +57,7 @@
     "react-styleguidist": "^11.1.5",
     "source-map-explorer": "^2.5.1",
     "styled-components": "^5.2.1",
+    "ts-node": "^9.1.1",
     "typescript": "^4.1.3",
     "web-vitals": "^0.2.4"
   },
@@ -79,6 +80,7 @@
     "styleguide:build": "styleguidist build",
     "start": "react-scripts start",
     "build": "react-scripts build",
+    "create-svg": "node --experimental-modules --es-module-specifier-resolution=node ./src/assets/mjs/index.mjs && tsc",
     "test": "react-scripts test",
     "eject": "react-scripts eject"
   },

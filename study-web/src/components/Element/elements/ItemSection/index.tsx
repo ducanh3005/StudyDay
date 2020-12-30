@@ -1,5 +1,5 @@
 /**
- * 测试建立的标签
+ * 分组标题栏功能
  */
 import View from "./view";
 export default View;

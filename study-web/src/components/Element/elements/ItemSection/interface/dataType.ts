@@ -3,8 +3,8 @@
  */
 interface styleType {
   container: any;
-  label: any;
+  headLabel: any;
 }
-export type LabelViewType = Partial<styleType>;
+export type HeaderType = Partial<styleType>;
 
-export const name = ".LabelView";
+export const name = ".ItemSection";

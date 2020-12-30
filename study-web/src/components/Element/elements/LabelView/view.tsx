@@ -9,13 +9,17 @@ export default class View extends React.Component<IProps, IState> {
     super(props);
   }
   render() {
-    const { name, value, style } = this.props;
+    const { name, value, style, objectKey } = this.props;
     return (
-      <div style={style?.LabelView.container || defaultProps.style.container}>
-        <span style={style?.LabelView.label || defaultProps.style.label}>
+      <div
+        className={objectKey || defaultProps.objectKey}
+        style={style?.LabelView?.container || defaultProps.style.container}
+      >
+        <span style={style?.LabelView?.label || defaultProps.style.label}>
           {name || defaultProps.name}
         </span>
-        <span style={style?.LabelView.label || defaultProps.style.label}>
+        <label style={defaultProps.style.border}></label>
+        <span style={style?.LabelView?.label || defaultProps.style.label}>
           {value || defaultProps.defaultValue}
         </span>
       </div>

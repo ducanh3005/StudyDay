@@ -27,7 +27,7 @@ export const Title = styled.label`
 // Create a Wrapper component that'll render a <section> tag with some styles
 export const Wrapper = styled.section`
   padding: 10px;
-  background: papayawhip;
+  background: #ffffff;
 `;
 
 // Create an Input component that'll render an <input> tag with some styles
