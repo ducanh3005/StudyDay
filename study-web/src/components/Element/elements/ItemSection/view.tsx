@@ -16,15 +16,6 @@ export default class View extends React.Component<IProps, IState> {
     };
   }
 
-  UNSAFE_componentWillReceiveProps(np: IProps) {
-    const { collapsed } = np;
-    if (np.collapsed !== this.props.collapsed) {
-      this.setState({
-        collapsed,
-      });
-    }
-  }
-
   toggleSection = () => {
     this.firstRender = false;
     this.setState({
@@ -71,7 +62,6 @@ export default class View extends React.Component<IProps, IState> {
   getRenderHeaderFC = (newHeaderLabel: string) => {
     const style = this.getStyle().headLabel;
     //点击bannder 收起/展开
-    console.log(style);
     return (
       <div
         style={{ display: "flex", justifyContent: "space-between" }}

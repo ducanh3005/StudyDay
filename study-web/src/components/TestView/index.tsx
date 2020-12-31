@@ -23,6 +23,7 @@ interface IProps extends RouteComponentProps {
 
 interface State {
   value: string;
+  header: string;
 }
 
 class TestView extends React.PureComponent<IProps, State> {
@@ -30,6 +31,7 @@ class TestView extends React.PureComponent<IProps, State> {
     super(props);
     this.state = {
       value: "",
+      header: "标题栏",
     } as State;
   }
 
@@ -69,7 +71,7 @@ class TestView extends React.PureComponent<IProps, State> {
         <Button primary={false}>Normal</Button>
         <Button primary={true}>Primary</Button> */}
         <ItemSection
-          headerLabel={"国家经济"}
+          headerLabel={this.state.header}
           collapsed={false}
           dataSource={this.getChildView()}
         />
@@ -81,30 +83,28 @@ class TestView extends React.PureComponent<IProps, State> {
     const views = [];
     for (let i = 0; i < 10; i++) {
       views.push(
-        <div>
-          <LabelView
-            style={{
-              LabelView: {
-                container: {
-                  margin: "5px",
-                  padding: "5px",
-                  // border: "1px solid #54caa1",
-                  backgroundColor: "#cccccc",
-                  borderRadius: "3px",
-                },
-                label: {
-                  color: "#182437",
-                  fontSize: 16,
-                  fontFamily: "PingFangSC-Medium",
-                },
+        <LabelView
+          key={this.state.header + i}
+          style={{
+            LabelView: {
+              container: {
+                margin: "5px",
+                padding: "5px",
+                // border: "1px solid #54caa1",
+                backgroundColor: "#cccccc",
+                borderRadius: "3px",
               },
-            }}
-            name={"第" + i + "行"}
-            value={"第" + i + "值"}
-            objectKey={this.props.name + i}
-          />
-          <LabelView />
-        </div>
+              label: {
+                color: "#182437",
+                fontSize: 16,
+                fontFamily: "PingFangSC-Medium",
+              },
+            },
+          }}
+          name={"第" + i + "行"}
+          value={"第" + i + "值"}
+          objectKey={this.state.header + i}
+        />
       );
     }
     return views;
